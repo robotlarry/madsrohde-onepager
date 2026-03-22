@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mads Rohde</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Playfair Display', Georgia, serif;
+            background: #fff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* === HEADER / HERO === */
+        .hero {
+            display: flex;
+            gap: 4rem;
+            padding: 3rem 0 4rem;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .hero-left {
+            flex: 0 0 320px;
+        }
+
+        .hero-right {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .url-text {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 1.5rem;
+        }
+
+        .megaphone {
+            width: 100px;
+            margin-bottom: 1rem;
+            filter: contrast(1.2);
+        }
+
+        .tagline {
+            font-size: 1.6rem;
+            font-weight: 700;
+            font-style: italic;
+            line-height: 1.4;
+            margin-bottom: 2rem;
+        }
+
+        .tagline .orange { color: #E8972E; }
+
+        .nav-dots {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .nav-dots li {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-dots li a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .dot-cyan { background: #69C8C8; }
+        .dot-red { background: #E85555; }
+        .dot-amber { background: #E8B830; }
+
+        .welcome-title {
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .site-desc {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+        }
+
+        .activities {
+            font-style: italic;
+            color: #777;
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        /* === SECTIONS === */
+        .section {
+            padding: 3rem 0;
+        }
+
+        .section-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .card h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            font-size: 0.85rem;
+            color: #777;
+            font-style: italic;
+        }
+
+        .card a {
+            color: #E8972E;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+        }
+
+        /* === CLICK HERE / PROFILE === */
+        .profile-section {
+            text-align: center;
+            padding: 5rem 0;
+        }
+
+        .click-here {
+            font-size: 1.8rem;
+            font-weight: 700;
+            font-style: italic;
+            color: #E8972E;
+            margin-bottom: 1rem;
+        }
+
+        .arrow-down {
+            font-size: 3rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .profile-photo {
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            border: 2px solid #eee;
+        }
+
+        /* === EMF WORLD / PROJECTS === */
+        .project-card {
+            background: #fafafa;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-card p {
+            font-size: 0.9rem;
+            color: #777;
+            font-style: italic;
+        }
+
+        .project-card a {
+            color: #E8972E;
+            text-decoration: none;
+        }
+
+        /* === BOOK === */
+        .book-section {
+            padding: 3rem 0;
+            border-top: 1px solid #eee;
+        }
+
+        .book-section p {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .book-section a {
+            color: #E8972E;
+            text-decoration: underline;
+        }
+
+        /* === SOCIAL / CONTACT === */
+        .social-section {
+            padding: 3rem 0;
+            border-top: 1px solid #eee;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: #333;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .social-link:hover { color: #E8972E; }
+
+        /* === FOOTER === */
+        footer {
+            border-top: 1px solid #ddd;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 0.85rem;
+            color: #888;
+            font-style: italic;
+        }
+
+        footer a {
+            color: #333;
+            font-weight: 600;
+            text-decoration: underline;
+        }
+
+        /* === MISC LABELS === */
+        .label-placeholder {
+            display: inline-block;
+            background: #f5f5f5;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 0.5rem 1rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: #999;
+            margin: 0.5rem 0;
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 700px) {
+            .hero {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            .hero-left { flex: auto; }
+            .tagline { font-size: 1.3rem; }
+            .site-desc { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-left">
+            <p class="url-text">www.madsrohde.com</p>
+            <img src="img/megaphone.png" alt="" class="megaphone">
+            <div class="tagline">
+                I like ideas <span class="orange">and</span><br>
+                <span class="orange">I like truth.</span><br>
+                It's just that.
+            </div>
+            <ul class="nav-dots">
+                <li><span class="dot dot-cyan"></span> <a href="#hobbies">Hobbies</a></li>
+                <li><span class="dot dot-red"></span> <a href="#employment">Employment</a></li>
+                <li><span class="dot dot-amber"></span> <a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+        <div class="hero-right">
+            <p class="welcome-title">Welcome to <strong>Mads Rohde's Homepage</strong></p>
+            <p class="site-desc">This site is a map/overview<br>of my current activities.</p>
+            <div class="activities">
+                Public health science and<br>
+                environmental determinants of health;<br>
+                Graphics, data, statistics and analysis;<br>
+                Social entrepreneurship
+            </div>
+        </div>
+    </section>
+
+    <!-- HOBBIES / PROJECTS -->
+    <section class="section" id="hobbies">
+        <div class="section-grid">
+            <div class="project-card">
+                <h3>🌍 emfWorld</h3>
+                <p>A scientific project I am working on, mapping EMF research in the world. More info later.</p>
+            </div>
+            <div class="project-card">
+                <h3>🗺️ Designkart.no</h3>
+                <p>A map art store I've made (under continuous development)</p>
+                <a href="https://designkart.no" target="_blank">designkart.no →</a>
+            </div>
+            <div class="project-card">
+                <h3>📝 Blog</h3>
+                <p>(to come)</p>
+                <a href="https://madsrohde.com" target="_blank">madsrohde.com →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROFILE -->
+    <section class="profile-section">
+        <div class="click-here">Click here!</div>
+        <span class="arrow-down">↓</span>
+        <div>
+            <img src="img/profile.jpg" alt="Mads Rohde" class="profile-photo">
+        </div>
+    </section>
+
+    <!-- EMPLOYMENT -->
+    <section class="section" id="employment">
+        <h2 style="font-size: 1.1rem; margin-bottom: 1rem;">Current paid employment</h2>
+        <p style="font-size: 0.9rem; color: #777;">Get in touch on LinkedIn:</p>
+        <a href="https://www.linkedin.com/in/mads-rohde-3ba34391/" target="_blank" class="social-link" style="margin-top: 0.5rem;">
+            🔗 LinkedIn Profile
+        </a>
+    </section>
+
+    <!-- EMF BOOK -->
+    <section class="book-section">
+        <h2 style="font-size: 1.1rem; margin-bottom: 1rem;">EMF book translation</h2>
+        <p>I have secured the rights to the book <a href="https://bokelskere.no/bok/elektromagnetismen-og-livet-en-konfrontasjon-mellom-to-supermakter/19467/" target="_blank"><em>Electromagnetism and life — the science of two superpowers collide!</em></a> (English working title) (1987, 2nd ed. 2006) by the Norwegian author Vilhelm Schjelderup, to translate it into English.</p>
+    </section>
+
+    <!-- MISC -->
+    <section class="section">
+        <div class="section-grid">
+            <div><span class="label-placeholder">DBC — More info later.</span></div>
+            <div><span class="label-placeholder">ARM — More info later.</span></div>
+            <div><span class="label-placeholder">PUS — More info later.</span></div>
+        </div>
+    </section>
+
+    <!-- SOCIAL / CONTACT -->
+    <section class="social-section" id="contact">
+        <h2 style="font-size: 1.1rem; margin-bottom: 0.5rem;">SoMe / Contact</h2>
+        <div class="social-links">
+            <a href="https://twitter.com/hippocapensis" target="_blank" class="social-link">𝕏 Twitter/X — Active! Follow me</a>
+            <a href="https://www.linkedin.com/in/mads-rohde-3ba34391/" target="_blank" class="social-link">💼 LinkedIn</a>
+            <a href="https://www.facebook.com/mads.k.rohde" target="_blank" class="social-link">📘 Facebook</a>
+        </div>
+    </section>
+
+    <!-- DIRECT MESSAGE -->
+    <section class="section">
+        <h2 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Direct message</h2>
+        <p style="font-size: 0.9rem; color: #777;">
+            <a href="mailto:madsrohde@proton.me" style="color: #E8972E;">madsrohde@proton.me</a>
+        </p>
+    </section>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <p>Please <a href="mailto:madsrohde@proton.me">contact me</a> — share information, ideas, contribute and collaborate ...</p>
+        <p style="margin-top: 0.5rem; font-size: 0.75rem;">© 2023 By Mads Rohde</p>
+    </div>
+</footer>
+
+</body>
+</html>
