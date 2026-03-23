@@ -8,30 +8,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Playfair Display', Georgia, serif; background: #e8e8e8; color: #333; }
+        body { font-family: 'Playfair Display', Georgia, serif; background: #e8e8e8; color: #333; overflow-x: hidden; }
+        .page { max-width: 1100px; margin: 0 auto; padding: 0 2rem; position: relative; }
 
-        .page { max-width: 1100px; margin: 0 auto; padding: 0 2rem; position: relative; min-height: 100vh; }
-
-        /* === HERO — two columns === */
+        /* === HERO === */
         .hero { display: flex; gap: 3rem; padding: 2.5rem 0 2rem; align-items: flex-start; }
         .hero-left { flex: 0 0 340px; }
         .hero-right { flex: 1; min-width: 280px; padding-top: 0.5rem; }
-
         .url { font-family: 'Inter', sans-serif; font-weight: 300; font-size: 0.85rem; color: #888; margin-bottom: 1.2rem; }
         .url a { color: #888; text-decoration: none; }
-
         .megaphone { width: 120px; margin-bottom: 0.8rem; }
-
         .tagline { font-size: 1.7rem; font-weight: 700; line-height: 1.35; margin-bottom: 1.8rem; }
         .tagline .cyan { color: #4ECDC4; }
         .tagline .black { color: #222; font-style: italic; }
 
-        /* === NAV DOTS === */
-        .nav-dots { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
-        .nav-dots li { font-family: 'Inter', sans-serif; font-size: 0.82rem; display: flex; align-items: center; gap: 0.5rem; cursor: pointer; user-select: none; }
-        .nav-dots li:hover { opacity: 0.7; }
-        .nav-dots li.active { font-weight: 600; }
-        .dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+        /* Nav legend */
+        .nav-legend { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+        .nav-legend li { font-family: 'Inter', sans-serif; font-size: 0.82rem; display: flex; align-items: center; gap: 0.5rem; }
+        .dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
         .dot-cyan { background: #4ECDC4; }
         .dot-red { background: #E85555; }
         .dot-amber { background: #DAA520; }
@@ -41,52 +35,59 @@
         .site-desc { font-size: 1.45rem; font-weight: 400; line-height: 1.35; margin-bottom: 1rem; }
         .activities { font-style: italic; color: #777; font-size: 0.9rem; line-height: 1.9; }
 
-        /* === DYNAMIC SECTIONS (shown/hidden by nav clicks) === */
-        .section-panel { display: none; padding: 2rem 0; animation: fadeIn 0.4s ease; }
-        .section-panel.active { display: block; }
+        /* === CLICK HERE / PROFILE HUB === */
+        .hub-area { text-align: center; padding: 2rem 0 1rem; position: relative; }
+        .click-text { font-size: 1.8rem; font-weight: 700; font-style: italic; color: #DAA520; cursor: pointer; transition: opacity 0.3s; }
+        .click-text:hover { opacity: 0.7; }
+        .arrow-svg { margin: 0.5rem 0 1rem; transition: opacity 0.3s; }
+        .profile-wrap { position: relative; display: inline-block; cursor: pointer; }
+        .profile-photo { width: 170px; height: 170px; border-radius: 50%; object-fit: cover; filter: grayscale(100%); border: 2px solid #ddd; transition: filter 0.4s, transform 0.3s; }
+        .profile-wrap:hover .profile-photo { filter: grayscale(50%); transform: scale(1.03); }
+
+        /* Mind-map bubbles around profile */
+        .hub-bubbles { position: relative; width: 600px; height: 500px; margin: 0 auto; display: none; }
+        .hub-bubbles.active { display: block; animation: fadeScale 0.5s ease; }
+        @keyframes fadeScale { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+
+        .bubble { position: absolute; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-align: center; font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 500; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; color: #fff; line-height: 1.3; }
+        .bubble:hover { transform: scale(1.08); box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
+        .bubble-cyan { background: #4ECDC4; }
+        .bubble-red { background: #E85555; }
+        .bubble-amber { background: #DAA520; }
+        .bubble-light { background: #aadbd5; color: #333; }
+
+        .bubble-label { position: absolute; font-family: 'Inter', sans-serif; font-size: 0.7rem; color: #777; font-style: italic; max-width: 140px; text-align: center; pointer-events: none; }
+
+        .profile-center { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+        .profile-center img { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; filter: grayscale(100%); border: 2px solid #ddd; }
+
+        /* === DETAIL PANELS (shown when bubble clicked) === */
+        .detail-panel { display: none; max-width: 600px; margin: 2rem auto; padding: 2rem; background: #f5f5f5; border: 1px solid #ddd; border-radius: 12px; animation: fadeIn 0.4s ease; }
+        .detail-panel.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .detail-panel h3 { font-size: 1.1rem; margin-bottom: 0.8rem; }
+        .detail-panel p { font-size: 0.9rem; color: #666; line-height: 1.7; }
+        .detail-panel a { color: #DAA520; text-decoration: none; }
+        .detail-panel a:hover { text-decoration: underline; }
+        .detail-close { float: right; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 0.8rem; color: #999; background: none; border: 1px solid #ccc; border-radius: 4px; padding: 0.2rem 0.6rem; }
+        .detail-close:hover { background: #eee; }
 
-        /* Cards grid */
-        .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 1rem; }
-        .card { background: #f5f5f5; border: 1px solid #ddd; border-radius: 8px; padding: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
-        .card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
-        .card h3 { font-size: 1rem; margin-bottom: 0.4rem; }
-        .card p { font-size: 0.85rem; color: #777; font-style: italic; line-height: 1.5; }
-        .card a { color: #DAA520; text-decoration: none; font-family: 'Inter', sans-serif; font-size: 0.8rem; display: inline-block; margin-top: 0.5rem; }
-        .card a:hover { text-decoration: underline; }
-        .card-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
-
-        .label-stub { display: inline-block; background: #eee; border: 1px solid #ddd; border-radius: 4px; padding: 0.5rem 1rem; font-family: 'Inter', sans-serif; font-size: 0.8rem; color: #aaa; }
-
-        /* === CLICK HERE / PROFILE === */
-        .profile-area { text-align: center; padding: 3rem 0; }
-        .click-text { font-size: 1.8rem; font-weight: 700; font-style: italic; color: #DAA520; cursor: pointer; }
-        .click-text:hover { opacity: 0.8; }
-        .arrow-svg { margin: 0.5rem 0 1rem; }
-        .profile-photo { width: 170px; height: 170px; border-radius: 50%; object-fit: cover; filter: grayscale(100%); border: 2px solid #ddd; }
-
-        /* === SOCIAL ICONS === */
-        .social-row { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin-top: 0.5rem; }
-        .social-icon { width: 28px; height: 28px; opacity: 0.6; transition: opacity 0.2s; }
-        .social-icon:hover { opacity: 1; }
-        .social-label { font-family: 'Inter', sans-serif; font-size: 0.8rem; color: #555; }
-
-        /* === BOOK === */
-        .book-text { font-size: 0.9rem; line-height: 1.8; color: #555; max-width: 600px; }
-        .book-text a { color: #DAA520; }
+        .label-stub { display: inline-block; background: #eee; border: 1px solid #ddd; border-radius: 4px; padding: 0.4rem 0.8rem; font-family: 'Inter', sans-serif; font-size: 0.75rem; color: #aaa; margin: 0.3rem; }
 
         /* === FOOTER === */
         footer { border-top: 1px solid #ccc; padding: 1.5rem 0; text-align: center; margin-top: 3rem; }
         footer p { font-size: 0.85rem; color: #888; font-style: italic; }
         footer a { color: #333; font-weight: 600; text-decoration: underline; }
 
-        /* === RESPONSIVE === */
+        /* Hide elements when hub is open */
+        .hub-open .click-text, .hub-open .arrow-svg, .hub-open .profile-wrap { display: none; }
+
         @media (max-width: 750px) {
             .hero { flex-direction: column; gap: 1.5rem; }
             .hero-left { flex: auto; }
             .tagline { font-size: 1.4rem; }
-            .site-desc { font-size: 1.2rem; }
-            .cards { grid-template-columns: 1fr; }
+            .hub-bubbles { width: 100%; height: 450px; }
+            .bubble { font-size: 0.65rem; }
         }
     </style>
 </head>
@@ -103,10 +104,10 @@
                 <span class="cyan">I like truth.</span><br>
                 <span class="black">It's just that.</span>
             </div>
-            <ul class="nav-dots">
-                <li onclick="showSection('hobbies')" data-section="hobbies"><span class="dot dot-cyan"></span> Hobbies</li>
-                <li onclick="showSection('employment')" data-section="employment"><span class="dot dot-red"></span> Employment</li>
-                <li onclick="showSection('contact')" data-section="contact"><span class="dot dot-amber"></span> Contact</li>
+            <ul class="nav-legend">
+                <li><span class="dot dot-cyan"></span> Hobbies</li>
+                <li><span class="dot dot-red"></span> Employment</li>
+                <li><span class="dot dot-amber"></span> Contact</li>
             </ul>
         </div>
         <div class="hero-right">
@@ -121,90 +122,100 @@
         </div>
     </div>
 
-    <!-- HOBBIES SECTION -->
-    <div class="section-panel" id="sec-hobbies">
-        <div class="cards">
-            <div class="card">
-                <div class="card-icon">🌍</div>
-                <h3>emfWorld</h3>
-                <p>A scientific project I am working on, mapping EMF research in the world. More info later.</p>
-            </div>
-            <div class="card">
-                <div class="card-icon">🗺️</div>
-                <h3>Designkart.no</h3>
-                <p>A map art store I've made (under continuous development)</p>
-                <a href="https://www.designkart.no" target="_blank">Visit designkart.no →</a>
-            </div>
-            <div class="card">
-                <div class="card-icon"><img src="img/typewriter.png" alt="" style="width:50px;border-radius:8px;"></div>
-                <h3>Blog (to come)</h3>
-                <p>Science</p>
-                <a href="https://madsrohde.com" target="_blank">madsrohde.com →</a>
-            </div>
-            <div class="card">
-                <div class="card-icon">📚</div>
-                <h3>EMF book translation</h3>
-                <p>I have secured the rights to the book <a href="https://bokelskere.no/bok/elektromagnetismen-og-livet-en-konfrontasjon-mellom-to-supermakter/19467/" target="_blank"><em>Electromagnetism and life</em></a> (1987, 2nd ed. 2006) by Vilhelm Schjelderup, to translate it into English.</p>
-            </div>
-        </div>
-        <div style="margin-top: 2rem;">
-            <h3 style="font-size: 0.95rem; margin-bottom: 0.5rem;">Misc.</h3>
-            <div style="display:flex; gap:0.8rem; flex-wrap:wrap;">
-                <span class="label-stub">Ideas — ?</span>
-                <span class="label-stub">DBC — More info later.</span>
-                <span class="label-stub">ARM — More info later.</span>
-                <span class="label-stub">PUS — More info later.</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- EMPLOYMENT SECTION -->
-    <div class="section-panel" id="sec-employment">
-        <h3 style="font-size: 1rem; margin-bottom: 0.8rem;">Current paid employment</h3>
-        <p style="font-size: 0.9rem; color: #777; margin-bottom: 0.5rem;">Get in touch on LinkedIn:</p>
-        <a href="https://www.linkedin.com/in/mads-rohde-3ba34391/" target="_blank" style="color:#DAA520; text-decoration:none; font-family:'Inter',sans-serif; font-size:0.85rem;">💼 LinkedIn Profile →</a>
-        <div style="margin-top: 2rem;">
-            <p style="font-size:0.85rem; color:#999;">Follow me on Twitter/X for public health tweets:</p>
-            <a href="https://twitter.com/hippocapensis" target="_blank" style="color:#DAA520; text-decoration:none; font-family:'Inter',sans-serif; font-size:0.85rem;">𝕏 @hippocapensis →</a>
-        </div>
-    </div>
-
-    <!-- CONTACT SECTION -->
-    <div class="section-panel" id="sec-contact">
-        <h3 style="font-size: 1rem; margin-bottom: 1rem;">Direct message</h3>
-        <p style="font-size: 0.9rem; margin-bottom: 1.5rem;">
-            <a href="mailto:madsrohde@proton.me" style="color: #DAA520;">✉ madsrohde@proton.me</a>
-        </p>
-        <h3 style="font-size: 1rem; margin-bottom: 0.8rem;">SoMe / Contact</h3>
-        <div class="social-row">
-            <a href="https://twitter.com/hippocapensis" target="_blank" style="color:#333; text-decoration:none;">𝕏</a>
-            <span class="social-label">Active! Follow me</span>
-        </div>
-        <div class="social-row" style="margin-top:0.5rem;">
-            <a href="https://www.linkedin.com/in/mads-rohde-3ba34391/" target="_blank" style="color:#333; text-decoration:none;">💼</a>
-            <span class="social-label">LinkedIn</span>
-        </div>
-        <div class="social-row" style="margin-top:0.5rem;">
-            <a href="https://www.facebook.com/mads.k.rohde" target="_blank" style="color:#333; text-decoration:none;">📘</a>
-            <span class="social-label">Facebook</span>
-        </div>
-        <div style="margin-top: 2rem;">
-            <p style="font-size: 0.85rem; color: #999;">I have a profile. I use it as little as possible.</p>
-        </div>
-    </div>
-
-    <!-- PROFILE / CLICK HERE -->
-    <div class="profile-area">
-        <div class="click-text" onclick="showSection(null)">Click here!</div>
-        <svg class="arrow-svg" width="40" height="60" viewBox="0 0 40 60" fill="none"><path d="M20 5C20 5 15 25 20 35C25 45 20 55 20 55" stroke="#333" stroke-width="2" fill="none"/><path d="M14 48L20 57L26 48" stroke="#333" stroke-width="2" fill="none"/></svg>
-        <div>
+    <!-- HUB: Click here + profile + mind-map -->
+    <div class="hub-area" id="hubArea">
+        <div class="click-text" onclick="openHub()">Click here!</div>
+        <svg class="arrow-svg" width="40" height="60" viewBox="0 0 40 60" fill="none" onclick="openHub()" style="cursor:pointer"><path d="M20 5C18 15 15 25 20 35C25 45 22 52 20 55" stroke="#333" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M14 48L20 57L26 48" stroke="#333" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        <div class="profile-wrap" onclick="openHub()">
             <img src="img/profile.jpg" alt="Mads Rohde" class="profile-photo">
+        </div>
+
+        <!-- Mind-map bubbles -->
+        <div class="hub-bubbles" id="hubBubbles">
+            <div class="profile-center"><img src="img/profile.jpg" alt="Mads Rohde"></div>
+
+            <!-- Hobbies (cyan) -->
+            <a class="bubble bubble-cyan" style="width:90px;height:90px;top:10px;left:60px;" onclick="showDetail('emfworld')">emf<br>World</a>
+            <a class="bubble bubble-cyan" style="width:100px;height:100px;top:30px;right:40px;" onclick="showDetail('designkart')">Designkart<br>.no</a>
+            <a class="bubble bubble-light" style="width:80px;height:80px;top:0;left:250px;" onclick="showDetail('blog')">Blog<br><small>(to come)</small></a>
+            <a class="bubble bubble-cyan" style="width:80px;height:80px;bottom:80px;right:30px;" onclick="showDetail('book')">EMF book<br>translation</a>
+
+            <!-- Employment (red) -->
+            <a class="bubble bubble-red" style="width:85px;height:85px;top:120px;left:10px;" onclick="showDetail('job')">Job</a>
+            <span class="bubble-label" style="top:160px;left:100px;">Current paid<br>employment</span>
+
+            <!-- Science -->
+            <a class="bubble bubble-cyan" style="width:75px;height:75px;top:5px;left:170px;" onclick="showDetail('science')">Science</a>
+
+            <!-- Contact (amber) -->
+            <a class="bubble bubble-amber" style="width:95px;height:95px;bottom:40px;left:40px;" onclick="showDetail('contact')">SoMe/<br>Contact</a>
+
+            <!-- Misc -->
+            <a class="bubble bubble-light" style="width:70px;height:70px;bottom:10px;left:250px;" onclick="showDetail('misc')">Misc.</a>
+        </div>
+    </div>
+
+    <!-- DETAIL PANELS -->
+    <div class="detail-panel" id="det-emfworld">
+        <button class="detail-close" onclick="closeDetail()">✕</button>
+        <h3>🌍 emfWorld</h3>
+        <p>A scientific project I am working on, mapping EMF research in the world. More info later.</p>
+    </div>
+    <div class="detail-panel" id="det-designkart">
+        <button class="detail-close" onclick="closeDetail()">✕</button>
+        <h3>🗺️ Designkart.no</h3>
+        <p>A map art store I've made (under continuous development)</p>
+        <p style="margin-top:0.5rem;"><a href="https://www.designkart.no" target="_blank">Visit designkart.no →</a></p>
+    </div>
+    <div class="detail-panel" id="det-blog">
+        <button class="detail-close" onclick="closeDetail()">✕</button>
+        <h3>📝 Blog (to come)</h3>
+        <p>Science</p>
+        <p style="margin-top:0.5rem;"><a href="https://madsrohde.com" target="_blank">madsrohde.com →</a></p>
+    </div>
+    <div class="detail-panel" id="det-book">
+        <button class="detail-close" onclick="closeDetail()">✕</button>
+        <h3>📚 EMF book translation</h3>
+        <p>I have secured the rights to the book <a href="https://bokelskere.no/bok/elektromagnetismen-og-livet-en-konfrontasjon-mellom-to-supermakter/19467/" target="_blank"><em>Electromagnetism and life — the science of two superpowers collide!</em></a> (English working title) (1987, 2nd ed. 2006) by the Norwegian author Vilhelm Schjelderup, to translate it into English.</p>
+    </div>
+    <div class="detail-panel" id="det-job">
+        <button class="detail-close" onclick="closeDetail()">✕</button>
+        <h3>💼 Current paid employment</h3>
+        <p>Get in touch on LinkedIn:</p>
+        <p style="margin-top:0.5rem;"><a href="https://www.linkedin.com/in/mads-rohde-3ba34391/" target="_blank">LinkedIn Profile →</a></p>
+        <p style="margin-top:1rem; font-size:0.85rem; color:#999;">Follow me on Twitter/X for public health tweets:</p>
+        <p><a href="https://twitter.com/hippocapensis" target="_blank">𝕏 @hippocapensis →</a></p>
+    </div>
+    <div class="detail-panel" id="det-science">
+        <button class="detail-close" onclick="closeDetail()">✕</button>
+        <h3>🔬 Science</h3>
+        <p>A scientific project I am working on, mapping EMF research in the world. More info later.</p>
+        <p style="margin-top:0.5rem;">Follow me on Twitter/X for public health tweets:</p>
+        <p><a href="https://twitter.com/hippocapensis" target="_blank">𝕏 @hippocapensis →</a></p>
+    </div>
+    <div class="detail-panel" id="det-contact">
+        <button class="detail-close" onclick="closeDetail()">✕</button>
+        <h3>✉ Direct message</h3>
+        <p><a href="mailto:madsrohde@proton.me">madsrohde@proton.me</a></p>
+        <h3 style="margin-top:1.5rem;">SoMe / Contact</h3>
+        <p style="margin-top:0.5rem;"><a href="https://twitter.com/hippocapensis" target="_blank">𝕏 Twitter/X</a> — Active! Follow me</p>
+        <p><a href="https://www.linkedin.com/in/mads-rohde-3ba34391/" target="_blank">💼 LinkedIn</a></p>
+        <p><a href="https://www.facebook.com/mads.k.rohde" target="_blank">📘 Facebook</a></p>
+        <p style="margin-top:1rem; font-size:0.8rem; color:#999;">I have a profile. I use it as little as possible.</p>
+    </div>
+    <div class="detail-panel" id="det-misc">
+        <button class="detail-close" onclick="closeDetail()">✕</button>
+        <h3>Misc.</h3>
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.5rem;">
+            <span class="label-stub">Ideas — ?</span>
+            <span class="label-stub">DBC — More info later.</span>
+            <span class="label-stub">ARM — More info later.</span>
+            <span class="label-stub">PUS — More info later.</span>
         </div>
     </div>
 
 </div>
 
-<!-- FOOTER -->
 <footer>
     <div class="page">
         <p>Please <a href="mailto:madsrohde@proton.me">contact me</a> — share information, ideas, contribute and collaborate ...</p>
@@ -213,23 +224,26 @@
 </footer>
 
 <script>
-function showSection(name) {
-    // Hide all panels
-    document.querySelectorAll('.section-panel').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.nav-dots li').forEach(li => li.classList.remove('active'));
-    
-    if (name) {
-        var panel = document.getElementById('sec-' + name);
-        if (panel) {
-            // Toggle: if already shown, hide it
-            panel.classList.add('active');
-            // Highlight nav
-            var nav = document.querySelector('[data-section="' + name + '"]');
-            if (nav) nav.classList.add('active');
-            // Smooth scroll to panel
-            panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+var hubOpen = false;
+
+function openHub() {
+    hubOpen = true;
+    document.getElementById('hubArea').classList.add('hub-open');
+    document.getElementById('hubBubbles').classList.add('active');
+    document.getElementById('hubBubbles').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function showDetail(name) {
+    closeDetail();
+    var panel = document.getElementById('det-' + name);
+    if (panel) {
+        panel.classList.add('active');
+        panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
+}
+
+function closeDetail() {
+    document.querySelectorAll('.detail-panel').forEach(function(p) { p.classList.remove('active'); });
 }
 </script>
 </body>
