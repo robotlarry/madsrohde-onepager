@@ -45,7 +45,7 @@
         .profile-wrap:hover .profile-photo { filter: grayscale(50%); transform: scale(1.03); }
 
         /* Mind-map bubbles around profile */
-        .hub-bubbles { position: relative; width: 600px; height: 500px; margin: 0 auto; display: none; }
+        .hub-bubbles { position: relative; width: 600px; height: 520px; margin: 0 auto; display: none; }
         .hub-bubbles.active { display: block; animation: fadeScale 0.5s ease; }
         @keyframes fadeScale { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
 
@@ -130,28 +130,32 @@
             <img src="img/profile.jpg" alt="Mads Rohde" class="profile-photo">
         </div>
 
-        <!-- Mind-map bubbles -->
+        <!-- Mind-map bubbles — orbital ring around profile photo -->
         <div class="hub-bubbles" id="hubBubbles">
             <div class="profile-center"><img src="img/profile.jpg" alt="Mads Rohde"></div>
 
-            <!-- Hobbies (cyan) -->
-            <a class="bubble bubble-cyan" style="width:90px;height:90px;top:10px;left:60px;" onclick="showDetail('emfworld')">emf<br>World</a>
-            <a class="bubble bubble-cyan" style="width:100px;height:100px;top:30px;right:40px;" onclick="showDetail('designkart')">Designkart<br>.no</a>
-            <a class="bubble bubble-light" style="width:80px;height:80px;top:0;left:250px;" onclick="showDetail('blog')">Blog<br><small>(to come)</small></a>
-            <a class="bubble bubble-cyan" style="width:80px;height:80px;bottom:80px;right:30px;" onclick="showDetail('book')">EMF book<br>translation</a>
+            <!-- 12 o'clock: Science (cyan/hobbies) -->
+            <a class="bubble bubble-cyan" style="width:120px;height:120px;top:30px;left:50%;margin-left:-60px;" onclick="showDetail('science')">Science</a>
 
-            <!-- Employment (red) -->
-            <a class="bubble bubble-red" style="width:85px;height:85px;top:120px;left:10px;" onclick="showDetail('job')">Job</a>
-            <span class="bubble-label" style="top:160px;left:100px;">Current paid<br>employment</span>
+            <!-- 2 o'clock: EMF book translation (cyan) -->
+            <a class="bubble bubble-cyan" style="width:110px;height:110px;top:90px;left:50%;margin-left:80px;" onclick="showDetail('book')">EMF book<br>translation</a>
 
-            <!-- Science -->
-            <a class="bubble bubble-cyan" style="width:75px;height:75px;top:5px;left:170px;" onclick="showDetail('science')">Science</a>
+            <!-- 4 o'clock: Designkart.no (cyan) -->
+            <a class="bubble bubble-cyan" style="width:110px;height:110px;top:280px;left:50%;margin-left:80px;" onclick="showDetail('designkart')">Designkart<br>.no</a>
 
-            <!-- Contact (amber) -->
-            <a class="bubble bubble-amber" style="width:95px;height:95px;bottom:40px;left:40px;" onclick="showDetail('contact')">SoMe/<br>Contact</a>
+            <!-- 6 o'clock: Misc (cyan) -->
+            <a class="bubble bubble-cyan" style="width:110px;height:110px;bottom:0;left:50%;margin-left:-55px;" onclick="showDetail('misc')">Misc.</a>
 
-            <!-- Misc -->
-            <a class="bubble bubble-light" style="width:70px;height:70px;bottom:10px;left:250px;" onclick="showDetail('misc')">Misc.</a>
+            <!-- 8 o'clock: SoMe/Contact (amber) -->
+            <a class="bubble bubble-amber" style="width:115px;height:115px;top:280px;left:50%;margin-left:-195px;" onclick="showDetail('contact')">SoMe/<br>Contact</a>
+
+            <!-- 10 o'clock: Job (red/employment) -->
+            <a class="bubble bubble-red" style="width:120px;height:120px;top:90px;left:50%;margin-left:-200px;" onclick="showDetail('job')">Job</a>
+
+            <!-- Annotations -->
+            <span class="bubble-label" style="top:40px;left:50%;margin-left:-200px;">Current paid<br>employment ↗</span>
+            <span class="bubble-label" style="top:15px;right:30px;">Blog (to come) ↙</span>
+            <span class="bubble-label" style="top:310px;right:0;">A map art store I've made<br>(under continuous development) ←</span>
         </div>
     </div>
 
