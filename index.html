@@ -4,325 +4,113 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mads Rohde</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500&display=swap');
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Playfair Display', Georgia, serif; background: #e8e8e8; color: #333; }
 
-        body {
-            font-family: 'Playfair Display', Georgia, serif;
-            background: #fff;
-            color: #333;
-            line-height: 1.6;
-        }
+        .page { max-width: 1100px; margin: 0 auto; padding: 0 2rem; position: relative; min-height: 100vh; }
 
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
+        /* === HERO — two columns === */
+        .hero { display: flex; gap: 3rem; padding: 2.5rem 0 2rem; align-items: flex-start; }
+        .hero-left { flex: 0 0 340px; }
+        .hero-right { flex: 1; min-width: 280px; padding-top: 0.5rem; }
 
-        /* === HEADER / HERO === */
-        .hero {
-            display: flex;
-            gap: 4rem;
-            padding: 3rem 0 4rem;
-            align-items: flex-start;
-            flex-wrap: wrap;
-        }
+        .url { font-family: 'Inter', sans-serif; font-weight: 300; font-size: 0.85rem; color: #888; margin-bottom: 1.2rem; }
+        .url a { color: #888; text-decoration: none; }
 
-        .hero-left {
-            flex: 0 0 320px;
-        }
+        .megaphone { width: 120px; margin-bottom: 0.8rem; }
 
-        .hero-right {
-            flex: 1;
-            min-width: 280px;
-        }
+        .tagline { font-size: 1.7rem; font-weight: 700; line-height: 1.35; margin-bottom: 1.8rem; }
+        .tagline .cyan { color: #4ECDC4; }
+        .tagline .black { color: #222; font-style: italic; }
 
-        .url-text {
-            font-family: 'Inter', sans-serif;
-            font-weight: 300;
-            font-size: 0.85rem;
-            color: #888;
-            margin-bottom: 1.5rem;
-        }
-
-        .megaphone {
-            width: 100px;
-            margin-bottom: 1rem;
-            filter: contrast(1.2);
-        }
-
-        .tagline {
-            font-size: 1.6rem;
-            font-weight: 700;
-            font-style: italic;
-            line-height: 1.4;
-            margin-bottom: 2rem;
-        }
-
-        .tagline .orange { color: #E8972E; }
-
-        .nav-dots {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 0.6rem;
-        }
-
-        .nav-dots li {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.85rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .nav-dots li a {
-            color: #333;
-            text-decoration: none;
-        }
-
-        .dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            display: inline-block;
-        }
-
-        .dot-cyan { background: #69C8C8; }
+        /* === NAV DOTS === */
+        .nav-dots { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+        .nav-dots li { font-family: 'Inter', sans-serif; font-size: 0.82rem; display: flex; align-items: center; gap: 0.5rem; cursor: pointer; user-select: none; }
+        .nav-dots li:hover { opacity: 0.7; }
+        .nav-dots li.active { font-weight: 600; }
+        .dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+        .dot-cyan { background: #4ECDC4; }
         .dot-red { background: #E85555; }
-        .dot-amber { background: #E8B830; }
+        .dot-amber { background: #DAA520; }
 
-        .welcome-title {
-            font-size: 0.95rem;
-            margin-bottom: 0.5rem;
-        }
+        .welcome { font-size: 0.95rem; margin-bottom: 0.4rem; }
+        .welcome strong { font-weight: 700; }
+        .site-desc { font-size: 1.45rem; font-weight: 400; line-height: 1.35; margin-bottom: 1rem; }
+        .activities { font-style: italic; color: #777; font-size: 0.9rem; line-height: 1.9; }
 
-        .site-desc {
-            font-size: 1.5rem;
-            font-weight: 400;
-            margin-bottom: 1.5rem;
-            line-height: 1.4;
-        }
+        /* === DYNAMIC SECTIONS (shown/hidden by nav clicks) === */
+        .section-panel { display: none; padding: 2rem 0; animation: fadeIn 0.4s ease; }
+        .section-panel.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .activities {
-            font-style: italic;
-            color: #777;
-            font-size: 0.95rem;
-            line-height: 1.8;
-        }
+        /* Cards grid */
+        .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 1rem; }
+        .card { background: #f5f5f5; border: 1px solid #ddd; border-radius: 8px; padding: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+        .card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        .card h3 { font-size: 1rem; margin-bottom: 0.4rem; }
+        .card p { font-size: 0.85rem; color: #777; font-style: italic; line-height: 1.5; }
+        .card a { color: #DAA520; text-decoration: none; font-family: 'Inter', sans-serif; font-size: 0.8rem; display: inline-block; margin-top: 0.5rem; }
+        .card a:hover { text-decoration: underline; }
+        .card-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
 
-        /* === SECTIONS === */
-        .section {
-            padding: 3rem 0;
-        }
-
-        .section-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .card {
-            text-align: center;
-            padding: 1.5rem;
-        }
-
-        .card-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 1rem;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-        }
-
-        .card h3 {
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .card p {
-            font-size: 0.85rem;
-            color: #777;
-            font-style: italic;
-        }
-
-        .card a {
-            color: #E8972E;
-            text-decoration: none;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.8rem;
-        }
+        .label-stub { display: inline-block; background: #eee; border: 1px solid #ddd; border-radius: 4px; padding: 0.5rem 1rem; font-family: 'Inter', sans-serif; font-size: 0.8rem; color: #aaa; }
 
         /* === CLICK HERE / PROFILE === */
-        .profile-section {
-            text-align: center;
-            padding: 5rem 0;
-        }
+        .profile-area { text-align: center; padding: 3rem 0; }
+        .click-text { font-size: 1.8rem; font-weight: 700; font-style: italic; color: #DAA520; cursor: pointer; }
+        .click-text:hover { opacity: 0.8; }
+        .arrow-svg { margin: 0.5rem 0 1rem; }
+        .profile-photo { width: 170px; height: 170px; border-radius: 50%; object-fit: cover; filter: grayscale(100%); border: 2px solid #ddd; }
 
-        .click-here {
-            font-size: 1.8rem;
-            font-weight: 700;
-            font-style: italic;
-            color: #E8972E;
-            margin-bottom: 1rem;
-        }
-
-        .arrow-down {
-            font-size: 3rem;
-            color: #333;
-            margin-bottom: 1.5rem;
-            display: block;
-        }
-
-        .profile-photo {
-            width: 170px;
-            height: 170px;
-            border-radius: 50%;
-            object-fit: cover;
-            filter: grayscale(100%);
-            border: 2px solid #eee;
-        }
-
-        /* === EMF WORLD / PROJECTS === */
-        .project-card {
-            background: #fafafa;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            padding: 2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .project-card h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .project-card p {
-            font-size: 0.9rem;
-            color: #777;
-            font-style: italic;
-        }
-
-        .project-card a {
-            color: #E8972E;
-            text-decoration: none;
-        }
+        /* === SOCIAL ICONS === */
+        .social-row { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin-top: 0.5rem; }
+        .social-icon { width: 28px; height: 28px; opacity: 0.6; transition: opacity 0.2s; }
+        .social-icon:hover { opacity: 1; }
+        .social-label { font-family: 'Inter', sans-serif; font-size: 0.8rem; color: #555; }
 
         /* === BOOK === */
-        .book-section {
-            padding: 3rem 0;
-            border-top: 1px solid #eee;
-        }
-
-        .book-section p {
-            font-size: 0.95rem;
-            line-height: 1.8;
-            color: #555;
-        }
-
-        .book-section a {
-            color: #E8972E;
-            text-decoration: underline;
-        }
-
-        /* === SOCIAL / CONTACT === */
-        .social-section {
-            padding: 3rem 0;
-            border-top: 1px solid #eee;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-            margin-top: 1rem;
-        }
-
-        .social-link {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.85rem;
-            color: #333;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .social-link:hover { color: #E8972E; }
+        .book-text { font-size: 0.9rem; line-height: 1.8; color: #555; max-width: 600px; }
+        .book-text a { color: #DAA520; }
 
         /* === FOOTER === */
-        footer {
-            border-top: 1px solid #ddd;
-            padding: 2rem 0;
-            text-align: center;
-        }
-
-        footer p {
-            font-size: 0.85rem;
-            color: #888;
-            font-style: italic;
-        }
-
-        footer a {
-            color: #333;
-            font-weight: 600;
-            text-decoration: underline;
-        }
-
-        /* === MISC LABELS === */
-        .label-placeholder {
-            display: inline-block;
-            background: #f5f5f5;
-            border: 1px solid #e0e0e0;
-            border-radius: 4px;
-            padding: 0.5rem 1rem;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.8rem;
-            color: #999;
-            margin: 0.5rem 0;
-        }
+        footer { border-top: 1px solid #ccc; padding: 1.5rem 0; text-align: center; margin-top: 3rem; }
+        footer p { font-size: 0.85rem; color: #888; font-style: italic; }
+        footer a { color: #333; font-weight: 600; text-decoration: underline; }
 
         /* === RESPONSIVE === */
-        @media (max-width: 700px) {
-            .hero {
-                flex-direction: column;
-                gap: 2rem;
-            }
+        @media (max-width: 750px) {
+            .hero { flex-direction: column; gap: 1.5rem; }
             .hero-left { flex: auto; }
-            .tagline { font-size: 1.3rem; }
+            .tagline { font-size: 1.4rem; }
             .site-desc { font-size: 1.2rem; }
+            .cards { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-
-<div class="container">
+<div class="page">
 
     <!-- HERO -->
-    <section class="hero">
+    <div class="hero">
         <div class="hero-left">
-            <p class="url-text">www.madsrohde.com</p>
+            <p class="url"><a href="http://www.madsrohde.com">www.madsrohde.com</a></p>
             <img src="img/megaphone.png" alt="" class="megaphone">
             <div class="tagline">
-                I like ideas <span class="orange">and</span><br>
-                <span class="orange">I like truth.</span><br>
-                It's just that.
+                <span class="cyan">I like ideas</span> <span class="black">and</span><br>
+                <span class="cyan">I like truth.</span><br>
+                <span class="black">It's just that.</span>
             </div>
             <ul class="nav-dots">
-                <li><span class="dot dot-cyan"></span> <a href="#hobbies">Hobbies</a></li>
-                <li><span class="dot dot-red"></span> <a href="#employment">Employment</a></li>
-                <li><span class="dot dot-amber"></span> <a href="#contact">Contact</a></li>
+                <li onclick="showSection('hobbies')" data-section="hobbies"><span class="dot dot-cyan"></span> Hobbies</li>
+                <li onclick="showSection('employment')" data-section="employment"><span class="dot dot-red"></span> Employment</li>
+                <li onclick="showSection('contact')" data-section="contact"><span class="dot dot-amber"></span> Contact</li>
             </ul>
         </div>
         <div class="hero-right">
-            <p class="welcome-title">Welcome to <strong>Mads Rohde's Homepage</strong></p>
+            <p class="welcome">Welcome to <strong>Mads Rohde's Homepage</strong></p>
             <p class="site-desc">This site is a map/overview<br>of my current activities.</p>
             <div class="activities">
                 Public health science and<br>
@@ -331,88 +119,118 @@
                 Social entrepreneurship
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- HOBBIES / PROJECTS -->
-    <section class="section" id="hobbies">
-        <div class="section-grid">
-            <div class="project-card">
-                <h3>🌍 emfWorld</h3>
+    <!-- HOBBIES SECTION -->
+    <div class="section-panel" id="sec-hobbies">
+        <div class="cards">
+            <div class="card">
+                <div class="card-icon">🌍</div>
+                <h3>emfWorld</h3>
                 <p>A scientific project I am working on, mapping EMF research in the world. More info later.</p>
             </div>
-            <div class="project-card">
-                <h3>🗺️ Designkart.no</h3>
+            <div class="card">
+                <div class="card-icon">🗺️</div>
+                <h3>Designkart.no</h3>
                 <p>A map art store I've made (under continuous development)</p>
-                <a href="https://designkart.no" target="_blank">designkart.no →</a>
+                <a href="https://www.designkart.no" target="_blank">Visit designkart.no →</a>
             </div>
-            <div class="project-card">
-                <h3>📝 Blog</h3>
-                <p>(to come)</p>
+            <div class="card">
+                <div class="card-icon"><img src="img/typewriter.png" alt="" style="width:50px;border-radius:8px;"></div>
+                <h3>Blog (to come)</h3>
+                <p>Science</p>
                 <a href="https://madsrohde.com" target="_blank">madsrohde.com →</a>
             </div>
+            <div class="card">
+                <div class="card-icon">📚</div>
+                <h3>EMF book translation</h3>
+                <p>I have secured the rights to the book <a href="https://bokelskere.no/bok/elektromagnetismen-og-livet-en-konfrontasjon-mellom-to-supermakter/19467/" target="_blank"><em>Electromagnetism and life</em></a> (1987, 2nd ed. 2006) by Vilhelm Schjelderup, to translate it into English.</p>
+            </div>
         </div>
-    </section>
+        <div style="margin-top: 2rem;">
+            <h3 style="font-size: 0.95rem; margin-bottom: 0.5rem;">Misc.</h3>
+            <div style="display:flex; gap:0.8rem; flex-wrap:wrap;">
+                <span class="label-stub">Ideas — ?</span>
+                <span class="label-stub">DBC — More info later.</span>
+                <span class="label-stub">ARM — More info later.</span>
+                <span class="label-stub">PUS — More info later.</span>
+            </div>
+        </div>
+    </div>
 
-    <!-- PROFILE -->
-    <section class="profile-section">
-        <div class="click-here">Click here!</div>
-        <span class="arrow-down">↓</span>
+    <!-- EMPLOYMENT SECTION -->
+    <div class="section-panel" id="sec-employment">
+        <h3 style="font-size: 1rem; margin-bottom: 0.8rem;">Current paid employment</h3>
+        <p style="font-size: 0.9rem; color: #777; margin-bottom: 0.5rem;">Get in touch on LinkedIn:</p>
+        <a href="https://www.linkedin.com/in/mads-rohde-3ba34391/" target="_blank" style="color:#DAA520; text-decoration:none; font-family:'Inter',sans-serif; font-size:0.85rem;">💼 LinkedIn Profile →</a>
+        <div style="margin-top: 2rem;">
+            <p style="font-size:0.85rem; color:#999;">Follow me on Twitter/X for public health tweets:</p>
+            <a href="https://twitter.com/hippocapensis" target="_blank" style="color:#DAA520; text-decoration:none; font-family:'Inter',sans-serif; font-size:0.85rem;">𝕏 @hippocapensis →</a>
+        </div>
+    </div>
+
+    <!-- CONTACT SECTION -->
+    <div class="section-panel" id="sec-contact">
+        <h3 style="font-size: 1rem; margin-bottom: 1rem;">Direct message</h3>
+        <p style="font-size: 0.9rem; margin-bottom: 1.5rem;">
+            <a href="mailto:madsrohde@proton.me" style="color: #DAA520;">✉ madsrohde@proton.me</a>
+        </p>
+        <h3 style="font-size: 1rem; margin-bottom: 0.8rem;">SoMe / Contact</h3>
+        <div class="social-row">
+            <a href="https://twitter.com/hippocapensis" target="_blank" style="color:#333; text-decoration:none;">𝕏</a>
+            <span class="social-label">Active! Follow me</span>
+        </div>
+        <div class="social-row" style="margin-top:0.5rem;">
+            <a href="https://www.linkedin.com/in/mads-rohde-3ba34391/" target="_blank" style="color:#333; text-decoration:none;">💼</a>
+            <span class="social-label">LinkedIn</span>
+        </div>
+        <div class="social-row" style="margin-top:0.5rem;">
+            <a href="https://www.facebook.com/mads.k.rohde" target="_blank" style="color:#333; text-decoration:none;">📘</a>
+            <span class="social-label">Facebook</span>
+        </div>
+        <div style="margin-top: 2rem;">
+            <p style="font-size: 0.85rem; color: #999;">I have a profile. I use it as little as possible.</p>
+        </div>
+    </div>
+
+    <!-- PROFILE / CLICK HERE -->
+    <div class="profile-area">
+        <div class="click-text" onclick="showSection(null)">Click here!</div>
+        <svg class="arrow-svg" width="40" height="60" viewBox="0 0 40 60" fill="none"><path d="M20 5C20 5 15 25 20 35C25 45 20 55 20 55" stroke="#333" stroke-width="2" fill="none"/><path d="M14 48L20 57L26 48" stroke="#333" stroke-width="2" fill="none"/></svg>
         <div>
             <img src="img/profile.jpg" alt="Mads Rohde" class="profile-photo">
         </div>
-    </section>
-
-    <!-- EMPLOYMENT -->
-    <section class="section" id="employment">
-        <h2 style="font-size: 1.1rem; margin-bottom: 1rem;">Current paid employment</h2>
-        <p style="font-size: 0.9rem; color: #777;">Get in touch on LinkedIn:</p>
-        <a href="https://www.linkedin.com/in/mads-rohde-3ba34391/" target="_blank" class="social-link" style="margin-top: 0.5rem;">
-            🔗 LinkedIn Profile
-        </a>
-    </section>
-
-    <!-- EMF BOOK -->
-    <section class="book-section">
-        <h2 style="font-size: 1.1rem; margin-bottom: 1rem;">EMF book translation</h2>
-        <p>I have secured the rights to the book <a href="https://bokelskere.no/bok/elektromagnetismen-og-livet-en-konfrontasjon-mellom-to-supermakter/19467/" target="_blank"><em>Electromagnetism and life — the science of two superpowers collide!</em></a> (English working title) (1987, 2nd ed. 2006) by the Norwegian author Vilhelm Schjelderup, to translate it into English.</p>
-    </section>
-
-    <!-- MISC -->
-    <section class="section">
-        <div class="section-grid">
-            <div><span class="label-placeholder">DBC — More info later.</span></div>
-            <div><span class="label-placeholder">ARM — More info later.</span></div>
-            <div><span class="label-placeholder">PUS — More info later.</span></div>
-        </div>
-    </section>
-
-    <!-- SOCIAL / CONTACT -->
-    <section class="social-section" id="contact">
-        <h2 style="font-size: 1.1rem; margin-bottom: 0.5rem;">SoMe / Contact</h2>
-        <div class="social-links">
-            <a href="https://twitter.com/hippocapensis" target="_blank" class="social-link">𝕏 Twitter/X — Active! Follow me</a>
-            <a href="https://www.linkedin.com/in/mads-rohde-3ba34391/" target="_blank" class="social-link">💼 LinkedIn</a>
-            <a href="https://www.facebook.com/mads.k.rohde" target="_blank" class="social-link">📘 Facebook</a>
-        </div>
-    </section>
-
-    <!-- DIRECT MESSAGE -->
-    <section class="section">
-        <h2 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Direct message</h2>
-        <p style="font-size: 0.9rem; color: #777;">
-            <a href="mailto:madsrohde@proton.me" style="color: #E8972E;">madsrohde@proton.me</a>
-        </p>
-    </section>
+    </div>
 
 </div>
 
 <!-- FOOTER -->
 <footer>
-    <div class="container">
+    <div class="page">
         <p>Please <a href="mailto:madsrohde@proton.me">contact me</a> — share information, ideas, contribute and collaborate ...</p>
-        <p style="margin-top: 0.5rem; font-size: 0.75rem;">© 2023 By Mads Rohde</p>
+        <p style="margin-top: 0.5rem; font-size: 0.75rem;">Site and content: © 2023 By Mads Rohde</p>
     </div>
 </footer>
 
+<script>
+function showSection(name) {
+    // Hide all panels
+    document.querySelectorAll('.section-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-dots li').forEach(li => li.classList.remove('active'));
+    
+    if (name) {
+        var panel = document.getElementById('sec-' + name);
+        if (panel) {
+            // Toggle: if already shown, hide it
+            panel.classList.add('active');
+            // Highlight nav
+            var nav = document.querySelector('[data-section="' + name + '"]');
+            if (nav) nav.classList.add('active');
+            // Smooth scroll to panel
+            panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
+}
+</script>
 </body>
 </html>
