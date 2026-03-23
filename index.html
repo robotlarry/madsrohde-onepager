@@ -51,7 +51,7 @@
         .map-center img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; filter: grayscale(100%); border: 3px solid #ddd; }
 
         /* Bubbles */
-        .bub { position: absolute; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-align: center; font-family: 'Inter', sans-serif; font-weight: 600; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; line-height: 1.3; z-index: 3; overflow: hidden; padding: 10px; aspect-ratio: 1; }
+        .bub { position: absolute; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-align: center; font-family: 'Inter', sans-serif; font-weight: 600; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; line-height: 1.2; z-index: 3; overflow: hidden; word-break: break-word; }
         .bub:hover { transform: scale(1.08); box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
         .bub-cyan { background: #4ECDC4; color: #fff; font-size: 0.78rem; }
         .bub-red { background: #E85555; color: #fff; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; }
@@ -131,7 +131,7 @@
             <div class="map-center"><img src="img/profile.jpg" alt="Mads Rohde"></div>
 
             <!-- 12: Science -->
-            <div class="bub bub-cyan" style="width:130px;height:130px;top:10px;left:50%;margin-left:-65px;" onclick="toggleSub('science')">Science</div>
+            <div class="bub bub-cyan" style="width:130px;height:130px;min-width:130px;max-width:130px;top:10px;left:50%;margin-left:-65px;" onclick="toggleSub('science')">Science</div>
             <div class="sub" id="sub-science" style="top:0;left:50%;margin-left:80px;">
                 <div class="sub-text">A scientific project mapping EMF research in the world.</div>
                 <div style="margin-top:6px;"><a href="https://twitter.com/hippocapensis" target="_blank" class="sub-icon" style="background:#1DA1F2;color:#fff;">𝕏</a></div>
@@ -141,15 +141,15 @@
             <span class="ann" style="top:15px;right:10px;">Blog (to come) ↙</span>
 
             <!-- 2: EMF book -->
-            <div class="bub bub-cyan" style="width:130px;height:130px;top:100px;left:50%;margin-left:95px;" onclick="toggleSub('book')">EMF book<br>translation</div>
+            <div class="bub bub-cyan" style="width:130px;height:130px;min-width:130px;max-width:130px;top:100px;left:50%;margin-left:95px;" onclick="toggleSub('book')">EMF book<br>translation</div>
             <div class="sub" id="sub-book" style="top:80px;right:0;">
                 <div class="sub-text">I have secured the rights to the book <a href="https://bokelskere.no/bok/elektromagnetismen-og-livet-en-konfrontasjon-mellom-to-supermakter/19467/" target="_blank" style="color:#DAA520;"><em>Electromagnetism and life</em></a> (1987, 2nd ed. 2006) by Vilhelm Schjelderup, to translate it into English.</div>
             </div>
 
             <!-- 10: Job -->
-            <div class="bub bub-red" style="width:130px;height:130px;top:100px;left:50%;margin-left:-230px;" onclick="toggleSub('job')">Job</div>
+            <div class="bub bub-red" style="width:130px;height:130px;min-width:130px;max-width:130px;top:100px;left:50%;margin-left:-230px;" onclick="toggleSub('job')">Job</div>
             <div class="sub" id="sub-job" style="top:70px;left:0;">
-                <a href="https://www.linkedin.com/in/mads-rohde-3ba34391/" target="_blank" class="sub-bub" style="width:80px;height:80px;background:#E85555;color:#fff;">Cancer Registry<br>of Norway</a>
+                <a href="https://www.linkedin.com/in/mads-rohde-3ba34391/" target="_blank" class="sub-bub" style="width:80px;height:80px;min-width:80px;max-width:80px;background:#E85555;color:#fff;">Cancer Registry<br>of Norway</a>
                 <div class="sub-text" style="margin-top:6px;">Get in touch on LinkedIn</div>
             </div>
 
@@ -157,9 +157,9 @@
             <span class="ann" style="top:50px;left:0;">Current paid<br>employment ↗</span>
 
             <!-- 4: Designkart -->
-            <div class="bub bub-cyan" style="width:130px;height:130px;top:315px;left:50%;margin-left:95px;" onclick="toggleSub('designkart')">Designkart<br>.no</div>
+            <div class="bub bub-cyan" style="width:130px;height:130px;min-width:130px;max-width:130px;top:315px;left:50%;margin-left:95px;" onclick="toggleSub('designkart')">Designkart<br>.no</div>
             <div class="sub" id="sub-designkart" style="top:350px;right:0;">
-                <a href="https://www.designkart.no" target="_blank" class="sub-bub" style="width:60px;height:60px;background:#4ECDC4;color:#fff;">Visit!</a>
+                <a href="https://www.designkart.no" target="_blank" class="sub-bub" style="width:60px;height:60px;min-width:60px;max-width:60px;background:#4ECDC4;color:#fff;">Visit!</a>
                 <div class="sub-text" style="margin-top:4px;">A map art store (under continuous development)</div>
             </div>
 
@@ -167,7 +167,7 @@
             <span class="ann" style="top:380px;right:-30px;">A map art store I've made<br>(under continuous development) ←</span>
 
             <!-- 8: SoMe/Contact -->
-            <div class="bub bub-amber" style="width:125px;height:125px;top:320px;left:50%;margin-left:-225px;" onclick="toggleSub('some')">SoMe/<br>Contact</div>
+            <div class="bub bub-amber" style="width:125px;height:125px;min-width:125px;max-width:125px;top:320px;left:50%;margin-left:-225px;" onclick="toggleSub('some')">SoMe/<br>Contact</div>
             <div class="sub" id="sub-some" style="top:340px;left:0;">
                 <div style="font-family:'Inter',sans-serif;font-size:0.75rem;color:#555;margin-bottom:6px;">Direct message</div>
                 <a href="mailto:madsrohde@proton.me" class="sub-icon" style="background:#DAA520;color:#fff;">✉</a>
@@ -178,7 +178,7 @@
             </div>
 
             <!-- 6: Misc -->
-            <div class="bub bub-cyan" style="width:115px;height:115px;bottom:0;left:50%;margin-left:-57px;" onclick="toggleSub('misc')">Misc.</div>
+            <div class="bub bub-cyan" style="width:115px;height:115px;min-width:115px;max-width:115px;bottom:0;left:50%;margin-left:-57px;" onclick="toggleSub('misc')">Misc.</div>
             <div class="sub" id="sub-misc" style="bottom:0;left:50%;margin-left:70px;">
                 <div class="sub-text">Ideas · DBC · ARM · PUS<br>More info later.</div>
             </div>
