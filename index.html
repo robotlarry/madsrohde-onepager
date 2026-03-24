@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mads Rohde</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Caveat:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Playfair Display', Georgia, serif; background: #e8e8e8; color: #333; overflow-x: hidden; }
@@ -17,24 +17,26 @@
         .hero-right { flex: 1; min-width: 280px; padding-top: 0.5rem; }
         .url { font-family: 'Inter', sans-serif; font-weight: 300; font-size: 0.85rem; color: #888; margin-bottom: 1.2rem; }
         .url a { color: #888; text-decoration: none; }
-        .megaphone { width: 120px; margin-bottom: 0.8rem; }
-        .tagline { font-size: 1.7rem; font-weight: 700; line-height: 1.35; margin-bottom: 1.8rem; }
-        .tagline .cyan { color: #4ECDC4; }
-        .tagline .black { color: #222; font-style: italic; }
+        .mega-row { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1rem; }
+        .megaphone { width: 110px; flex-shrink: 0; }
+        .tagline { font-family: 'Kalam', cursive; font-size: 1.7rem; font-weight: 700; line-height: 1.35; margin-bottom: 1.8rem; }
+        .tagline .gold { color: #E8A030; }
+        .tagline .coral { color: #E8713A; }
+        .tagline .black { color: #222; }
         .nav-legend { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
         .nav-legend li { font-family: 'Inter', sans-serif; font-size: 0.82rem; display: flex; align-items: center; gap: 0.5rem; }
         .dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
         .dot-cyan { background: #4ECDC4; }
         .dot-red { background: #E85555; }
         .dot-amber { background: #DAA520; }
-        .welcome { font-size: 0.95rem; margin-bottom: 0.4rem; }
-        .welcome strong { font-weight: 700; }
-        .site-desc { font-size: 1.45rem; font-weight: 400; line-height: 1.35; margin-bottom: 1rem; }
-        .activities { font-style: italic; color: #777; font-size: 0.9rem; line-height: 1.9; }
+        .welcome { font-family: 'Caveat', cursive; font-size: 1rem; margin-bottom: 0.4rem; color: #999; }
+        .welcome strong { font-weight: 700; color: #333; font-family: 'Inter', sans-serif; font-size: 0.9rem; }
+        .site-desc { font-family: 'Caveat', cursive; font-size: 1.6rem; font-weight: 400; line-height: 1.35; margin-bottom: 1rem; }
+        .activities { font-family: 'Caveat', cursive; font-style: italic; color: #999; font-size: 1.05rem; line-height: 1.9; }
 
         /* === HUB === */
-        .hub-area { text-align: center; padding: 2rem 0 1rem; }
-        .click-text { font-size: 1.8rem; font-weight: 700; font-style: italic; color: #DAA520; cursor: pointer; transition: opacity 0.3s; }
+        .hub-area { text-align: center; padding: 3rem 0 2rem; }
+        .click-text { font-family: 'Kalam', cursive; font-size: 1.8rem; font-weight: 700; color: #E8A030; cursor: pointer; transition: opacity 0.3s; }
         .click-text:hover { opacity: 0.7; }
         .arrow-svg { margin: 0.5rem 0 1rem; cursor: pointer; }
         .profile-wrap { display: inline-block; cursor: pointer; }
@@ -73,8 +75,8 @@
         .ann { position: absolute; font-family: 'Inter', sans-serif; font-size: 0.7rem; color: #888; font-style: italic; max-width: 150px; text-align: center; pointer-events: none; z-index: 1; }
 
         /* === FOOTER === */
-        footer { border-top: 1px solid #ccc; padding: 1.5rem 0; text-align: center; margin-top: 3rem; }
-        footer p { font-size: 0.85rem; color: #888; font-style: italic; }
+        footer { border-top: 1px solid #ccc; padding: 1.5rem 0; text-align: center; margin-top: 8rem; }
+        footer p { font-family: 'Caveat', cursive; font-size: 1rem; color: #999; }
         footer a { color: #333; font-weight: 600; text-decoration: underline; }
 
         /* === MOBILE === */
@@ -98,16 +100,18 @@
     <div class="hero">
         <div class="hero-left">
             <p class="url"><a href="http://www.madsrohde.com">www.madsrohde.com</a></p>
+            <div class="mega-row">
             <img src="img/megaphone.png" alt="" class="megaphone">
             <div class="tagline">
-                <span class="cyan">I like ideas</span> <span class="black">and</span><br>
-                <span class="cyan">I like truth.</span><br>
+                <span class="black">I like ideas</span> <span class="gold">and</span><br>
+                <span class="black">I like</span> <span class="coral">truth.</span><br>
                 <span class="black">It's just that.</span>
+            </div>
             </div>
             <ul class="nav-legend">
                 <li><span class="dot dot-cyan"></span> Hobbies</li>
                 <li><span class="dot dot-red"></span> Employment</li>
-                <li><span class="dot dot-amber"></span> Contact</li>
+                <li style="margin-top:0.3rem;"><span class="dot dot-amber"></span> Contact</li>
             </ul>
         </div>
         <div class="hero-right">
@@ -122,7 +126,10 @@
 
     <div class="hub-area" id="hubArea">
         <div class="click-text" onclick="openHub()">Click here!</div>
-        <svg class="arrow-svg" width="40" height="60" viewBox="0 0 40 60" fill="none" onclick="openHub()"><path d="M20 5C18 15 15 25 20 35C25 45 22 52 20 55" stroke="#333" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M14 48L20 57L26 48" stroke="#333" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        <svg class="arrow-svg" width="60" height="100" viewBox="0 0 60 100" fill="none" onclick="openHub()" style="margin:1rem 0 1.5rem; display:block; margin-left:auto; margin-right:auto; cursor:pointer;">
+            <path d="M20 5C15 15 12 28 16 42C20 56 26 68 30 82C32 88 33 92 33 95" stroke="#333" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M26 88L33 98L38 87" stroke="#333" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
         <div class="profile-wrap" onclick="openHub()">
             <img src="img/profile.jpg" alt="Mads Rohde" class="profile-photo">
         </div>
@@ -188,8 +195,8 @@
 
 <footer>
     <div class="page">
-        <p>Please <a href="mailto:madsrohde@proton.me">contact me</a> — share information, ideas, contribute and collaborate ...</p>
-        <p style="margin-top:0.5rem;font-size:0.75rem;">Site and content: © 2023 By Mads Rohde</p>
+        <p>Please <a href="mailto:madsrohde@proton.me">contact me</a> — share information, ideas,<br>contribute and collaborate ...</p>
+        <p style="margin-top:0.8rem;font-size:0.85rem;">Site and content:<br>© 2023 By Mads Rohde</p>
     </div>
 </footer>
 
