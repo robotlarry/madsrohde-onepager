@@ -85,12 +85,14 @@
             .hero { flex-direction: column; gap: 1.5rem; }
             .hero-left { flex: auto; }
             .tagline { font-size: 1.4rem; }
-            .hub-map { width: 100%; height: auto; min-height: 500px; position: static; display: none; }
-            .hub-map.active { display: flex; flex-direction: column; align-items: center; gap: 1rem; padding: 1rem 0; }
-            .hub-map .map-center { position: static; transform: none; margin-bottom: 1rem; }
-            .hub-map .bub { position: static !important; width: 90% !important; max-width: 250px; height: 60px !important; border-radius: 30px !important; margin: 0.3rem auto; }
+            .hub-area { margin-left: 0; max-width: 100%; }
+            .hub-map { width: 100%; height: auto; min-height: auto; position: static; display: none; }
+            .hub-map.active { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; padding: 0.5rem 0; }
+            .hub-map .map-center { position: static; transform: none; margin-bottom: 0.5rem; }
+            .hub-map .map-center img { width: 100px; height: 100px; }
+            .hub-map .bub { position: static !important; width: 85% !important; max-width: 220px; height: 55px !important; border-radius: 28px !important; margin: 0.2rem auto; min-width: auto !important; max-width: 220px !important; min-height: auto !important; }
             .hub-map .ann { display: none; }
-            .hub-map .sub { position: static !important; width: 90%; max-width: 280px; margin: 0 auto; padding: 0.5rem; }
+            .hub-map .sub { position: static !important; width: 90%; max-width: 260px; margin: 0 auto; padding: 0.3rem; }
             .hub-map .sub .sub-text { max-width: 100%; }
         }
     </style>
