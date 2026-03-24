@@ -12,7 +12,7 @@
         .page { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
 
         /* === HERO === */
-        .hero { display: flex; gap: 3rem; padding: 2.5rem 0 2rem; align-items: flex-start; }
+        .hero { display: flex; gap: 3rem; padding: 2rem 0 1.5rem; align-items: flex-start; }
         .hero-left { flex: 0 0 340px; }
         .hero-right { flex: 1; min-width: 280px; padding-top: 0.5rem; }
         .url { font-family: 'Inter', sans-serif; font-weight: 300; font-size: 0.85rem; color: #888; margin-bottom: 1.2rem; }
@@ -35,12 +35,12 @@
         .activities { font-family: 'Caveat', cursive; font-style: italic; color: #999; font-size: 1.05rem; line-height: 1.9; }
 
         /* === HUB === */
-        .hub-area { text-align: center; padding: 3rem 0 2rem; }
+        .hub-area { text-align: center; padding: 2rem 0 1.5rem; }
         .click-text { font-family: 'Kalam', cursive; font-size: 1.8rem; font-weight: 700; color: #E8A030; cursor: pointer; transition: opacity 0.3s; }
         .click-text:hover { opacity: 0.7; }
         .arrow-svg { margin: 0.5rem 0 1rem; cursor: pointer; }
         .profile-wrap { display: inline-block; cursor: pointer; }
-        .profile-photo { width: 170px; height: 170px; border-radius: 50%; object-fit: cover; filter: grayscale(100%); border: 2px solid #ddd; transition: filter 0.4s, transform 0.3s; }
+        .profile-photo { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; filter: grayscale(100%); border: 2px solid #ddd; transition: filter 0.4s, transform 0.3s; }
         .profile-wrap:hover .profile-photo { filter: grayscale(50%); transform: scale(1.03); }
         .hub-open .click-text, .hub-open .arrow-svg, .hub-open > .profile-wrap { display: none; }
 
@@ -77,6 +77,7 @@
         /* === FOOTER === */
         footer { border-top: 1px solid #ccc; padding: 1.5rem 0; text-align: center; margin-top: 8rem; }
         footer p { font-family: 'Caveat', cursive; font-size: 1rem; color: #999; }
+        footer p:last-child { font-family: 'Inter', sans-serif; font-size: 0.75rem; }
         footer a { color: #333; font-weight: 600; text-decoration: underline; }
 
         /* === MOBILE === */
@@ -111,7 +112,7 @@
             <ul class="nav-legend">
                 <li><span class="dot dot-cyan"></span> Hobbies</li>
                 <li><span class="dot dot-red"></span> Employment</li>
-                <li style="margin-top:0.3rem;"><span class="dot dot-amber"></span> Contact</li>
+                <li style="margin-top:0.6rem;"><span class="dot dot-amber"></span> Contact</li>
             </ul>
         </div>
         <div class="hero-right">
