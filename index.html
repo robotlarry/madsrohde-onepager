@@ -60,7 +60,7 @@
         .bub-amber { background: #DAA520; color: #fff; font-size: 0.75rem; }
 
         /* Sub-elements (hidden until parent bubble clicked) */
-        .sub { position: absolute; display: none; z-index: 4; }
+        .sub { position: absolute; display: none; z-index: 4; background: rgba(255,255,255,0.95); border-radius: 12px; padding: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
         .sub.show { display: block; animation: popIn 0.35s ease; }
         @keyframes popIn { from { opacity: 0; transform: scale(0.6); } to { opacity: 1; transform: scale(1); } }
 
@@ -145,46 +145,44 @@
 
             <!-- 12 o'clock: Science -->
             <div class="bub bub-cyan" style="width:130px;height:130px;min-width:130px;max-width:130px;top:50px;left:50%;margin-left:-65px;" onclick="toggleSub('science')">Science</div>
-            <div class="sub" id="sub-science" style="top:50px;left:50%;margin-left:85px;">
+            <div class="sub" id="sub-science" style="top:10px;left:50%;margin-left:100px;">
                 <div class="sub-text">A scientific project mapping EMF research in the world.</div>
                 <div style="margin-top:6px;"><a href="https://twitter.com/hippocapensis" target="_blank" class="sub-icon" style="background:#1DA1F2;color:#fff;">𝕏</a></div>
             </div>
 
             <!-- Annotation: Blog -->
-            <span class="ann" style="top:15px;right:20px;font-family:'Caveat',cursive;font-size:1.3rem;color:#555;font-style:normal;">Blog (to come)</span>
-            <svg style="position:absolute;top:40px;right:80px;z-index:1;" width="50" height="50" viewBox="0 0 50 50"><path d="M40 8C30 12 20 20 15 35" stroke="#555" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M11 30L15 38L20 30" stroke="#555" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+            <span class="ann" style="top:0px;right:0px;font-family:'Caveat',cursive;font-size:1.3rem;color:#555;font-style:normal;">Blog (to come)</span>
+            <svg style="position:absolute;top:25px;right:60px;z-index:1;" width="40" height="40" viewBox="0 0 40 40"><path d="M30 5C22 10 16 18 13 28" stroke="#555" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M9 24L13 31L17 24" stroke="#555" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
 
             <!-- 2 o'clock: EMF book -->
             <div class="bub bub-cyan" style="width:130px;height:130px;min-width:130px;max-width:130px;min-height:130px;max-height:130px;top:148px;left:50%;margin-left:104px;" onclick="toggleSub('book')">EMF book<br>translation</div>
-            <div class="sub" id="sub-book" style="top:148px;right:-10px;max-width:180px;">
+            <div class="sub" id="sub-book" style="top:100px;right:-50px;max-width:180px;">
                 <div class="sub-text">I have secured the rights to the book <a href="https://bokelskere.no/bok/elektromagnetismen-og-livet-en-konfrontasjon-mellom-to-supermakter/19467/" target="_blank" style="color:#DAA520;"><em>Electromagnetism and life</em></a> (1987, 2nd ed. 2006) by Vilhelm Schjelderup, to translate it into English.</div>
             </div>
 
             <!-- 10 o'clock: Job -->
             <div class="bub bub-red" style="width:130px;height:130px;min-width:130px;max-width:130px;top:148px;left:50%;margin-left:-234px;" onclick="toggleSub('job')">Job</div>
-            <div class="sub" id="sub-job" style="top:130px;left:0;">
+            <div class="sub" id="sub-job" style="top:80px;left:-50px;max-width:140px;">
                 <a href="https://www.linkedin.com/in/mads-rohde-3ba34391/" target="_blank" class="sub-bub" style="width:80px;height:80px;min-width:80px;max-width:80px;background:#E85555;color:#fff;">Cancer Registry<br>of Norway</a>
                 <div class="sub-text" style="margin-top:6px;">Get in touch on LinkedIn</div>
             </div>
 
             <!-- Annotation: Employment -->
-            <span class="ann" style="top:90px;left:0;font-family:'Caveat',cursive;font-size:1rem;color:#555;font-style:normal;">Current paid<br>employment</span>
-            <svg style="position:absolute;top:125px;left:100px;z-index:1;" width="60" height="50" viewBox="0 0 60 50"><path d="M5 40C15 30 30 20 45 15" stroke="#555" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M40 10L48 14L42 22" stroke="#555" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+            <span class="ann" style="top:70px;left:0;font-family:'Caveat',cursive;font-size:1rem;color:#555;font-style:normal;">Current paid<br>employment</span>
+            <svg style="position:absolute;top:105px;left:90px;z-index:1;" width="60" height="50" viewBox="0 0 60 50"><path d="M5 40C15 30 30 20 45 15" stroke="#555" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M40 10L48 14L42 22" stroke="#555" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
 
             <!-- 4 o'clock: Designkart -->
             <div class="bub bub-cyan" style="width:130px;height:130px;min-width:130px;max-width:130px;min-height:130px;max-height:130px;top:342px;left:50%;margin-left:104px;font-size:0.72rem;" onclick="toggleSub('designkart')">Designkart<br>.no</div>
-            <div class="sub" id="sub-designkart" style="top:380px;right:-20px;">
+            <div class="sub" id="sub-designkart" style="top:300px;right:-70px;">
                 <a href="https://www.designkart.no" target="_blank" class="sub-bub" style="width:60px;height:60px;min-width:60px;max-width:60px;background:#4ECDC4;color:#fff;">Visit!</a>
                 <div class="sub-text" style="margin-top:4px;">A map art store (under continuous development)</div>
             </div>
 
-            <!-- Annotation: Designkart -->
-            <span class="ann" style="top:490px;right:30px;font-family:'Caveat',cursive;font-size:0.95rem;color:#555;font-style:normal;max-width:170px;">A map art store I've made<br>(under continuous development)</span>
-            <svg style="position:absolute;top:465px;right:110px;z-index:1;" width="50" height="30" viewBox="0 0 50 30"><path d="M45 20C35 15 25 10 15 8" stroke="#555" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M20 4L13 8L20 13" stroke="#555" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+            <!-- Annotation: Designkart (in sub popup) -->
 
             <!-- 8 o'clock: SoMe/Contact -->
             <div class="bub bub-amber" style="width:125px;height:125px;min-width:125px;max-width:125px;top:342px;left:50%;margin-left:-229px;" onclick="toggleSub('some')">SoMe/<br>Contact</div>
-            <div class="sub" id="sub-some" style="top:380px;left:-10px;">
+            <div class="sub" id="sub-some" style="top:290px;left:-60px;">
                 <div style="font-family:'Inter',sans-serif;font-size:0.75rem;color:#555;margin-bottom:6px;">Direct message</div>
                 <a href="mailto:madsrohde@proton.me" class="sub-icon" style="background:#DAA520;color:#fff;">✉</a>
                 <a href="https://twitter.com/hippocapensis" target="_blank" class="sub-icon" style="background:#333;color:#fff;">𝕏</a>
@@ -218,9 +216,11 @@ function openHub() {
 
 function toggleSub(name) {
     var el = document.getElementById('sub-' + name);
-    if (el.classList.contains('show')) {
-        el.classList.remove('show');
-    } else {
+    var wasOpen = el.classList.contains('show');
+    // Close all subs first (accordion)
+    document.querySelectorAll('.sub.show').forEach(function(s) { s.classList.remove('show'); });
+    // Toggle the clicked one
+    if (!wasOpen) {
         el.classList.add('show');
     }
 }
