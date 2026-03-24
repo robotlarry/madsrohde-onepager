@@ -82,17 +82,20 @@
 
         /* === MOBILE === */
         @media (max-width: 750px) {
-            .hero { flex-direction: column; gap: 1.5rem; }
+            .hero { flex-direction: column; gap: 1rem; }
             .hero-left { flex: auto; }
-            .tagline { font-size: 1.4rem; }
-            .hub-area { margin-left: 0; max-width: 100%; }
+            .mega-row { gap: 0.8rem; }
+            .megaphone { width: 80px; }
+            .tagline { font-size: 1.3rem; }
+            .hub-area { margin-left: auto; margin-right: auto; max-width: 100%; padding: 0.5rem 0; }
+            .click-text { font-size: 1.4rem; }
             .hub-map { width: 100%; height: auto; min-height: auto; position: static; display: none; }
-            .hub-map.active { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; padding: 0.5rem 0; }
+            .hub-map.active { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; padding: 0.5rem 0; }
             .hub-map .map-center { position: static; transform: none; margin-bottom: 0.5rem; }
-            .hub-map .map-center img { width: 100px; height: 100px; }
-            .hub-map .bub { position: static !important; width: 85% !important; max-width: 220px; height: 55px !important; border-radius: 28px !important; margin: 0.2rem auto; min-width: auto !important; max-width: 220px !important; min-height: auto !important; }
+            .hub-map .map-center img { width: 110px; height: 110px; }
+            .hub-map .bub { position: static !important; width: 80% !important; max-width: 220px !important; height: 55px !important; min-height: auto !important; border-radius: 28px !important; margin: 0.2rem auto !important; min-width: auto !important; left: auto !important; top: auto !important; bottom: auto !important; right: auto !important; margin-left: auto !important; margin-right: auto !important; }
             .hub-map .ann { display: none; }
-            .hub-map .sub { position: static !important; width: 90%; max-width: 260px; margin: 0 auto; padding: 0.3rem; }
+            .hub-map .sub { position: static !important; width: 90%; max-width: 260px; margin: 0.2rem auto; padding: 0.3rem; left: auto !important; right: auto !important; top: auto !important; bottom: auto !important; margin-left: auto !important; }
             .hub-map .sub .sub-text { max-width: 100%; }
         }
     </style>
