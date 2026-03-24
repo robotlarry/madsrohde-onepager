@@ -31,16 +31,16 @@
         .dot-amber { background: #DAA520; }
         .welcome { font-family: 'Caveat', cursive; font-size: 1rem; margin-bottom: 0.4rem; color: #999; }
         .welcome strong { font-weight: 700; color: #333; font-family: 'Inter', sans-serif; font-size: 0.9rem; }
-        .site-desc { font-family: 'Caveat', cursive; font-size: 1.6rem; font-weight: 400; line-height: 1.35; margin-bottom: 1rem; }
+        .site-desc { font-family: 'Caveat', cursive; font-size: 1.4rem; font-weight: 400; line-height: 1.35; margin-bottom: 1rem; }
         .activities { font-family: 'Caveat', cursive; font-style: italic; color: #999; font-size: 1.05rem; line-height: 1.9; }
 
         /* === HUB === */
-        .hub-area { text-align: center; padding: 2rem 0 1.5rem; }
+        .hub-area { text-align: center; padding: 1.2rem 0 1rem; max-width: 450px; margin: 0 auto; margin-left: 15%; }
         .click-text { font-family: 'Kalam', cursive; font-size: 1.8rem; font-weight: 700; color: #E8A030; cursor: pointer; transition: opacity 0.3s; }
         .click-text:hover { opacity: 0.7; }
         .arrow-svg { margin: 0.5rem 0 1rem; cursor: pointer; }
         .profile-wrap { display: inline-block; cursor: pointer; }
-        .profile-photo { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; filter: grayscale(100%); border: 2px solid #ddd; transition: filter 0.4s, transform 0.3s; }
+        .profile-photo { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; filter: grayscale(100%); border: 2px solid #ddd; transition: filter 0.4s, transform 0.3s; }
         .profile-wrap:hover .profile-photo { filter: grayscale(50%); transform: scale(1.03); }
         .hub-open .click-text, .hub-open .arrow-svg, .hub-open > .profile-wrap { display: none; }
 
@@ -112,7 +112,7 @@
             <ul class="nav-legend">
                 <li><span class="dot dot-cyan"></span> Hobbies</li>
                 <li><span class="dot dot-red"></span> Employment</li>
-                <li style="margin-top:0.6rem;"><span class="dot dot-amber"></span> Contact</li>
+                <li style="margin-top:0.2rem;"><span class="dot dot-amber"></span> Contact</li>
             </ul>
         </div>
         <div class="hero-right">
@@ -127,9 +127,9 @@
 
     <div class="hub-area" id="hubArea">
         <div class="click-text" onclick="openHub()">Click here!</div>
-        <svg class="arrow-svg" width="60" height="100" viewBox="0 0 60 100" fill="none" onclick="openHub()" style="margin:1rem 0 1.5rem; display:block; margin-left:auto; margin-right:auto; cursor:pointer;">
-            <path d="M20 5C15 15 12 28 16 42C20 56 26 68 30 82C32 88 33 92 33 95" stroke="#333" stroke-width="2" fill="none" stroke-linecap="round"/>
-            <path d="M26 88L33 98L38 87" stroke="#333" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <svg class="arrow-svg" width="50" height="55" viewBox="0 0 50 55" fill="none" onclick="openHub()" style="margin:0.5rem 0 1rem; display:block; margin-left:auto; margin-right:auto; cursor:pointer;">
+            <path d="M18 5C14 12 13 22 17 32C21 40 25 46 27 50" stroke="#333" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M21 44L27 53L32 43" stroke="#333" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         <div class="profile-wrap" onclick="openHub()">
             <img src="img/profile.jpg" alt="Mads Rohde" class="profile-photo">
