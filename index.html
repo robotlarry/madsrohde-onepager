@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Caveat:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Playfair Display', Georgia, serif; background: #e8e8e8; color: #333; overflow-x: hidden; }
+        body { font-family: 'Playfair Display', Georgia, serif; background: #efefef; color: #333; overflow-x: hidden; }
         .page { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
 
         /* === HERO === */
@@ -56,7 +56,7 @@
         .bub { position: absolute; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-align: center; font-family: 'Inter', sans-serif; font-weight: 600; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; line-height: 1.2; z-index: 3; overflow: hidden; word-break: break-word; }
         .bub:hover { transform: scale(1.08); box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
         .bub-cyan { background: #4ECDC4; color: #fff; font-size: 0.78rem; }
-        .bub-red { background: #E85555; color: #fff; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; }
+        .bub-red { background: #E85555; color: #fff; font-size: 0.85rem; letter-spacing: 4px; text-transform: uppercase; }
         .bub-amber { background: #DAA520; color: #fff; font-size: 0.75rem; }
 
         /* Sub-elements (hidden until parent bubble clicked) */
@@ -148,7 +148,8 @@
             </div>
 
             <!-- Annotation: Blog -->
-            <span class="ann" style="top:15px;right:10px;">Blog (to come) ↙</span>
+            <span class="ann" style="top:5px;right:20px;font-family:'Caveat',cursive;font-size:1.3rem;color:#555;font-style:normal;">Blog (to come)</span>
+            <svg style="position:absolute;top:30px;right:80px;z-index:1;" width="50" height="50" viewBox="0 0 50 50"><path d="M40 8C30 12 20 20 15 35" stroke="#555" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M11 30L15 38L20 30" stroke="#555" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
 
             <!-- 2: EMF book -->
             <div class="bub bub-cyan" style="width:130px;height:130px;min-width:130px;max-width:130px;top:100px;left:50%;margin-left:95px;" onclick="toggleSub('book')">EMF book<br>translation</div>
@@ -164,17 +165,19 @@
             </div>
 
             <!-- Annotation: Employment -->
-            <span class="ann" style="top:50px;left:0;">Current paid<br>employment ↗</span>
+            <span class="ann" style="top:45px;left:0;font-family:'Caveat',cursive;font-size:1rem;color:#555;font-style:normal;">Current paid<br>employment</span>
+            <svg style="position:absolute;top:80px;left:100px;z-index:1;" width="60" height="50" viewBox="0 0 60 50"><path d="M5 40C15 30 30 20 45 15" stroke="#555" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M40 10L48 14L42 22" stroke="#555" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
 
             <!-- 4: Designkart -->
-            <div class="bub bub-cyan" style="width:130px;height:130px;min-width:130px;max-width:130px;top:315px;left:50%;margin-left:95px;" onclick="toggleSub('designkart')">Designkart<br>.no</div>
+            <div class="bub bub-cyan" style="width:130px;height:130px;min-width:130px;max-width:130px;top:315px;left:50%;margin-left:95px;" onclick="toggleSub('designkart')">Designkart.no</div>
             <div class="sub" id="sub-designkart" style="top:350px;right:0;">
                 <a href="https://www.designkart.no" target="_blank" class="sub-bub" style="width:60px;height:60px;min-width:60px;max-width:60px;background:#4ECDC4;color:#fff;">Visit!</a>
                 <div class="sub-text" style="margin-top:4px;">A map art store (under continuous development)</div>
             </div>
 
             <!-- Annotation: Designkart -->
-            <span class="ann" style="top:380px;right:-30px;">A map art store I've made<br>(under continuous development) ←</span>
+            <span class="ann" style="top:360px;right:-40px;font-family:'Caveat',cursive;font-size:0.95rem;color:#555;font-style:normal;max-width:170px;">A map art store I've made (under continuous development)</span>
+            <svg style="position:absolute;top:400px;right:100px;z-index:1;" width="50" height="30" viewBox="0 0 50 30"><path d="M45 15C35 15 25 15 10 15" stroke="#555" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M15 10L8 15L15 20" stroke="#555" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
 
             <!-- 8: SoMe/Contact -->
             <div class="bub bub-amber" style="width:125px;height:125px;min-width:125px;max-width:125px;top:320px;left:50%;margin-left:-225px;" onclick="toggleSub('some')">SoMe/<br>Contact</div>
