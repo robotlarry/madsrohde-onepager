@@ -9,38 +9,38 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Playfair Display', Georgia, serif; background: #efefef; color: #333; overflow-x: hidden; }
-        .page { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+        .page { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; }
 
         /* === HERO === */
-        .hero { display: flex; gap: 3rem; padding: 2rem 0 1.5rem; align-items: flex-start; }
-        .hero-left { flex: 0 0 340px; }
-        .hero-right { flex: 1; min-width: 280px; padding-top: 0.5rem; }
-        .url { font-family: 'Inter', sans-serif; font-weight: 300; font-size: 0.85rem; color: #888; margin-bottom: 1.2rem; }
+        .hero { display: flex; gap: 3.5rem; padding: 2.5rem 0 2rem; align-items: flex-start; }
+        .hero-left { flex: 0 0 400px; }
+        .hero-right { flex: 1; min-width: 300px; padding-top: 1rem; }
+        .url { font-family: 'Inter', sans-serif; font-weight: 300; font-size: 0.95rem; color: #888; margin-bottom: 1.5rem; }
         .url a { color: #888; text-decoration: none; }
-        .mega-row { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1rem; }
-        .megaphone { width: 110px; flex-shrink: 0; }
-        .tagline { font-family: 'Kalam', cursive; font-size: 1.7rem; font-weight: 700; line-height: 1.35; margin-bottom: 1.8rem; }
+        .mega-row { display: flex; align-items: flex-start; gap: 1.2rem; margin-bottom: 1.2rem; }
+        .megaphone { width: 140px; flex-shrink: 0; }
+        .tagline { font-family: 'Kalam', cursive; font-size: 2.1rem; font-weight: 700; line-height: 1.4; margin-bottom: 2rem; }
         .tagline .gold { color: #E8A030; }
         .tagline .coral { color: #E8713A; }
         .tagline .black { color: #222; }
-        .nav-legend { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
-        .nav-legend li { font-family: 'Inter', sans-serif; font-size: 0.82rem; display: flex; align-items: center; gap: 0.5rem; }
-        .dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+        .nav-legend { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+        .nav-legend li { font-family: 'Inter', sans-serif; font-size: 0.95rem; display: flex; align-items: center; gap: 0.6rem; }
+        .dot { width: 13px; height: 13px; border-radius: 50%; display: inline-block; }
         .dot-cyan { background: #4ECDC4; }
         .dot-red { background: #E85555; }
         .dot-amber { background: #DAA520; }
-        .welcome { font-family: 'Caveat', cursive; font-size: 1rem; margin-bottom: 0.4rem; color: #999; }
-        .welcome strong { font-weight: 700; color: #333; font-family: 'Inter', sans-serif; font-size: 0.9rem; }
-        .site-desc { font-family: 'Caveat', cursive; font-size: 1.4rem; font-weight: 400; line-height: 1.35; margin-bottom: 1rem; }
-        .activities { font-family: 'Caveat', cursive; font-style: italic; color: #999; font-size: 1.05rem; line-height: 1.9; }
+        .welcome { font-family: 'Caveat', cursive; font-size: 1.2rem; margin-bottom: 0.5rem; color: #999; }
+        .welcome strong { font-weight: 700; color: #333; font-family: 'Inter', sans-serif; font-size: 1.1rem; }
+        .site-desc { font-family: 'Caveat', cursive; font-size: 1.85rem; font-weight: 400; line-height: 1.4; margin-bottom: 1.3rem; }
+        .activities { font-family: 'Caveat', cursive; font-style: italic; color: #999; font-size: 1.35rem; line-height: 2; }
 
         /* === HUB === */
-        .hub-area { text-align: center; padding: 1.2rem 0 1rem; max-width: 450px; margin: 0 auto; margin-left: 15%; }
-        .click-text { font-family: 'Kalam', cursive; font-size: 1.8rem; font-weight: 700; color: #E8A030; cursor: pointer; transition: opacity 0.3s; }
+        .hub-area { text-align: center; padding: 3rem 0 2rem; max-width: 500px; margin: 0 auto; }
+        .click-text { font-family: 'Kalam', cursive; font-size: 2.2rem; font-weight: 700; color: #E8A030; cursor: pointer; transition: opacity 0.3s; }
         .click-text:hover { opacity: 0.7; }
         .arrow-svg { margin: 0.5rem 0 1rem; cursor: pointer; }
         .profile-wrap { display: inline-block; cursor: pointer; }
-        .profile-photo { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; filter: grayscale(100%); border: 2px solid #ddd; transition: filter 0.4s, transform 0.3s; }
+        .profile-photo { width: 185px; height: 185px; border-radius: 50%; object-fit: cover; filter: grayscale(100%); border: 2px solid #ddd; transition: filter 0.4s, transform 0.3s; }
         .profile-wrap:hover .profile-photo { filter: grayscale(50%); transform: scale(1.03); }
         .hub-open .click-text, .hub-open .arrow-svg, .hub-open > .profile-wrap { display: none; }
 
@@ -75,9 +75,9 @@
         .ann { position: absolute; font-family: 'Inter', sans-serif; font-size: 0.7rem; color: #888; font-style: italic; max-width: 150px; text-align: center; pointer-events: none; z-index: 1; }
 
         /* === FOOTER === */
-        footer { border-top: 1px solid #ccc; padding: 1.5rem 0; text-align: center; margin-top: 3rem; }
-        footer p { font-family: 'Caveat', cursive; font-size: 1rem; color: #999; }
-        footer p:last-child { font-family: 'Inter', sans-serif; font-size: 0.75rem; }
+        footer { border-top: 1px solid #ccc; padding: 2rem 0; text-align: center; margin-top: 5rem; }
+        footer p { font-family: 'Caveat', cursive; font-size: 1.15rem; color: #999; }
+        footer p:last-child { font-family: 'Inter', sans-serif; font-size: 0.85rem; }
         footer a { color: #333; font-weight: 600; text-decoration: underline; }
 
         /* === MOBILE === */
@@ -118,7 +118,7 @@
             <ul class="nav-legend">
                 <li><span class="dot dot-cyan"></span> Hobbies</li>
                 <li><span class="dot dot-red"></span> Employment</li>
-                <li style="margin-top:0.2rem;"><span class="dot dot-amber"></span> Contact</li>
+                <li style="margin-top:0.5rem;"><span class="dot dot-amber"></span> Contact</li>
             </ul>
         </div>
         <div class="hero-right">
@@ -133,9 +133,9 @@
 
     <div class="hub-area" id="hubArea">
         <div class="click-text" onclick="openHub()">Click here!</div>
-        <svg class="arrow-svg" width="50" height="55" viewBox="0 0 50 55" fill="none" onclick="openHub()" style="margin:0.5rem 0 1rem; display:block; margin-left:auto; margin-right:auto; cursor:pointer;">
-            <path d="M18 5C14 12 13 22 17 32C21 40 25 46 27 50" stroke="#333" stroke-width="2" fill="none" stroke-linecap="round"/>
-            <path d="M21 44L27 53L32 43" stroke="#333" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <svg class="arrow-svg" width="80" height="130" viewBox="0 0 80 130" fill="none" onclick="openHub()" style="margin:1rem 0 2rem; display:block; margin-left:auto; margin-right:auto; cursor:pointer;">
+            <path d="M25 5C16 22 12 48 20 78C26 100 36 115 42 125" stroke="#333" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <path d="M34 114L42 128L50 113" stroke="#333" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         <div class="profile-wrap" onclick="openHub()">
             <img src="img/profile.jpg" alt="Mads Rohde" class="profile-photo">
