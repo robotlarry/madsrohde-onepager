@@ -47,8 +47,25 @@
 
         /* === MIND MAP === */
         .hub-map { position: relative; width: 650px; height: 650px; margin: 0 auto; display: none; }
-        .hub-map.active { display: block; animation: fadeScale 0.5s ease; }
+        .hub-map.active { display: block; }
         @keyframes fadeScale { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: scale(1); } }
+
+        /* Staggered bubble entrance */
+        @keyframes bubbleIn { from { opacity: 0; transform: scale(0); } to { opacity: 1; transform: scale(1); } }
+        .hub-map.active .map-center { animation: fadeScale 0.4s ease; }
+        .hub-map.active .bub { opacity: 0; animation: bubbleIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+        .hub-map.active .bub:nth-of-type(1) { animation-delay: 0.15s; }
+        .hub-map.active .bub:nth-of-type(2) { animation-delay: 0.25s; }
+        .hub-map.active .bub:nth-of-type(3) { animation-delay: 0.2s; }
+        .hub-map.active .bub:nth-of-type(4) { animation-delay: 0.3s; }
+        .hub-map.active .bub:nth-of-type(5) { animation-delay: 0.35s; }
+        .hub-map.active .bub:nth-of-type(6) { animation-delay: 0.4s; }
+        .hub-map.active .ann { opacity: 0; animation: fadeIn 0.4s ease 0.55s forwards; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Connecting lines animation */
+        @keyframes drawLine { from { stroke-dashoffset: 300; } to { stroke-dashoffset: 0; } }
+        .hub-map.active .hub-lines line { stroke-dasharray: 300; stroke-dashoffset: 300; animation: drawLine 0.6s ease 0.1s forwards; }
 
         .map-center { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 2; }
         .map-center img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; filter: grayscale(100%); border: 3px solid #ddd; }
@@ -101,6 +118,7 @@
             .hub-map .map-center img { width: 100px; height: 100px; }
             .hub-map .bub { position: static !important; width: 85% !important; max-width: 240px !important; height: 46px !important; min-height: auto !important; max-height: 46px !important; border-radius: 23px !important; margin: 0.12rem auto !important; min-width: auto !important; left: auto !important; top: auto !important; bottom: auto !important; right: auto !important; margin-left: auto !important; margin-right: auto !important; aspect-ratio: auto !important; font-size: 0.82rem !important; padding: 6px 20px !important; letter-spacing: normal !important; text-transform: none !important; white-space: nowrap !important; }
             .hub-map .ann { display: none; }
+            .hub-map .hub-lines { display: none; }
             .hub-map .sub { position: static !important; width: 90%; max-width: 260px; margin: 0.2rem auto; padding: 0.4rem; left: auto !important; right: auto !important; top: auto !important; bottom: auto !important; margin-left: auto !important; }
             .hub-map .sub .sub-text { max-width: 100%; }
             footer { margin-top: 2rem; }
@@ -148,6 +166,15 @@
         </div>
 
         <div class="hub-map" id="hubMap">
+            <!-- Connecting lines from center to bubbles -->
+            <svg class="hub-lines" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;">
+                <line x1="325" y1="325" x2="325" y2="115" stroke="#ccc" stroke-width="2" stroke-dasharray="6,4" opacity="0.7"/>
+                <line x1="325" y1="325" x2="507" y2="220" stroke="#ccc" stroke-width="2" stroke-dasharray="6,4" opacity="0.7"/>
+                <line x1="325" y1="325" x2="143" y2="220" stroke="#ccc" stroke-width="2" stroke-dasharray="6,4" opacity="0.7"/>
+                <line x1="325" y1="325" x2="507" y2="430" stroke="#ccc" stroke-width="2" stroke-dasharray="6,4" opacity="0.7"/>
+                <line x1="325" y1="325" x2="143" y2="430" stroke="#ccc" stroke-width="2" stroke-dasharray="6,4" opacity="0.7"/>
+                <line x1="325" y1="325" x2="325" y2="535" stroke="#ccc" stroke-width="2" stroke-dasharray="6,4" opacity="0.7"/>
+            </svg>
             <div class="map-center"><img src="img/profile.jpg" alt="Mads Rohde"></div>
 
             <!-- 12 o'clock: Science -->
