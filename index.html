@@ -35,13 +35,13 @@
         .activities { font-family: 'Caveat', cursive; font-style: italic; color: #999; font-size: 1.35rem; line-height: 1.7; }
 
         /* === HUB === */
-        .hub-area { text-align: center; padding: 5rem 0 2rem; max-width: 500px; margin: 0 auto; margin-left: 18%; }
+        .hub-area { text-align: center; padding: 3rem 0 1.5rem; max-width: 500px; margin: 0 auto; margin-left: 18%; }
         .hub-open { max-width: 700px; margin-left: auto; margin-right: auto; }
         .click-text { font-family: 'Kalam', cursive; font-size: 2.2rem; font-weight: 700; color: #E8A030; cursor: pointer; transition: opacity 0.3s; }
         .click-text:hover { opacity: 0.7; }
         .arrow-svg { margin: 0.5rem 0 1rem; cursor: pointer; }
         .profile-wrap { display: inline-block; cursor: pointer; }
-        .profile-photo { width: 195px; height: 195px; border-radius: 50%; object-fit: cover; filter: grayscale(100%); border: none; box-shadow: 0 0 20px 8px rgba(247,247,247,0.9); transition: filter 0.4s, transform 0.3s; }
+        .profile-photo { width: 220px; height: 220px; border-radius: 50%; object-fit: cover; filter: grayscale(100%); border: none; box-shadow: 0 0 20px 8px rgba(247,247,247,0.9); transition: filter 0.4s, transform 0.3s; }
         .profile-wrap:hover .profile-photo { filter: grayscale(50%); transform: scale(1.03); }
         .hub-open .click-text, .hub-open .arrow-svg, .hub-open > .profile-wrap { display: none; }
 
@@ -76,7 +76,7 @@
         .ann { position: absolute; font-family: 'Inter', sans-serif; font-size: 0.7rem; color: #888; font-style: italic; max-width: 150px; text-align: center; pointer-events: none; z-index: 1; }
 
         /* === FOOTER === */
-        footer { border-top: 1px solid #ccc; padding: 2.5rem 0; text-align: center; margin-top: 8rem; }
+        footer { border-top: 1px solid #ccc; padding: 2.5rem 0; text-align: center; margin-top: 5rem; }
         footer p { font-family: 'Inter', sans-serif; font-size: 0.95rem; color: #999; font-weight: 300; }
         footer p:last-child { font-family: 'Inter', sans-serif; font-size: 0.8rem; }
         footer a { color: #333; font-weight: 600; text-decoration: underline; }
@@ -139,9 +139,9 @@
 
     <div class="hub-area" id="hubArea">
         <div class="click-text" onclick="openHub()">Click here!</div>
-        <svg class="arrow-svg" width="80" height="130" viewBox="0 0 80 130" fill="none" onclick="openHub()" style="margin:1rem 0 2rem; display:block; margin-left:auto; margin-right:auto; cursor:pointer;">
-            <path d="M25 5C16 22 12 48 20 78C26 100 36 115 42 125" stroke="#333" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-            <path d="M34 114L42 128L50 113" stroke="#333" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <svg class="arrow-svg" width="120" height="140" viewBox="0 0 120 140" fill="none" onclick="openHub()" style="margin:0.5rem 0 1.5rem; display:block; margin-left:auto; margin-right:auto; cursor:pointer;">
+            <path d="M30 8C15 25 10 50 25 75C40 100 60 115 70 130" stroke="#333" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+            <path d="M62 120L70 135L78 122" stroke="#333" stroke-width="2.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         <div class="profile-wrap" onclick="openHub()">
             <img src="img/profile.jpg" alt="Mads Rohde" class="profile-photo">
