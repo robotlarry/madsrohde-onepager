@@ -93,7 +93,7 @@
         .ann { position: absolute; font-family: 'Inter', sans-serif; font-size: 0.7rem; color: #888; font-style: italic; max-width: 150px; text-align: center; pointer-events: none; z-index: 1; }
 
         /* === FOOTER === */
-        footer { border-top: 1px solid #ccc; padding: 2.5rem 0; text-align: center; margin-top: 5rem; }
+        footer { border-top: 1px solid #ccc; padding: 2.5rem 0; text-align: center; margin-top: 7rem; }
         footer p { font-family: 'Inter', sans-serif; font-size: 0.95rem; color: #999; font-weight: 300; }
         footer p:last-child { font-family: 'Inter', sans-serif; font-size: 0.8rem; }
         footer a { color: #333; font-weight: 600; text-decoration: underline; }
@@ -157,9 +157,12 @@
 
     <div class="hub-area" id="hubArea">
         <div class="click-text" onclick="openHub()">Click here!</div>
-        <svg class="arrow-svg" width="120" height="140" viewBox="0 0 120 140" fill="none" onclick="openHub()" style="margin:0.5rem 0 1.5rem; display:block; margin-left:auto; margin-right:auto; cursor:pointer;">
-            <path d="M30 8C15 25 10 50 25 75C40 100 60 115 70 130" stroke="#333" stroke-width="2.8" fill="none" stroke-linecap="round"/>
-            <path d="M62 120L70 135L78 122" stroke="#333" stroke-width="2.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <svg class="arrow-svg" width="100" height="160" viewBox="0 0 100 160" fill="none" onclick="openHub()" style="margin:0.8rem 0 2rem; display:block; margin-left:auto; margin-right:auto; cursor:pointer;">
+            <!-- Hand-drawn style arrow -->
+            <path d="M38 5C20 18 9 48 14 78C19 108 42 132 52 148" stroke="#333" stroke-width="5" fill="none" stroke-linecap="round"/>
+            <path d="M36 7C22 22 11 46 16 76C21 106 44 130 54 146" stroke="#333" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.25"/>
+            <!-- Filled arrowhead -->
+            <polygon points="34,130 52,158 68,133" fill="#333"/>
         </svg>
         <div class="profile-wrap" onclick="openHub()">
             <img src="img/profile.jpg" alt="Mads Rohde" class="profile-photo">
