@@ -31,11 +31,13 @@
         .dot-amber { background: #DAA520; }
         .welcome { font-family: 'Caveat', cursive; font-size: 1.3rem; margin-bottom: 0.5rem; color: #999; }
         .welcome strong { font-weight: 700; color: #333; font-family: 'Inter', sans-serif; font-size: 1.15rem; }
-        .site-desc { font-family: 'Caveat', cursive; font-size: 2.1rem; font-weight: 600; line-height: 1.4; margin-bottom: 1.3rem; }
-        .activities { font-family: 'Caveat', cursive; font-style: italic; color: #999; font-size: 1.35rem; line-height: 1.7; }
+        .site-desc { font-family: 'Caveat', cursive; font-size: 2.1rem; font-weight: 600; line-height: 1.4; }
 
         /* === HUB === */
         .hub-area { text-align: center; padding: 3.5rem 0 2rem; max-width: 700px; margin: 0 auto; margin-left: 20%; }
+        .click-text { font-family: 'Kalam', cursive; font-size: 2.2rem; font-weight: 700; color: #E8A030; cursor: pointer; transition: opacity 0.3s; }
+        .click-text:hover { opacity: 0.7; }
+        .arrow-svg { margin: 0.5rem 0 1rem; cursor: pointer; display: block; margin-left: auto; margin-right: auto; }
 
         /* === MIND MAP === */
         .hub-map { position: relative; width: 650px; height: 650px; margin: 0 auto; }
@@ -58,8 +60,6 @@
         .map-center { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 2; cursor: pointer; }
         .map-center img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; filter: grayscale(100%); border: 3px solid #ddd; transition: filter 0.4s, transform 0.3s, box-shadow 0.3s; }
         .map-center:hover img { filter: grayscale(50%); transform: scale(1.05); box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
-        .hub-hint { font-family: 'Kalam', cursive; font-size: 1rem; color: #bbb; margin-top: 0.4rem; pointer-events: none; transition: opacity 0.3s; }
-        .hub-map.active .hub-hint { opacity: 0; }
 
         /* Bubbles */
         .bub { position: absolute; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-align: center; font-family: 'Inter', sans-serif; font-weight: 600; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; line-height: 1.2; z-index: 3; overflow: hidden; word-break: break-word; padding: 10px; flex-shrink: 0; }
@@ -95,12 +95,12 @@
             .megaphone { width: 80px; }
             .tagline { font-size: 1.3rem; margin-bottom: 1rem; }
             .site-desc { font-size: 1.4rem; }
-            .activities { font-size: 1.1rem; }
             .hub-area { margin-left: auto; margin-right: auto; max-width: 100%; padding: 1rem 0 0.5rem; }
+            .click-text { font-size: 1.4rem; }
+            .arrow-svg { display: none !important; }
             .hub-map { width: 100%; height: auto; min-height: auto; position: static; display: flex; flex-direction: column; align-items: center; gap: 0.4rem; padding: 0.5rem 0; }
             .hub-map .map-center { position: static; transform: none; margin-bottom: 0.4rem; }
             .hub-map .map-center img { width: 110px; height: 110px; }
-            .hub-map .hub-hint { font-size: 0.85rem; }
             .hub-map .bub { position: static !important; width: 85% !important; max-width: 240px !important; height: 46px !important; min-height: auto !important; max-height: 46px !important; border-radius: 23px !important; margin: 0.12rem auto !important; min-width: auto !important; left: auto !important; top: auto !important; bottom: auto !important; right: auto !important; aspect-ratio: auto !important; font-size: 0.82rem !important; padding: 6px 20px !important; letter-spacing: normal !important; text-transform: none !important; white-space: nowrap !important; }
             .hub-map .hub-lines { display: none; }
             .hub-map .sub { position: static !important; width: 90%; max-width: 260px; margin: 0.2rem auto; padding: 0.4rem; left: auto !important; right: auto !important; top: auto !important; bottom: auto !important; margin-left: auto !important; }
@@ -124,7 +124,7 @@
             </div>
             </div>
             <ul class="nav-legend">
-                <li><span class="dot dot-cyan"></span> Hobbies / Free time</li>
+                <li><span class="dot dot-cyan"></span> Projects / Hobbies / Free time</li>
                 <li><span class="dot dot-red"></span> Employment</li>
                 <li style="margin-top:0.8rem;"><span class="dot dot-amber"></span> Contact</li>
             </ul>
@@ -132,14 +132,19 @@
         <div class="hero-right">
             <p class="welcome">Welcome to <strong>Mads Rohde's Homepage</strong></p>
             <p class="site-desc">This site is a map/overview<br>of my current activities.</p>
-            <div class="activities">
-                Public health science and<br>environmental determinants of health;<br>
-                Graphics, data, statistics and analysis;<br>Social entrepreneurship
-            </div>
         </div>
     </div>
 
     <div class="hub-area" id="hubArea">
+        <div id="clickCta">
+            <div class="click-text" onclick="toggleBubbles()">Click here!</div>
+            <svg class="arrow-svg" width="100" height="160" viewBox="0 0 100 160" fill="none" onclick="toggleBubbles()">
+                <path d="M38 5C20 18 9 48 14 78C19 108 42 132 52 148" stroke="#333" stroke-width="5" fill="none" stroke-linecap="round"/>
+                <path d="M36 7C22 22 11 46 16 76C21 106 44 130 54 146" stroke="#333" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.25"/>
+                <polygon points="34,130 52,158 68,133" fill="#333"/>
+            </svg>
+        </div>
+
         <div class="hub-map" id="hubMap">
             <!-- Connecting lines from center to bubbles — equilateral triangle -->
             <svg class="hub-lines" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;">
@@ -150,16 +155,16 @@
 
             <div class="map-center" onclick="toggleBubbles()">
                 <img src="img/profile.jpg" alt="Mads Rohde">
-                <div class="hub-hint">click to explore</div>
             </div>
 
-            <!-- 12 o'clock: Hobbies / Free time -->
-            <div class="bub bub-cyan" style="width:130px;height:130px;min-width:130px;max-width:130px;top:50px;left:260px;font-size:0.78rem;" onclick="toggleSub('hobbies')">Hobbies /<br>Free time</div>
+            <!-- 12 o'clock: Projects / Hobbies / Free time -->
+            <div class="bub bub-cyan" style="width:130px;height:130px;min-width:130px;max-width:130px;top:50px;left:260px;font-size:0.62rem;" onclick="toggleSub('hobbies')">Projects /<br>Hobbies /<br>Free time</div>
             <div class="sub" id="sub-hobbies" style="top:30px;left:405px;">
                 <div style="display:flex;flex-direction:column;gap:6px;">
                     <a href="#" class="sub-bub" style="width:100%;height:auto;border-radius:8px;background:#4ECDC4;color:#fff;padding:6px 10px;font-size:0.7rem;aspect-ratio:auto;">Blog</a>
                     <a href="https://www.designkart.no" target="_blank" class="sub-bub" style="width:100%;height:auto;border-radius:8px;background:#4ECDC4;color:#fff;padding:6px 10px;font-size:0.7rem;aspect-ratio:auto;">designkart.no</a>
                     <a href="#" class="sub-bub" style="width:100%;height:auto;border-radius:8px;background:#4ECDC4;color:#fff;padding:6px 10px;font-size:0.7rem;aspect-ratio:auto;">EMF science projects</a>
+                    <a href="#" class="sub-bub" style="width:100%;height:auto;border-radius:8px;background:#4ECDC4;color:#fff;padding:6px 10px;font-size:0.7rem;aspect-ratio:auto;">Wooden design (shelf)</a>
                 </div>
             </div>
 
@@ -194,13 +199,15 @@
 <script>
 function toggleBubbles() {
     var map = document.getElementById('hubMap');
+    var cta = document.getElementById('clickCta');
     var isActive = map.classList.contains('active');
     if (isActive) {
-        // Close all sub-popups first
         document.querySelectorAll('.sub.show').forEach(function(s) { s.classList.remove('show'); });
         map.classList.remove('active');
+        cta.style.display = '';
     } else {
         map.classList.add('active');
+        cta.style.display = 'none';
     }
 }
 
