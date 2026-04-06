@@ -35,37 +35,31 @@
         .activities { font-family: 'Caveat', cursive; font-style: italic; color: #999; font-size: 1.35rem; line-height: 1.7; }
 
         /* === HUB === */
-        .hub-area { text-align: center; padding: 3.5rem 0 2rem; max-width: 500px; margin: 0 auto; margin-left: 20%; }
-        .hub-open { max-width: 700px; margin-left: auto; margin-right: auto; }
-        .click-text { font-family: 'Kalam', cursive; font-size: 2.2rem; font-weight: 700; color: #E8A030; cursor: pointer; transition: opacity 0.3s; }
-        .click-text:hover { opacity: 0.7; }
-        .arrow-svg { margin: 0.5rem 0 1rem; cursor: pointer; }
-        .profile-wrap { display: inline-block; cursor: pointer; }
-        .profile-photo { width: 220px; height: 220px; border-radius: 50%; object-fit: cover; filter: grayscale(100%); border: none; box-shadow: 0 0 20px 8px rgba(247,247,247,0.9); transition: filter 0.4s, transform 0.3s; }
-        .profile-wrap:hover .profile-photo { filter: grayscale(50%); transform: scale(1.03); }
-        .hub-open .click-text, .hub-open .arrow-svg, .hub-open > .profile-wrap { display: none; }
+        .hub-area { text-align: center; padding: 3.5rem 0 2rem; max-width: 700px; margin: 0 auto; margin-left: 20%; }
 
         /* === MIND MAP === */
-        .hub-map { position: relative; width: 650px; height: 650px; margin: 0 auto; display: none; }
-        .hub-map.active { display: block; }
+        .hub-map { position: relative; width: 650px; height: 650px; margin: 0 auto; }
         @keyframes fadeScale { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: scale(1); } }
 
-        /* Staggered bubble entrance */
+        /* Bubbles hidden by default, animate in when active */
         @keyframes bubbleIn { from { opacity: 0; transform: scale(0); } to { opacity: 1; transform: scale(1); } }
-        .hub-map.active .map-center { animation: fadeScale 0.4s ease; }
-        .hub-map.active .bub { opacity: 0; animation: bubbleIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+        .hub-map .bub { opacity: 0; pointer-events: none; }
+        .hub-map.active .bub { opacity: 0; animation: bubbleIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; pointer-events: auto; }
         .hub-map.active .bub:nth-of-type(1) { animation-delay: 0.15s; }
         .hub-map.active .bub:nth-of-type(2) { animation-delay: 0.25s; }
         .hub-map.active .bub:nth-of-type(3) { animation-delay: 0.35s; }
-        .hub-map.active .ann { opacity: 0; animation: fadeIn 0.4s ease 0.55s forwards; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* Connecting lines animation */
-        @keyframes drawLine { from { stroke-dashoffset: 300; } to { stroke-dashoffset: 0; } }
+        /* Lines hidden by default, draw in when active */
+        @keyframes drawLine { from { stroke-dashoffset: 300; opacity: 0; } to { stroke-dashoffset: 0; opacity: 0.7; } }
+        .hub-map .hub-lines line { opacity: 0; }
         .hub-map.active .hub-lines line { stroke-dasharray: 300; stroke-dashoffset: 300; animation: drawLine 0.6s ease 0.1s forwards; }
 
-        .map-center { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 2; }
-        .map-center img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; filter: grayscale(100%); border: 3px solid #ddd; }
+        .map-center { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 2; cursor: pointer; }
+        .map-center img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; filter: grayscale(100%); border: 3px solid #ddd; transition: filter 0.4s, transform 0.3s, box-shadow 0.3s; }
+        .map-center:hover img { filter: grayscale(50%); transform: scale(1.05); box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+        .hub-hint { font-family: 'Kalam', cursive; font-size: 1rem; color: #bbb; margin-top: 0.4rem; pointer-events: none; transition: opacity 0.3s; }
+        .hub-map.active .hub-hint { opacity: 0; }
 
         /* Bubbles */
         .bub { position: absolute; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-align: center; font-family: 'Inter', sans-serif; font-weight: 600; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; line-height: 1.2; z-index: 3; overflow: hidden; word-break: break-word; padding: 10px; flex-shrink: 0; }
@@ -74,7 +68,7 @@
         .bub-red { background: #E85555; color: #fff; font-size: 0.85rem; letter-spacing: 3px; text-transform: uppercase; }
         .bub-amber { background: #DAA520; color: #fff; font-size: 0.75rem; }
 
-        /* Sub-elements (hidden until parent bubble clicked) */
+        /* Sub-elements */
         .sub { position: absolute; display: none; z-index: 4; background: rgba(255,255,255,0.95); border-radius: 12px; padding: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
         .sub.show { display: block; animation: popIn 0.35s ease; }
         @keyframes popIn { from { opacity: 0; transform: scale(0.6); } to { opacity: 1; transform: scale(1); } }
@@ -85,9 +79,6 @@
         .sub-text { font-family: 'Inter', sans-serif; font-size: 0.78rem; color: #666; font-style: italic; max-width: 170px; line-height: 1.45; }
         .sub-icon { width: 28px; height: 28px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.8rem; margin: 3px; cursor: pointer; transition: transform 0.2s; text-decoration: none; }
         .sub-icon:hover { transform: scale(1.2); }
-
-        /* Annotations */
-        .ann { position: absolute; font-family: 'Inter', sans-serif; font-size: 0.7rem; color: #888; font-style: italic; max-width: 150px; text-align: center; pointer-events: none; z-index: 1; }
 
         /* === FOOTER === */
         footer { border-top: 1px solid #ccc; padding: 2.5rem 0; text-align: center; margin-top: 7rem; }
@@ -106,15 +97,11 @@
             .site-desc { font-size: 1.4rem; }
             .activities { font-size: 1.1rem; }
             .hub-area { margin-left: auto; margin-right: auto; max-width: 100%; padding: 1rem 0 0.5rem; }
-            .click-text { font-size: 1.4rem; }
-            .arrow-svg { display: none !important; }
-            .profile-photo { width: 130px; height: 130px; }
-            .hub-map { width: 100%; height: auto; min-height: auto; position: static; display: none; }
-            .hub-map.active { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; padding: 0.5rem 0; }
+            .hub-map { width: 100%; height: auto; min-height: auto; position: static; display: flex; flex-direction: column; align-items: center; gap: 0.4rem; padding: 0.5rem 0; }
             .hub-map .map-center { position: static; transform: none; margin-bottom: 0.4rem; }
-            .hub-map .map-center img { width: 100px; height: 100px; }
-            .hub-map .bub { position: static !important; width: 85% !important; max-width: 240px !important; height: 46px !important; min-height: auto !important; max-height: 46px !important; border-radius: 23px !important; margin: 0.12rem auto !important; min-width: auto !important; left: auto !important; top: auto !important; bottom: auto !important; right: auto !important; margin-left: auto !important; margin-right: auto !important; aspect-ratio: auto !important; font-size: 0.82rem !important; padding: 6px 20px !important; letter-spacing: normal !important; text-transform: none !important; white-space: nowrap !important; }
-            .hub-map .ann { display: none; }
+            .hub-map .map-center img { width: 110px; height: 110px; }
+            .hub-map .hub-hint { font-size: 0.85rem; }
+            .hub-map .bub { position: static !important; width: 85% !important; max-width: 240px !important; height: 46px !important; min-height: auto !important; max-height: 46px !important; border-radius: 23px !important; margin: 0.12rem auto !important; min-width: auto !important; left: auto !important; top: auto !important; bottom: auto !important; right: auto !important; aspect-ratio: auto !important; font-size: 0.82rem !important; padding: 6px 20px !important; letter-spacing: normal !important; text-transform: none !important; white-space: nowrap !important; }
             .hub-map .hub-lines { display: none; }
             .hub-map .sub { position: static !important; width: 90%; max-width: 260px; margin: 0.2rem auto; padding: 0.4rem; left: auto !important; right: auto !important; top: auto !important; bottom: auto !important; margin-left: auto !important; }
             .hub-map .sub .sub-text { max-width: 100%; }
@@ -153,26 +140,18 @@
     </div>
 
     <div class="hub-area" id="hubArea">
-        <div class="click-text" onclick="openHub()">Click here!</div>
-        <svg class="arrow-svg" width="100" height="160" viewBox="0 0 100 160" fill="none" onclick="openHub()" style="margin:0.8rem 0 2rem; display:block; margin-left:auto; margin-right:auto; cursor:pointer;">
-            <!-- Hand-drawn style arrow -->
-            <path d="M38 5C20 18 9 48 14 78C19 108 42 132 52 148" stroke="#333" stroke-width="5" fill="none" stroke-linecap="round"/>
-            <path d="M36 7C22 22 11 46 16 76C21 106 44 130 54 146" stroke="#333" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.25"/>
-            <!-- Filled arrowhead -->
-            <polygon points="34,130 52,158 68,133" fill="#333"/>
-        </svg>
-        <div class="profile-wrap" onclick="openHub()">
-            <img src="img/profile.jpg" alt="Mads Rohde" class="profile-photo">
-        </div>
-
         <div class="hub-map" id="hubMap">
             <!-- Connecting lines from center to bubbles — equilateral triangle -->
             <svg class="hub-lines" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;">
-                <line x1="325" y1="325" x2="325" y2="115" stroke="#ccc" stroke-width="2" stroke-dasharray="6,4" opacity="0.7"/>
-                <line x1="325" y1="325" x2="507" y2="430" stroke="#ccc" stroke-width="2" stroke-dasharray="6,4" opacity="0.7"/>
-                <line x1="325" y1="325" x2="143" y2="430" stroke="#ccc" stroke-width="2" stroke-dasharray="6,4" opacity="0.7"/>
+                <line x1="325" y1="325" x2="325" y2="115" stroke="#ccc" stroke-width="2" stroke-dasharray="6,4"/>
+                <line x1="325" y1="325" x2="507" y2="430" stroke="#ccc" stroke-width="2" stroke-dasharray="6,4"/>
+                <line x1="325" y1="325" x2="143" y2="430" stroke="#ccc" stroke-width="2" stroke-dasharray="6,4"/>
             </svg>
-            <div class="map-center"><img src="img/profile.jpg" alt="Mads Rohde"></div>
+
+            <div class="map-center" onclick="toggleBubbles()">
+                <img src="img/profile.jpg" alt="Mads Rohde">
+                <div class="hub-hint">click to explore</div>
+            </div>
 
             <!-- 12 o'clock: Hobbies / Free time -->
             <div class="bub bub-cyan" style="width:130px;height:130px;min-width:130px;max-width:130px;top:50px;left:260px;font-size:0.78rem;" onclick="toggleSub('hobbies')">Hobbies /<br>Free time</div>
@@ -184,14 +163,14 @@
                 </div>
             </div>
 
-            <!-- 10 o'clock: Job -->
+            <!-- Bottom-left: Job -->
             <div class="bub bub-red" style="width:130px;height:130px;min-width:130px;max-width:130px;top:365px;left:78px;" onclick="toggleSub('job')">Job</div>
             <div class="sub" id="sub-job" style="top:330px;left:-80px;max-width:150px;">
                 <a href="https://www.linkedin.com/in/mads-rohde-3ba34391/" target="_blank" class="sub-bub" style="width:80px;height:80px;min-width:80px;max-width:80px;background:#E85555;color:#fff;">Cancer Registry<br>of Norway</a>
                 <div class="sub-text" style="margin-top:6px;">Get in touch on LinkedIn</div>
             </div>
 
-            <!-- 4 o'clock: SoMe/Contact -->
+            <!-- Bottom-right: SoMe/Contact -->
             <div class="bub bub-amber" style="width:130px;height:130px;min-width:130px;max-width:130px;top:365px;left:442px;" onclick="toggleSub('some')">SoMe/<br>Contact</div>
             <div class="sub" id="sub-some" style="top:330px;left:582px;">
                 <div style="font-family:'Inter',sans-serif;font-size:0.75rem;color:#555;margin-bottom:6px;">Direct message</div>
@@ -213,18 +192,22 @@
 </footer>
 
 <script>
-function openHub() {
-    document.getElementById('hubArea').classList.add('hub-open');
-    document.getElementById('hubMap').classList.add('active');
-    document.getElementById('hubMap').scrollIntoView({ behavior: 'smooth', block: 'center' });
+function toggleBubbles() {
+    var map = document.getElementById('hubMap');
+    var isActive = map.classList.contains('active');
+    if (isActive) {
+        // Close all sub-popups first
+        document.querySelectorAll('.sub.show').forEach(function(s) { s.classList.remove('show'); });
+        map.classList.remove('active');
+    } else {
+        map.classList.add('active');
+    }
 }
 
 function toggleSub(name) {
     var el = document.getElementById('sub-' + name);
     var wasOpen = el.classList.contains('show');
-    // Close all subs first (accordion)
     document.querySelectorAll('.sub.show').forEach(function(s) { s.classList.remove('show'); });
-    // Toggle the clicked one
     if (!wasOpen) {
         el.classList.add('show');
     }
