@@ -20,7 +20,8 @@
         .mega-row { display: flex; align-items: flex-start; gap: 1.2rem; margin-bottom: 1.2rem; }
         .megaphone { width: 148px; flex-shrink: 0; }
         .tagline { font-family: 'Kalam', cursive; font-size: 2.1rem; font-weight: 700; line-height: 1.4; margin-bottom: 2rem; }
-        .tagline .gold { color: #E8A030; }
+        .tagline .teal { color: #4ECDC4; }
+        .tagline .gold { color: #E8A030; font-style: italic; }
         .tagline .coral { color: #E8713A; }
         .tagline .black { color: #222; }
         .nav-legend { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
@@ -35,9 +36,10 @@
 
         /* === HUB === */
         .hub-area { text-align: center; padding: 3.5rem 0 2rem; max-width: 700px; margin: 0 auto; margin-left: 20%; }
+        .click-cta { position: absolute; top: 95px; left: 50%; transform: translateX(-50%); text-align: center; z-index: 5; pointer-events: auto; white-space: nowrap; }
         .click-text { font-family: 'Kalam', cursive; font-size: 2.2rem; font-weight: 700; color: #E8A030; cursor: pointer; transition: opacity 0.3s; }
         .click-text:hover { opacity: 0.7; }
-        .arrow-svg { margin: 0.5rem 0 1rem; cursor: pointer; display: block; margin-left: auto; margin-right: auto; }
+        .arrow-svg { cursor: pointer; display: block; margin: 0.3rem auto 0; }
 
         /* === MIND MAP === */
         .hub-map { position: relative; width: 650px; height: 650px; margin: 0 auto; }
@@ -103,6 +105,7 @@
             .hub-map .map-center img { width: 110px; height: 110px; }
             .hub-map .bub { position: static !important; width: 85% !important; max-width: 240px !important; height: 46px !important; min-height: auto !important; max-height: 46px !important; border-radius: 23px !important; margin: 0.12rem auto !important; min-width: auto !important; left: auto !important; top: auto !important; bottom: auto !important; right: auto !important; aspect-ratio: auto !important; font-size: 0.82rem !important; padding: 6px 20px !important; letter-spacing: normal !important; text-transform: none !important; white-space: nowrap !important; }
             .hub-map .hub-lines { display: none; }
+            .hub-map .click-cta { position: static; transform: none; white-space: normal; margin-bottom: 0.5rem; }
             .hub-map .sub { position: static !important; width: 90%; max-width: 260px; margin: 0.2rem auto; padding: 0.4rem; left: auto !important; right: auto !important; top: auto !important; bottom: auto !important; margin-left: auto !important; }
             .hub-map .sub .sub-text { max-width: 100%; }
             footer { margin-top: 2rem; }
@@ -118,8 +121,8 @@
             <div class="mega-row">
             <img src="img/megaphone.png" alt="" class="megaphone">
             <div class="tagline">
-                <span class="black">I like ideas</span> <span class="gold">and</span><br>
-                <span class="black">I like</span> <span class="coral">truth.</span><br>
+                <span class="teal">I like ideas</span> <span class="gold">and</span><br>
+                <span class="teal">I like</span> <span class="coral">truth.</span><br>
                 <span class="black">It's just that.</span>
             </div>
             </div>
@@ -136,16 +139,14 @@
     </div>
 
     <div class="hub-area" id="hubArea">
-        <div id="clickCta">
-            <div class="click-text" onclick="toggleBubbles()">Click here!</div>
-            <svg class="arrow-svg" width="100" height="160" viewBox="0 0 100 160" fill="none" onclick="toggleBubbles()">
-                <path d="M38 5C20 18 9 48 14 78C19 108 42 132 52 148" stroke="#333" stroke-width="5" fill="none" stroke-linecap="round"/>
-                <path d="M36 7C22 22 11 46 16 76C21 106 44 130 54 146" stroke="#333" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.25"/>
-                <polygon points="34,130 52,158 68,133" fill="#333"/>
-            </svg>
-        </div>
-
         <div class="hub-map" id="hubMap">
+            <div class="click-cta" id="clickCta">
+                <div class="click-text" onclick="toggleBubbles()">Click here!</div>
+                <svg class="arrow-svg" width="90" height="85" viewBox="0 0 90 85" fill="none" onclick="toggleBubbles()">
+                    <path d="M15,5 C5,28 55,48 58,74" stroke="#555" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+                    <path d="M42,70 L60,78 L56,60" stroke="#555" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
             <!-- Connecting lines from center to bubbles — equilateral triangle -->
             <svg class="hub-lines" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;">
                 <line x1="325" y1="325" x2="325" y2="115" stroke="#ccc" stroke-width="2" stroke-dasharray="6,4"/>
