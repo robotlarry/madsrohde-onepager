@@ -52,35 +52,47 @@
         .hub-map.active .bub:nth-of-type(1) { animation-delay: 0.15s; }
         .hub-map.active .bub:nth-of-type(2) { animation-delay: 0.25s; }
         .hub-map.active .bub:nth-of-type(3) { animation-delay: 0.35s; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        /* Lines hidden by default, draw in when active */
-        @keyframes drawLine { from { stroke-dashoffset: 300; opacity: 0; } to { stroke-dashoffset: 0; opacity: 0.7; } }
-        .hub-map .hub-lines line { opacity: 0; }
-        .hub-map.active .hub-lines line { stroke-dasharray: 300; stroke-dashoffset: 300; animation: drawLine 0.6s ease 0.1s forwards; }
 
         .map-center { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 2; cursor: pointer; }
         .map-center img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; filter: grayscale(100%); border: 3px solid #ddd; transition: filter 0.4s, transform 0.3s, box-shadow 0.3s; }
         .map-center:hover img { filter: grayscale(50%); transform: scale(1.05); box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
 
-        /* Bubbles */
+        /* Main bubbles */
         .bub { position: absolute; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-align: center; font-family: 'Inter', sans-serif; font-weight: 600; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; line-height: 1.2; z-index: 3; overflow: hidden; word-break: break-word; padding: 10px; flex-shrink: 0; }
         .bub:hover { transform: scale(1.08); box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
         .bub-cyan { background: #4ECDC4; color: #fff; font-size: 0.78rem; }
         .bub-red { background: #E85555; color: #fff; font-size: 0.85rem; letter-spacing: 3px; text-transform: uppercase; }
         .bub-amber { background: #DAA520; color: #fff; font-size: 0.75rem; }
 
-        /* Sub-elements */
-        .sub { position: absolute; display: none; z-index: 4; background: rgba(255,255,255,0.95); border-radius: 12px; padding: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
-        .sub.show { display: block; animation: popIn 0.35s ease; }
-        @keyframes popIn { from { opacity: 0; transform: scale(0.6); } to { opacity: 1; transform: scale(1); } }
+        /* Sub-circles — absolutely positioned within hub-map, hidden by default */
+        .sub-group { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+        .sub-circ {
+            position: absolute;
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center;
+            font-family: 'Inter', sans-serif; font-size: 0.6rem; font-weight: 600;
+            color: #fff; text-decoration: none;
+            line-height: 1.25; padding: 8px;
+            opacity: 0; pointer-events: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            z-index: 4; word-break: break-word;
+        }
+        .sub-circ:hover { transform: scale(1.1); box-shadow: 0 4px 16px rgba(0,0,0,0.18); }
+        .sub-circ-cyan  { background: #4ECDC4; }
+        .sub-circ-red   { background: #E85555; }
+        .sub-circ-amber { background: #DAA520; }
 
-        .sub-bub { border-radius: 50%; display: flex; align-items: center; justify-content: center; text-align: center; font-family: 'Inter', sans-serif; font-size: 0.65rem; font-weight: 500; text-decoration: none; transition: transform 0.2s; overflow: hidden; aspect-ratio: 1; padding: 8px; }
-        .sub-bub:hover { transform: scale(1.1); }
-
-        .sub-text { font-family: 'Inter', sans-serif; font-size: 0.78rem; color: #666; font-style: italic; max-width: 170px; line-height: 1.45; }
-        .sub-icon { width: 28px; height: 28px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.8rem; margin: 3px; cursor: pointer; transition: transform 0.2s; text-decoration: none; }
-        .sub-icon:hover { transform: scale(1.2); }
+        /* Animate sub-circles in when parent group is shown */
+        .sub-group.show .sub-circ {
+            animation: bubbleIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            pointer-events: auto;
+        }
+        .sub-group.show .sub-circ:nth-child(1) { animation-delay: 0.05s; }
+        .sub-group.show .sub-circ:nth-child(2) { animation-delay: 0.15s; }
+        .sub-group.show .sub-circ:nth-child(3) { animation-delay: 0.25s; }
+        .sub-group.show .sub-circ:nth-child(4) { animation-delay: 0.35s; }
 
         /* === FOOTER === */
         footer { border-top: 1px solid #ccc; padding: 2.5rem 0; text-align: center; margin-top: 7rem; }
@@ -100,14 +112,39 @@
             .hub-area { margin-left: auto; margin-right: auto; max-width: 100%; padding: 1rem 0 0.5rem; }
             .click-text { font-size: 1.4rem; }
             .arrow-svg { display: none !important; }
-            .hub-map { width: 100%; height: auto; min-height: auto; position: static; display: flex; flex-direction: column; align-items: center; gap: 0.4rem; padding: 0.5rem 0; }
+            .hub-map {
+                width: 100%; height: auto; min-height: auto; position: static;
+                display: flex; flex-direction: column; align-items: center;
+                gap: 0.4rem; padding: 0.5rem 0;
+            }
             .hub-map .map-center { position: static; transform: none; margin-bottom: 0.4rem; }
             .hub-map .map-center img { width: 110px; height: 110px; }
-            .hub-map .bub { position: static !important; width: 85% !important; max-width: 240px !important; height: 46px !important; min-height: auto !important; max-height: 46px !important; border-radius: 23px !important; margin: 0.12rem auto !important; min-width: auto !important; left: auto !important; top: auto !important; bottom: auto !important; right: auto !important; aspect-ratio: auto !important; font-size: 0.82rem !important; padding: 6px 20px !important; letter-spacing: normal !important; text-transform: none !important; white-space: nowrap !important; }
-            .hub-map .hub-lines { display: none; }
+            .hub-map .bub {
+                position: static !important; width: 85% !important; max-width: 240px !important;
+                height: 46px !important; min-height: auto !important; max-height: 46px !important;
+                border-radius: 23px !important; margin: 0.12rem auto !important;
+                min-width: auto !important; left: auto !important; top: auto !important;
+                bottom: auto !important; right: auto !important; aspect-ratio: auto !important;
+                font-size: 0.82rem !important; padding: 6px 20px !important;
+                letter-spacing: normal !important; text-transform: none !important;
+                white-space: nowrap !important;
+            }
             .hub-map .click-cta { position: static; transform: none; white-space: normal; margin-bottom: 0.5rem; }
-            .hub-map .sub { position: static !important; width: 90%; max-width: 260px; margin: 0.2rem auto; padding: 0.4rem; left: auto !important; right: auto !important; top: auto !important; bottom: auto !important; margin-left: auto !important; }
-            .hub-map .sub .sub-text { max-width: 100%; }
+            /* Sub-groups on mobile: stack below their parent bubble */
+            .sub-group {
+                position: static !important;
+                width: 100%; height: auto;
+                display: none;
+                flex-direction: column; align-items: center; gap: 0.3rem;
+                pointer-events: none;
+            }
+            .sub-group.show { display: flex; pointer-events: auto; }
+            .sub-circ {
+                position: static !important;
+                width: 85% !important; max-width: 240px !important;
+                height: 38px !important; border-radius: 19px !important;
+                font-size: 0.78rem !important; padding: 6px 16px !important;
+            }
             footer { margin-top: 2rem; }
         }
     </style>
@@ -147,12 +184,6 @@
                     <path d="M42,70 L60,78 L56,60" stroke="#555" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </div>
-            <!-- Connecting lines from center to bubbles — equilateral triangle -->
-            <svg class="hub-lines" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;">
-                <line x1="325" y1="325" x2="325" y2="115" stroke="#ccc" stroke-width="2" stroke-dasharray="6,4"/>
-                <line x1="325" y1="325" x2="507" y2="430" stroke="#ccc" stroke-width="2" stroke-dasharray="6,4"/>
-                <line x1="325" y1="325" x2="143" y2="430" stroke="#ccc" stroke-width="2" stroke-dasharray="6,4"/>
-            </svg>
 
             <div class="map-center" onclick="toggleBubbles()">
                 <img src="img/profile.jpg" alt="Mads Rohde">
@@ -160,31 +191,37 @@
 
             <!-- 12 o'clock: Projects / Hobbies / Free time -->
             <div class="bub bub-cyan" style="width:130px;height:130px;min-width:130px;max-width:130px;top:50px;left:260px;font-size:0.62rem;" onclick="toggleSub('hobbies')">Projects /<br>Hobbies /<br>Free time</div>
-            <div class="sub" id="sub-hobbies" style="top:30px;left:405px;">
-                <div style="display:flex;flex-direction:column;gap:6px;">
-                    <a href="#" class="sub-bub" style="width:100%;height:auto;border-radius:8px;background:#4ECDC4;color:#fff;padding:6px 10px;font-size:0.7rem;aspect-ratio:auto;">Blog</a>
-                    <a href="https://www.designkart.no" target="_blank" class="sub-bub" style="width:100%;height:auto;border-radius:8px;background:#4ECDC4;color:#fff;padding:6px 10px;font-size:0.7rem;aspect-ratio:auto;">designkart.no</a>
-                    <a href="#" class="sub-bub" style="width:100%;height:auto;border-radius:8px;background:#4ECDC4;color:#fff;padding:6px 10px;font-size:0.7rem;aspect-ratio:auto;">EMF science projects</a>
-                    <a href="#" class="sub-bub" style="width:100%;height:auto;border-radius:8px;background:#4ECDC4;color:#fff;padding:6px 10px;font-size:0.7rem;aspect-ratio:auto;">Wooden design (shelf)</a>
-                </div>
+            <!-- Sub-circles for Projects — fan upward/outward from Projects bubble -->
+            <div class="sub-group" id="sub-hobbies">
+                <!-- Blog — upper-left (225°, r=270) -->
+                <a href="https://www.madsrohde.com" target="_blank" class="sub-circ sub-circ-cyan" style="top:94px;left:94px;">Blog</a>
+                <!-- designkart.no — upper-left-center (255°) -->
+                <a href="https://www.designkart.no" target="_blank" class="sub-circ sub-circ-cyan" style="top:24px;left:215px;">designkart.no</a>
+                <!-- EMF Signal — upper-right-center (285°) -->
+                <a href="https://emfsignal.com" target="_blank" class="sub-circ sub-circ-cyan" style="top:24px;left:355px;">EMF Signal</a>
+                <!-- Wooden design — upper-right (315°) -->
+                <a href="#" class="sub-circ sub-circ-cyan" style="top:94px;left:476px;">Wooden design</a>
             </div>
 
             <!-- Bottom-left: Job -->
             <div class="bub bub-red" style="width:130px;height:130px;min-width:130px;max-width:130px;top:365px;left:78px;" onclick="toggleSub('job')">Job</div>
-            <div class="sub" id="sub-job" style="top:330px;left:-80px;max-width:150px;">
-                <a href="https://www.linkedin.com/in/mads-rohde-3ba34391/" target="_blank" class="sub-bub" style="width:80px;height:80px;min-width:80px;max-width:80px;background:#E85555;color:#fff;">Cancer Registry<br>of Norway</a>
-                <div class="sub-text" style="margin-top:6px;">Get in touch on LinkedIn</div>
+            <!-- Sub-circle for Job — bottom-left (150°, r=270) -->
+            <div class="sub-group" id="sub-job">
+                <a href="https://www.linkedin.com/in/mads-rohde-3ba34391/" target="_blank" class="sub-circ sub-circ-red" style="top:420px;left:51px;">Cancer Registry<br>of Norway</a>
             </div>
 
             <!-- Bottom-right: SoMe/Contact -->
             <div class="bub bub-amber" style="width:130px;height:130px;min-width:130px;max-width:130px;top:365px;left:442px;" onclick="toggleSub('some')">SoMe/<br>Contact</div>
-            <div class="sub" id="sub-some" style="top:330px;left:582px;">
-                <div style="font-family:'Inter',sans-serif;font-size:0.75rem;color:#555;margin-bottom:6px;">Direct message</div>
-                <a href="mailto:madsrohde@proton.me" class="sub-icon" style="background:#DAA520;color:#fff;">✉</a>
-                <a href="https://twitter.com/hippocapensis" target="_blank" class="sub-icon" style="background:#333;color:#fff;">𝕏</a>
-                <a href="https://www.linkedin.com/in/mads-rohde-3ba34391/" target="_blank" class="sub-icon" style="background:#0077B5;color:#fff;">in</a>
-                <a href="https://www.facebook.com/mads.k.rohde" target="_blank" class="sub-icon" style="background:#1877F2;color:#fff;" title="I have a profile. I use it as little as possible.">f</a>
-                <div class="sub-text" style="margin-top:6px;">Active! Follow me</div>
+            <!-- Sub-circles for Contact — fan right/down-right (0°–60°, r=270) -->
+            <div class="sub-group" id="sub-some">
+                <!-- Email — right (0°) -->
+                <a href="mailto:madsrohde@proton.me" class="sub-circ sub-circ-amber" style="top:285px;left:555px;" title="Email">✉</a>
+                <!-- X/Twitter — right-down (20°) -->
+                <a href="https://twitter.com/hippocapensis" target="_blank" class="sub-circ sub-circ-amber" style="top:377px;left:539px;" title="X / Twitter">𝕏</a>
+                <!-- LinkedIn — down-right (40°) -->
+                <a href="https://www.linkedin.com/in/mads-rohde-3ba34391/" target="_blank" class="sub-circ sub-circ-amber" style="top:459px;left:492px;" title="LinkedIn">in</a>
+                <!-- Facebook — down (60°) -->
+                <a href="https://www.facebook.com/mads.k.rohde" target="_blank" class="sub-circ sub-circ-amber" style="top:519px;left:420px;" title="Facebook (rarely used)">f</a>
             </div>
         </div>
     </div>
@@ -203,7 +240,7 @@ function toggleBubbles() {
     var cta = document.getElementById('clickCta');
     var isActive = map.classList.contains('active');
     if (isActive) {
-        document.querySelectorAll('.sub.show').forEach(function(s) { s.classList.remove('show'); });
+        document.querySelectorAll('.sub-group.show').forEach(function(s) { s.classList.remove('show'); });
         map.classList.remove('active');
         cta.style.display = '';
     } else {
@@ -215,7 +252,7 @@ function toggleBubbles() {
 function toggleSub(name) {
     var el = document.getElementById('sub-' + name);
     var wasOpen = el.classList.contains('show');
-    document.querySelectorAll('.sub.show').forEach(function(s) { s.classList.remove('show'); });
+    document.querySelectorAll('.sub-group.show').forEach(function(s) { s.classList.remove('show'); });
     if (!wasOpen) {
         el.classList.add('show');
     }
