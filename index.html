@@ -114,8 +114,9 @@
             .page { padding: 0 1.2rem; }
             .hero { flex-direction: column; gap: 1.2rem; padding: 1.5rem 0 1rem; }
             .hero-left { flex: auto; }
-            .hero-right { text-align: left; }
+            .hero-right { text-align: center; margin-top: 0.5rem; }
             .mega-row { gap: 0.8rem; align-items: center !important; }
+            .welcome { margin-top: 0 !important; }
             .megaphone { width: 80px; margin-top: 0 !important; }
             .tagline { font-size: 1.3rem; margin-bottom: 1rem; }
             .hub-area { margin-left: auto; margin-right: auto; max-width: 100%; padding: 1rem 0 0.5rem; }
@@ -139,12 +140,10 @@
             .hub-map .click-cta { position: static; transform: none; white-space: normal; margin-bottom: 0.5rem; }
             .bub-cyan { order: 1; }
             .sub-group#sub-hobbies { order: 2; }
-            .sub-group#sub4-knowledge { order: 3; }
-            .sub-group#sub4-design { order: 4; }
-            .bub-amber { order: 5; }
-            .sub-group#sub-some { order: 6; }
-            .bub-red { order: 7; }
-            .sub-group#sub-job { order: 8; }
+            .bub-amber { order: 3; }
+            .sub-group#sub-some { order: 4; }
+            .bub-red { order: 5; }
+            .sub-group#sub-job { order: 6; }
             /* Sub-groups on mobile: stack below their parent bubble */
             .sub-group {
                 position: static !important;
@@ -164,7 +163,7 @@
             .desc-text {
                 position: static !important;
                 top: auto !important; left: auto !important;
-                max-width: 65% !important; width: auto !important;
+                max-width: 55% !important; width: auto !important;
                 text-align: center !important;
                 margin: 0 auto 0.3rem !important;
                 font-size: 0.68rem !important;
@@ -183,7 +182,7 @@
                 border: 2px solid rgba(255,255,255,0.4) !important;
             }
             .sub-group.sub-level4 .desc-text {
-                max-width: 55% !important;
+                max-width: 50% !important;
             }
             footer { margin-top: 2rem; }
         }
@@ -243,23 +242,22 @@
             <div class="sub-group" id="sub-hobbies">
                 <!-- Knowledge θ=345° -->
                 <div class="sub-circ sub-circ-cyan" style="width:100px;height:100px;top:91px;left:242px;font-size:0.65rem;cursor:pointer;" onclick="event.stopPropagation();toggleSub4('knowledge')">Knowledge</div>
+                <!-- Level 4: Y-branch from Knowledge (nested for mobile ordering) -->
+                <div class="sub-group sub-level4" id="sub4-knowledge">
+                    <div class="sub-circ sub-circ-cyan" style="top:4px;left:226px;cursor:pointer;" onclick="event.stopPropagation();document.getElementById('desc-blog').classList.toggle('visible')">Blog</div>
+                    <div class="desc-text click-to-show" id="desc-blog" style="top:-15px;left:60px;max-width:160px;text-align:right;">The <a href="https://madsrohde.com/about" target="_blank">epiWaves</a> blog: My own musings on epidemiology and public health</div>
+                    <div class="sub-circ sub-circ-cyan" style="top:59px;left:161px;cursor:pointer;" onclick="event.stopPropagation();document.getElementById('desc-emf').classList.toggle('visible')">EMF Signal</div>
+                    <div class="desc-text click-to-show" id="desc-emf" style="top:75px;left:0px;max-width:160px;text-align:left;">Science news curator website using bot technology - about electromagnetic fields (EMF) and health. <a href="https://emfsignal.com" target="_blank">emfsignal.com</a></div>
+                </div>
                 <!-- Design θ=15° -->
                 <div class="sub-circ sub-circ-cyan" style="width:100px;height:100px;top:91px;left:408px;font-size:0.65rem;cursor:pointer;" onclick="event.stopPropagation();toggleSub4('design')">Design</div>
-            </div>
-
-            <!-- Level 4: Y-branch from Knowledge -->
-            <div class="sub-group sub-level4" id="sub4-knowledge">
-                <div class="sub-circ sub-circ-cyan" style="top:4px;left:226px;cursor:pointer;" onclick="event.stopPropagation();document.getElementById('desc-blog').classList.toggle('visible')">Blog</div>
-                <div class="desc-text click-to-show" id="desc-blog" style="top:-15px;left:60px;max-width:160px;text-align:right;">The <a href="https://madsrohde.com/about" target="_blank">epiWaves</a> blog: My own musings on epidemiology and public health</div>
-                <div class="sub-circ sub-circ-cyan" style="top:59px;left:161px;cursor:pointer;" onclick="event.stopPropagation();document.getElementById('desc-emf').classList.toggle('visible')">EMF Signal</div>
-                <div class="desc-text click-to-show" id="desc-emf" style="top:75px;left:0px;max-width:160px;text-align:left;">Science news curator website using bot technology - about electromagnetic fields (EMF) and health. <a href="https://emfsignal.com" target="_blank">emfsignal.com</a></div>
-            </div>
-            <!-- Level 4: Y-branch from Design -->
-            <div class="sub-group sub-level4" id="sub4-design">
-                <div class="sub-circ sub-circ-cyan" style="top:4px;left:444px;cursor:pointer;" onclick="event.stopPropagation();document.getElementById('desc-designkart').classList.toggle('visible')">Designkart.no</div>
-                <div class="desc-text click-to-show" id="desc-designkart" style="top:-15px;left:528px;max-width:160px;text-align:left;">My interest in geographical data and design turned into a <a href="https://www.designkart.no" target="_blank">webstore</a></div>
-                <div class="sub-circ sub-circ-cyan" style="top:59px;left:509px;cursor:pointer;" onclick="event.stopPropagation();document.getElementById('desc-wood').classList.toggle('visible')">Wood design</div>
-                <div class="desc-text click-to-show" id="desc-wood" style="top:75px;left:590px;max-width:160px;text-align:left;">I have designed a special wooden shelf for plants, that will be made public when rights are secured.</div>
+                <!-- Level 4: Y-branch from Design (nested for mobile ordering) -->
+                <div class="sub-group sub-level4" id="sub4-design">
+                    <div class="sub-circ sub-circ-cyan" style="top:4px;left:444px;cursor:pointer;" onclick="event.stopPropagation();document.getElementById('desc-designkart').classList.toggle('visible')">Designkart.no</div>
+                    <div class="desc-text click-to-show" id="desc-designkart" style="top:-15px;left:528px;max-width:160px;text-align:left;">My interest in geographical data and design turned into a <a href="https://www.designkart.no" target="_blank">webstore</a></div>
+                    <div class="sub-circ sub-circ-cyan" style="top:59px;left:509px;cursor:pointer;" onclick="event.stopPropagation();document.getElementById('desc-wood').classList.toggle('visible')">Wood design</div>
+                    <div class="desc-text click-to-show" id="desc-wood" style="top:75px;left:590px;max-width:160px;text-align:left;">I have designed a special wooden shelf for plants, that will be made public when rights are secured.</div>
+                </div>
             </div>
 
             <!-- Level 3 under Employment -->
