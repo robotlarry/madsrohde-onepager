@@ -184,7 +184,7 @@
     <div class="hub-area" id="hubArea">
         <div class="hub-map" id="hubMap">
             <div class="click-cta" id="clickCta">
-                <div class="click-text" onclick="toggleBubbles()">Click here!</div>
+                <div class="click-text" onclick="toggleBubbles()">Click here to explore!</div>
                 <svg class="arrow-svg" width="80" height="80" viewBox="0 0 80 80" fill="none" onclick="toggleBubbles()">
                     <line x1="10" y1="5" x2="58" y2="58" stroke="#333" stroke-width="3" stroke-linecap="round"/>
                     <polygon points="65,65 45,60 60,45" fill="#333"/>
@@ -194,23 +194,24 @@
             <div class="map-center" onclick="toggleBubbles()">
                 <img src="img/profile.jpg" alt="Mads Rohde">
             </div>
+            <div class="expand-all" id="expandAll" onclick="expandAll()" style="position:absolute;left:50%;top:58%;transform:translateX(-50%);z-index:5;font-family:'Inter',sans-serif;font-size:0.75rem;color:#999;cursor:pointer;white-space:nowrap;">...or click here to expand full map in one click.</div>
 
             <!-- Level 2: Hobbies -->
             <div class="bub bub-cyan" style="width:130px;height:130px;min-width:130px;max-width:130px;top:50px;left:260px;font-size:0.85rem;" onclick="toggleSub('hobbies')">Hobbies</div>
-            <!-- Level 3: Knowledge + Design (ring ~280px from center) -->
+            <!-- Level 3: Knowledge + Design (~280px from center, symmetric) -->
             <div class="sub-group" id="sub-hobbies">
-                <div class="sub-circ sub-circ-cyan" style="width:100px;height:100px;top:55px;left:95px;font-size:0.65rem;cursor:pointer;" onclick="event.stopPropagation();toggleSub4('knowledge')">Knowledge</div>
-                <div class="sub-circ sub-circ-cyan" style="width:100px;height:100px;top:55px;left:455px;font-size:0.65rem;cursor:pointer;" onclick="event.stopPropagation();toggleSub4('design')">Design</div>
+                <div class="sub-circ sub-circ-cyan" style="width:100px;height:100px;top:40px;left:115px;font-size:0.65rem;cursor:pointer;" onclick="event.stopPropagation();toggleSub4('knowledge')">Knowledge</div>
+                <div class="sub-circ sub-circ-cyan" style="width:100px;height:100px;top:40px;left:435px;font-size:0.65rem;cursor:pointer;" onclick="event.stopPropagation();toggleSub4('design')">Design</div>
             </div>
-            <!-- Level 4: under Knowledge (ring ~380px from center, upper-left) -->
+            <!-- Level 4: under Knowledge (~370px from center) -->
             <div class="sub-group sub-level4" id="sub4-knowledge">
-                <a href="https://www.madsrohde.com" target="_blank" class="sub-circ sub-circ-cyan" style="top:25px;left:5px;">Blog</a>
-                <a href="https://emfsignal.com" target="_blank" class="sub-circ sub-circ-cyan" style="top:0;left:145px;">EMF Signal</a>
+                <a href="https://www.madsrohde.com" target="_blank" class="sub-circ sub-circ-cyan" style="top:65px;left:5px;">Blog</a>
+                <a href="https://emfsignal.com" target="_blank" class="sub-circ sub-circ-cyan" style="top:5px;left:95px;">EMF Signal</a>
             </div>
-            <!-- Level 4: under Design (ring ~380px from center, upper-right) -->
+            <!-- Level 4: under Design (~370px from center) -->
             <div class="sub-group sub-level4" id="sub4-design">
-                <a href="https://www.designkart.no" target="_blank" class="sub-circ sub-circ-cyan" style="top:0;left:425px;">designkart.no</a>
-                <a href="#" class="sub-circ sub-circ-cyan" style="top:25px;left:565px;">Wood design</a>
+                <a href="https://www.designkart.no" target="_blank" class="sub-circ sub-circ-cyan" style="top:5px;left:475px;">designkart.no</a>
+                <a href="#" class="sub-circ sub-circ-cyan" style="top:65px;left:565px;">Wood design</a>
             </div>
 
             <!-- Bottom-left: Job -->
@@ -221,17 +222,13 @@
             </div>
 
             <!-- Bottom-right: SoMe/Contact -->
-            <div class="bub bub-amber" style="width:130px;height:130px;min-width:130px;max-width:130px;top:365px;left:442px;" onclick="toggleSub('some')">SoMe/<br>Contact</div>
-            <!-- Sub-circles for Contact — fan right/down-right (0°–60°, r=270) -->
+            <div class="bub bub-amber" style="width:130px;height:130px;min-width:130px;max-width:130px;top:365px;left:442px;" onclick="toggleSub('some')">Contact/<br>SoMe</div>
+            <!-- Sub-circles for Contact — radiating outward from center -->
             <div class="sub-group" id="sub-some">
-                <!-- Email — right (0°) -->
-                <a href="mailto:madsrohde@proton.me" class="sub-circ sub-circ-amber" style="top:285px;left:555px;" title="Email">✉</a>
-                <!-- X/Twitter — right-down (20°) -->
-                <a href="https://twitter.com/hippocapensis" target="_blank" class="sub-circ sub-circ-amber" style="top:377px;left:539px;" title="X / Twitter">𝕏</a>
-                <!-- LinkedIn — down-right (40°) -->
-                <a href="https://www.linkedin.com/in/mads-rohde-3ba34391/" target="_blank" class="sub-circ sub-circ-amber" style="top:459px;left:492px;" title="LinkedIn">in</a>
-                <!-- Facebook — down (60°) -->
-                <a href="https://www.facebook.com/mads.k.rohde" target="_blank" class="sub-circ sub-circ-amber" style="top:519px;left:420px;" title="Facebook (rarely used)">f</a>
+                <a href="mailto:madsrohde@proton.me" class="sub-circ sub-circ-amber" style="top:380px;left:580px;" title="Email">✉</a>
+                <a href="https://twitter.com/hippocapensis" target="_blank" class="sub-circ sub-circ-amber" style="top:465px;left:575px;" title="X / Twitter">𝕏</a>
+                <a href="https://www.linkedin.com/in/mads-rohde-3ba34391/" target="_blank" class="sub-circ sub-circ-amber" style="top:540px;left:535px;" title="LinkedIn">in</a>
+                <a href="https://www.facebook.com/mads.k.rohde" target="_blank" class="sub-circ sub-circ-amber" style="top:585px;left:460px;" title="Facebook (rarely used)">f</a>
             </div>
         </div>
     </div>
@@ -247,14 +244,17 @@
 function toggleBubbles() {
     var map = document.getElementById('hubMap');
     var cta = document.getElementById('clickCta');
+    var expandEl = document.getElementById('expandAll');
     var isActive = map.classList.contains('active');
     if (isActive) {
         document.querySelectorAll('.sub-group.show').forEach(function(s) { s.classList.remove('show'); });
         map.classList.remove('active');
         cta.style.display = '';
+        expandEl.style.display = '';
     } else {
         map.classList.add('active');
         cta.style.display = 'none';
+        expandEl.style.display = 'none';
     }
 }
 
@@ -276,6 +276,16 @@ function toggleSub4(name) {
     if (!wasOpen) {
         el.classList.add('show');
     }
+}
+
+function expandAll() {
+    var map = document.getElementById('hubMap');
+    var cta = document.getElementById('clickCta');
+    var expandEl = document.getElementById('expandAll');
+    map.classList.add('active');
+    cta.style.display = 'none';
+    expandEl.style.display = 'none';
+    document.querySelectorAll('.sub-group').forEach(function(s) { s.classList.add('show'); });
 }
 </script>
 </body>
