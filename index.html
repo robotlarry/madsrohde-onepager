@@ -102,6 +102,8 @@
         .sub-group.show .sub-circ:nth-child(2) { animation-delay: 0.15s; }
         .sub-group.show .sub-circ:nth-child(3) { animation-delay: 0.25s; }
         .sub-group.show .sub-circ:nth-child(4) { animation-delay: 0.35s; }
+        .sub-group.show .sub-circ:nth-child(5) { animation-delay: 0.45s; }
+        .sub-group.show .sub-circ:nth-child(6) { animation-delay: 0.55s; }
 
         /* === FOOTER === */
         footer { border-top: 1px solid #ccc; padding: 2.5rem 0; text-align: center; margin-top: 7rem; }
@@ -256,6 +258,8 @@
                     <div class="desc-text click-to-show" id="desc-blog" style="top:-15px;left:60px;max-width:160px;text-align:right;">The <a href="https://madsrohde.com/about" target="_blank">epiWaves</a> blog: My own musings on epidemiology and public health</div>
                     <div class="sub-circ sub-circ-cyan" style="top:59px;left:161px;cursor:pointer;" onclick="event.stopPropagation();document.getElementById('desc-emf').classList.toggle('visible')">EMF Signal</div>
                     <div class="desc-text click-to-show" id="desc-emf" style="top:75px;left:0px;max-width:160px;text-align:left;">Science news curator website using bot technology - about electromagnetic fields (EMF) and health. <a href="https://emfsignal.com" target="_blank">emfsignal.com</a></div>
+                    <div class="sub-circ sub-circ-cyan" style="top:114px;left:96px;cursor:pointer;" onclick="event.stopPropagation();document.getElementById('desc-emfworld').classList.toggle('visible')">EMF World</div>
+                    <div class="desc-text click-to-show" id="desc-emfworld" style="top:130px;left:0px;max-width:160px;text-align:left;">A scientific project, mapping EMF research in the world.</div>
                 </div>
                 <!-- Design θ=15° -->
                 <div class="sub-circ sub-circ-cyan" style="width:100px;height:100px;top:91px;left:408px;font-size:0.65rem;cursor:pointer;" onclick="event.stopPropagation();toggleSub4('design')">Design</div>
@@ -320,8 +324,8 @@ function toggleBubbles() {
 function toggleSub(name) {
     var el = document.getElementById('sub-' + name);
     if (el.classList.contains('show')) {
+        // Collapse all at once
         el.classList.remove('show');
-        // Close children and their visible texts when collapsing
         if (name === 'hobbies') {
             document.getElementById('sub4-knowledge').classList.remove('show');
             document.getElementById('sub4-design').classList.remove('show');
@@ -329,6 +333,11 @@ function toggleSub(name) {
         }
     } else {
         el.classList.add('show');
+        // Sequential expand: show sub-branches with staggered delays
+        if (name === 'hobbies') {
+            setTimeout(function() { document.getElementById('sub4-knowledge').classList.add('show'); }, 400);
+            setTimeout(function() { document.getElementById('sub4-design').classList.add('show'); }, 700);
+        }
     }
 }
 
