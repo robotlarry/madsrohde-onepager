@@ -229,6 +229,7 @@
             <!-- Level 3 under Employment: r=320, size=80, θ=240° -->
             <div class="sub-group" id="sub-job">
                 <a href="https://www.linkedin.com/in/mads-rohde-3ba34391/" target="_blank" class="sub-circ sub-circ-red" style="top:570px;left:58px;">Norwegian Institute<br>of Public Health</a>
+                <div class="sub-circ" style="width:auto;height:auto;border-radius:8px;background:none;color:#555;font-size:0.7rem;font-weight:400;top:660px;left:10px;max-width:180px;line-height:1.4;text-align:left;padding:4px;">Senior Adviser at the Cancer Registry of Norway, Norwegian Institute of Public Health</div>
             </div>
 
             <!-- Level 3 under Contact/SoMe: r=330, size=80, fanned around θ=120° -->
@@ -273,22 +274,12 @@ function toggleBubbles() {
 
 function toggleSub(name) {
     var el = document.getElementById('sub-' + name);
-    var wasOpen = el.classList.contains('show');
-    // Close all sub-groups (level 3 and 4)
-    document.querySelectorAll('.sub-group.show').forEach(function(s) { s.classList.remove('show'); });
-    if (!wasOpen) {
-        el.classList.add('show');
-    }
+    el.classList.toggle('show');
 }
 
 function toggleSub4(name) {
     var el = document.getElementById('sub4-' + name);
-    var wasOpen = el.classList.contains('show');
-    // Close only level 4 groups
-    document.querySelectorAll('.sub-level4.show').forEach(function(s) { s.classList.remove('show'); });
-    if (!wasOpen) {
-        el.classList.add('show');
-    }
+    el.classList.toggle('show');
 }
 
 function expandAll() {
