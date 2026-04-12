@@ -112,13 +112,12 @@
         /* === MOBILE === */
         @media (max-width: 750px) {
             .page { padding: 0 1.2rem; }
-            .hero { flex-direction: column; gap: 0.8rem; padding: 1.5rem 0 1rem; }
+            .hero { flex-direction: column; gap: 1.2rem; padding: 1.5rem 0 1rem; }
             .hero-left { flex: auto; }
-            .mega-row { gap: 0.8rem; }
+            .hero-right { text-align: left; }
+            .mega-row { gap: 0.8rem; align-items: center !important; }
             .megaphone { width: 80px; margin-top: 0 !important; }
             .tagline { font-size: 1.3rem; margin-bottom: 1rem; }
-            .mega-row { align-items: center !important; }
-            .site-desc { font-size: 1.4rem; }
             .hub-area { margin-left: auto; margin-right: auto; max-width: 100%; padding: 1rem 0 0.5rem; }
             .click-text { font-size: 1.4rem; }
             .hub-map {
@@ -161,6 +160,18 @@
                 height: 38px !important; border-radius: 19px !important;
                 font-size: 0.78rem !important; padding: 6px 16px !important;
             }
+            /* Description texts: flow inline on mobile instead of absolute chaos */
+            .desc-text {
+                position: static !important;
+                top: auto !important; left: auto !important;
+                max-width: 85% !important; width: 85% !important;
+                text-align: center !important;
+                margin: 0.15rem auto !important;
+                font-size: 0.72rem !important;
+                padding: 4px 8px !important;
+            }
+            /* Show desc-text immediately when parent group is open (no click-to-show on mobile) */
+            .sub-group.show .desc-text.click-to-show { opacity: 1 !important; pointer-events: auto !important; }
             footer { margin-top: 2rem; }
         }
     </style>
