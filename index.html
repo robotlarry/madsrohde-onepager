@@ -36,13 +36,13 @@
 
         /* === HUB === */
         .hub-area { text-align: center; padding: 3.5rem 0 2rem; max-width: 700px; margin: 0 auto; margin-left: 20%; }
-        .click-cta { position: absolute; top: 80px; left: 170px; text-align: center; z-index: 5; pointer-events: auto; white-space: nowrap; }
-        .click-text { font-family: 'Poppins', sans-serif; font-size: 2rem; font-weight: 900; color: #E8A030; cursor: pointer; transition: opacity 0.3s; }
+        .click-cta { position: absolute; top: 80px; left: 170px; text-align: center; z-index: 5; pointer-events: auto; white-space: nowrap; user-select: none; -webkit-user-select: none; }
+        .click-text { font-family: 'Poppins', sans-serif; font-size: 2rem; font-weight: 900; color: #E8A030; cursor: pointer; transition: opacity 0.3s; user-select: none; }
         .click-text:hover { opacity: 0.7; }
         .arrow-svg { cursor: pointer; display: block; margin: 0.3rem auto 0; }
 
         /* === MIND MAP === */
-        .hub-map { position: relative; width: 650px; height: 650px; margin: 0 auto; }
+        .hub-map { position: relative; width: 650px; height: 650px; margin: 0 auto; user-select: none; -webkit-user-select: none; }
         @keyframes fadeScale { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: scale(1); } }
 
         /* Bubbles hidden by default, animate in when active */
@@ -53,7 +53,7 @@
         .hub-map.active .bub:nth-of-type(2) { animation-delay: 0.25s; }
         .hub-map.active .bub:nth-of-type(3) { animation-delay: 0.35s; }
 
-        .map-center { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 2; cursor: pointer; }
+        .map-center { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 2; cursor: pointer; user-select: none; -webkit-user-select: none; }
         .map-center img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; filter: grayscale(100%); border: 3px solid #ddd; transition: filter 0.4s, transform 0.3s, box-shadow 0.3s; }
         .map-center:hover img { filter: grayscale(50%); transform: scale(1.05); box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
 
@@ -179,9 +179,9 @@
         <div class="hub-map" id="hubMap">
             <div class="click-cta" id="clickCta">
                 <div class="click-text" onclick="toggleBubbles()">Click here!</div>
-                <svg class="arrow-svg" width="80" height="80" viewBox="0 0 80 80" fill="none" onclick="toggleBubbles()">
-                    <line x1="15" y1="5" x2="55" y2="65" stroke="#333" stroke-width="2.2" stroke-linecap="round"/>
-                    <path d="M48,52 L56,67 L42,64" stroke="#333" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                <svg class="arrow-svg" width="60" height="80" viewBox="0 0 60 80" fill="none" onclick="toggleBubbles()">
+                    <line x1="30" y1="5" x2="30" y2="58" stroke="#333" stroke-width="3" stroke-linecap="round"/>
+                    <polygon points="30,75 18,55 42,55" fill="#333"/>
                 </svg>
             </div>
 
