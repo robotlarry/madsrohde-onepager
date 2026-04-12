@@ -187,7 +187,6 @@
             <div class="map-center" onclick="toggleBubbles()">
                 <img src="img/profile.jpg" alt="Mads Rohde">
             </div>
-            <div class="expand-all" id="expandAll" onclick="expandAll()" style="position:absolute;left:50%;top:63%;transform:translateX(-50%);z-index:5;font-family:'Inter',sans-serif;font-size:0.75rem;color:#999;cursor:pointer;white-space:nowrap;">...or click here to expand full map in one click.</div>
 
             <!--
                 RADIAL LAYOUT — center (375,425), 750×850 map
@@ -212,19 +211,19 @@
                 <div class="sub-circ sub-circ-cyan" style="width:100px;height:100px;top:66px;left:408px;font-size:0.65rem;cursor:pointer;" onclick="event.stopPropagation();toggleSub4('design')">Design</div>
             </div>
 
-            <!-- Level 4 under Knowledge: r=400, size=80, fanned at θ=332° and θ=318° -->
+            <!-- Level 4 under Knowledge: satellites ~95px from Knowledge center (292,116) -->
             <div class="sub-group sub-level4" id="sub4-knowledge">
-                <!-- Blog θ=332° -->
-                <a href="https://www.madsrohde.com" target="_blank" class="sub-circ sub-circ-cyan" style="top:32px;left:147px;">Blog</a>
-                <!-- EMF Signal θ=318° -->
-                <a href="https://emfsignal.com" target="_blank" class="sub-circ sub-circ-cyan" style="top:88px;left:67px;">EMF Signal</a>
+                <!-- Blog — upper-left of Knowledge -->
+                <a href="https://www.madsrohde.com" target="_blank" class="sub-circ sub-circ-cyan" style="top:20px;left:175px;">Blog</a>
+                <!-- EMF Signal — lower-left of Knowledge -->
+                <a href="https://emfsignal.com" target="_blank" class="sub-circ sub-circ-cyan" style="top:105px;left:155px;">EMF Signal</a>
             </div>
-            <!-- Level 4 under Design: r=400, size=80, fanned at θ=28° and θ=42° -->
+            <!-- Level 4 under Design: satellites ~95px from Design center (458,116) -->
             <div class="sub-group sub-level4" id="sub4-design">
-                <!-- Designkart θ=28° -->
-                <a href="https://www.designkart.no" target="_blank" class="sub-circ sub-circ-cyan" style="top:32px;left:523px;">designkart.no</a>
-                <!-- Wood design θ=42° -->
-                <a href="#" class="sub-circ sub-circ-cyan" style="top:88px;left:603px;">Wood design</a>
+                <!-- Designkart — upper-right of Design -->
+                <a href="https://www.designkart.no" target="_blank" class="sub-circ sub-circ-cyan" style="top:20px;left:495px;">designkart.no</a>
+                <!-- Wood design — lower-right of Design -->
+                <a href="#" class="sub-circ sub-circ-cyan" style="top:105px;left:515px;">Wood design</a>
             </div>
 
             <!-- Level 3 under Employment: r=320, size=80, θ=240° -->
@@ -245,6 +244,10 @@
             </div>
         </div>
     </div>
+</div>
+
+<div style="text-align:center;padding:1.5rem 0;">
+    <span id="expandAll" onclick="expandAll()" style="font-family:'Inter',sans-serif;font-size:0.75rem;color:#999;cursor:pointer;">...or click here to expand full map in one click.</span>
 </div>
 
 <footer>
