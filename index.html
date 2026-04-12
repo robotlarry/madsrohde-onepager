@@ -278,6 +278,7 @@ function toggleBubbles() {
     var isActive = map.classList.contains('active');
     if (isActive) {
         document.querySelectorAll('.sub-group.show').forEach(function(s) { s.classList.remove('show'); });
+        document.querySelectorAll('.desc-text.visible').forEach(function(d) { d.classList.remove('visible'); });
         map.classList.remove('active');
         cta.style.display = '';
     } else {
