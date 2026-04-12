@@ -28,7 +28,7 @@
         .nav-legend li { font-family: 'Inter', sans-serif; font-size: 0.95rem; display: flex; align-items: center; gap: 0.6rem; }
         .dot { width: 13px; height: 13px; border-radius: 50%; display: inline-block; }
         .dot-cyan { background: #4ECDC4; }
-        .dot-red { background: #E85555; }
+        .dot-red { background: #5B7DB1; }
         .dot-amber { background: #DAA520; }
         .welcome { font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 300; color: #666; line-height: 1.6; margin-top: 2.8rem; }
         .welcome strong { font-weight: 700; color: #333; }
@@ -60,7 +60,7 @@
         .bub { position: absolute; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-align: center; font-family: 'Inter', sans-serif; font-weight: 600; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; line-height: 1.2; z-index: 3; overflow: hidden; word-break: break-word; padding: 10px; flex-shrink: 0; }
         .bub:hover { transform: scale(1.08); box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
         .bub-cyan { background: #4ECDC4; color: #fff; font-size: 0.78rem; }
-        .bub-red { background: #E85555; color: #fff; font-size: 0.85rem; letter-spacing: 3px; text-transform: uppercase; }
+        .bub-red { background: #5B7DB1; color: #fff; font-size: 0.85rem; letter-spacing: 3px; text-transform: uppercase; }
         .bub-amber { background: #DAA520; color: #fff; font-size: 0.75rem; }
 
         /* Sub-circles — absolutely positioned within hub-map, hidden by default */
@@ -80,7 +80,7 @@
         }
         .sub-circ:hover { transform: scale(1.1); box-shadow: 0 4px 16px rgba(0,0,0,0.18); }
         .sub-circ-cyan  { background: #4ECDC4; }
-        .sub-circ-red   { background: #E85555; }
+        .sub-circ-red   { background: #5B7DB1; }
         .sub-circ-amber { background: #DAA520; }
 
         /* Animate sub-circles in when parent group is shown */
@@ -105,8 +105,9 @@
             .hero { flex-direction: column; gap: 0.8rem; padding: 1.5rem 0 1rem; }
             .hero-left { flex: auto; }
             .mega-row { gap: 0.8rem; }
-            .megaphone { width: 80px; }
+            .megaphone { width: 80px; margin-top: 0 !important; }
             .tagline { font-size: 1.3rem; margin-bottom: 1rem; }
+            .mega-row { align-items: center !important; }
             .site-desc { font-size: 1.4rem; }
             .hub-area { margin-left: auto; margin-right: auto; max-width: 100%; padding: 1rem 0 0.5rem; }
             .click-text { font-size: 1.4rem; }
@@ -129,6 +130,12 @@
                 white-space: nowrap !important;
             }
             .hub-map .click-cta { position: static; transform: none; white-space: normal; margin-bottom: 0.5rem; }
+            .bub-cyan { order: 1; }
+            .sub-group#sub-hobbies { order: 2; }
+            .bub-amber { order: 3; }
+            .sub-group#sub-some { order: 4; }
+            .bub-red { order: 5; }
+            .sub-group#sub-job { order: 6; }
             /* Sub-groups on mobile: stack below their parent bubble */
             .sub-group {
                 position: static !important;
