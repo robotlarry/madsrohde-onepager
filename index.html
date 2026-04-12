@@ -17,7 +17,7 @@
         .hero-right { flex: 1; min-width: 300px; padding-top: 1rem; }
         .url { font-family: 'Inter', sans-serif; font-weight: 300; font-size: 0.95rem; color: #888; margin-bottom: 1.5rem; }
         .url a { color: #888; text-decoration: none; }
-        .mega-row { display: flex; align-items: flex-start; gap: 1.2rem; margin-bottom: 1.2rem; }
+        .mega-row { display: flex; align-items: center; gap: 1.2rem; margin-bottom: 1.2rem; }
         .megaphone { width: 148px; flex-shrink: 0; }
         .tagline { font-family: 'Poppins', sans-serif; font-size: 1.85rem; font-weight: 900; line-height: 1.3; margin-bottom: 2rem; }
         .tagline .teal { color: #4ECDC4; }
@@ -32,12 +32,12 @@
         .dot-amber { background: #DAA520; }
         .welcome { font-family: 'Caveat', cursive; font-size: 1.3rem; margin-bottom: 0.5rem; color: #999; }
         .welcome strong { font-weight: 700; color: #333; font-family: 'Inter', sans-serif; font-size: 1.15rem; }
-        .site-desc { font-family: 'Caveat', cursive; font-size: 2.1rem; font-weight: 600; line-height: 1.4; }
+        .site-desc { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.6rem; font-weight: 400; line-height: 1.5; color: #333; }
 
         /* === HUB === */
         .hub-area { text-align: center; padding: 3.5rem 0 2rem; max-width: 700px; margin: 0 auto; margin-left: 20%; }
-        .click-cta { position: absolute; top: 95px; left: 50%; transform: translateX(-50%); text-align: center; z-index: 5; pointer-events: auto; white-space: nowrap; }
-        .click-text { font-family: 'Kalam', cursive; font-size: 2.2rem; font-weight: 700; color: #E8A030; cursor: pointer; transition: opacity 0.3s; }
+        .click-cta { position: absolute; top: 70px; right: 140px; text-align: center; z-index: 5; pointer-events: auto; white-space: nowrap; }
+        .click-text { font-family: 'Poppins', sans-serif; font-size: 2rem; font-weight: 800; font-style: italic; color: #E8A030; cursor: pointer; transition: opacity 0.3s; }
         .click-text:hover { opacity: 0.7; }
         .arrow-svg { cursor: pointer; display: block; margin: 0.3rem auto 0; }
 
@@ -179,9 +179,9 @@
         <div class="hub-map" id="hubMap">
             <div class="click-cta" id="clickCta">
                 <div class="click-text" onclick="toggleBubbles()">Click here!</div>
-                <svg class="arrow-svg" width="90" height="85" viewBox="0 0 90 85" fill="none" onclick="toggleBubbles()">
-                    <path d="M15,5 C5,28 55,48 58,74" stroke="#555" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-                    <path d="M42,70 L60,78 L56,60" stroke="#555" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                <svg class="arrow-svg" width="90" height="90" viewBox="0 0 90 90" fill="none" onclick="toggleBubbles()">
+                    <path d="M45,5 C60,25 55,55 45,80" stroke="#333" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+                    <path d="M38,68 L45,82 L52,68" stroke="#333" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </div>
 
@@ -229,8 +229,7 @@
 
 <footer>
     <div class="page">
-        <p>Please <a href="mailto:madsrohde@proton.me">contact me</a> — share information, ideas,<br>contribute and collaborate ...</p>
-        <p style="margin-top:0.8rem;font-size:0.85rem;">Site and content:<br>© 2023–2026 By Mads Rohde</p>
+        <p style="font-size:0.85rem;">Site and content:<br>© 2023–2026 By Mads Rohde</p>
     </div>
 </footer>
 
