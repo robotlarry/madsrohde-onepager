@@ -118,7 +118,8 @@
             .hero-right { width: 100% !important; margin-top: 0.5rem !important; text-align: center !important; }
             .mega-row { flex-direction: column !important; align-items: center !important; gap: 0.4rem !important; width: auto !important; }
             .nav-legend { display: none !important; }
-            .welcome { margin-top: 0 !important; text-align: center !important; }
+            .welcome { text-align: center !important; }
+            .welcome:first-child { margin-top: 0 !important; }
             .megaphone { width: 90px !important; margin: 0 auto !important; display: block !important; }
             .tagline { font-size: 1.55rem !important; margin-bottom: 1rem !important; text-align: center !important; width: auto !important; }
             .hub-area { margin-left: auto; margin-right: auto; max-width: 100%; padding: 1rem 0 0.5rem; }
@@ -161,7 +162,7 @@
                 height: 38px !important; border-radius: 19px !important;
                 font-size: 0.78rem !important; padding: 6px 16px !important;
             }
-            /* Description texts: fixed width so consistent across all mobile sizes */
+            /* Description texts: hidden until visible class added */
             .desc-text {
                 position: static !important;
                 top: auto !important; left: auto !important;
@@ -172,6 +173,8 @@
                 padding: 2px 6px !important;
                 color: #777 !important;
             }
+            .desc-text.click-to-show { display: none !important; }
+            .desc-text.click-to-show.visible { display: block !important; opacity: 1 !important; pointer-events: auto !important; }
             /* Hobby sub-levels: indent + lighter to show hierarchy */
             .sub-group#sub-hobbies > .sub-circ {
                 max-width: 200px !important;
@@ -181,6 +184,7 @@
                 max-width: 170px !important;
                 margin-left: auto !important; margin-right: auto !important;
                 background: #7ae3dc !important;
+                color: #222 !important;
                 height: 34px !important;
                 font-size: 0.72rem !important;
             }
