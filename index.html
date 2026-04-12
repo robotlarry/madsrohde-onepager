@@ -60,7 +60,7 @@
         .bub { position: absolute; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-align: center; font-family: 'Inter', sans-serif; font-weight: 600; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; line-height: 1.2; z-index: 3; overflow: hidden; word-break: break-word; padding: 10px; flex-shrink: 0; letter-spacing: 2px; text-transform: uppercase; }
         .bub:hover { transform: scale(1.08); box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
         .bub-cyan { background: #4ECDC4; color: #fff; font-size: 0.78rem; }
-        .bub-red { background: #5B7DB1; color: #fff; font-size: 0.85rem; }
+        .bub-red { background: #5B7DB1; color: #fff; font-size: 0.65rem; }
         .bub-amber { background: #DAA520; color: #fff; font-size: 0.75rem; }
 
         /* Sub-circles — absolutely positioned within hub-map, hidden by default */
@@ -126,16 +126,17 @@
                 min-width: auto !important; left: auto !important; top: auto !important;
                 bottom: auto !important; right: auto !important; aspect-ratio: auto !important;
                 font-size: 0.82rem !important; padding: 6px 20px !important;
-                letter-spacing: normal !important; text-transform: none !important;
                 white-space: nowrap !important;
             }
             .hub-map .click-cta { position: static; transform: none; white-space: normal; margin-bottom: 0.5rem; }
             .bub-cyan { order: 1; }
             .sub-group#sub-hobbies { order: 2; }
-            .bub-amber { order: 3; }
-            .sub-group#sub-some { order: 4; }
-            .bub-red { order: 5; }
-            .sub-group#sub-job { order: 6; }
+            .sub-group#sub4-knowledge { order: 3; }
+            .sub-group#sub4-design { order: 4; }
+            .bub-amber { order: 5; }
+            .sub-group#sub-some { order: 6; }
+            .bub-red { order: 7; }
+            .sub-group#sub-job { order: 8; }
             /* Sub-groups on mobile: stack below their parent bubble */
             .sub-group {
                 position: static !important;
@@ -194,18 +195,22 @@
                 <img src="img/profile.jpg" alt="Mads Rohde">
             </div>
 
-            <!-- 12 o'clock: Projects / Hobbies / Free time -->
+            <!-- Level 2: Hobbies -->
             <div class="bub bub-cyan" style="width:130px;height:130px;min-width:130px;max-width:130px;top:50px;left:260px;font-size:0.85rem;" onclick="toggleSub('hobbies')">Hobbies</div>
-            <!-- Sub-circles for Projects — fan upward/outward from Projects bubble -->
+            <!-- Level 3: Knowledge + Design -->
             <div class="sub-group" id="sub-hobbies">
-                <!-- Blog — upper-left (225°, r=270) -->
-                <a href="https://www.madsrohde.com" target="_blank" class="sub-circ sub-circ-cyan" style="top:94px;left:94px;">Blog</a>
-                <!-- designkart.no — upper-left-center (255°) -->
-                <a href="https://www.designkart.no" target="_blank" class="sub-circ sub-circ-cyan" style="top:24px;left:215px;">designkart.no</a>
-                <!-- EMF Signal — upper-right-center (285°) -->
-                <a href="https://emfsignal.com" target="_blank" class="sub-circ sub-circ-cyan" style="top:24px;left:355px;">EMF Signal</a>
-                <!-- Wooden design — upper-right (315°) -->
-                <a href="#" class="sub-circ sub-circ-cyan" style="top:94px;left:476px;">Wooden design</a>
+                <div class="sub-circ sub-circ-cyan" style="width:100px;height:100px;top:40px;left:110px;font-size:0.65rem;" onclick="event.stopPropagation();toggleSub4('knowledge')">Knowledge</div>
+                <div class="sub-circ sub-circ-cyan" style="width:100px;height:100px;top:40px;left:440px;font-size:0.65rem;" onclick="event.stopPropagation();toggleSub4('design')">Design</div>
+            </div>
+            <!-- Level 4: under Knowledge -->
+            <div class="sub-group sub-level4" id="sub4-knowledge">
+                <a href="https://www.madsrohde.com" target="_blank" class="sub-circ sub-circ-cyan" style="top:10px;left:30px;">Blog</a>
+                <a href="https://emfsignal.com" target="_blank" class="sub-circ sub-circ-cyan" style="top:10px;left:170px;">EMF Signal</a>
+            </div>
+            <!-- Level 4: under Design -->
+            <div class="sub-group sub-level4" id="sub4-design">
+                <a href="https://www.designkart.no" target="_blank" class="sub-circ sub-circ-cyan" style="top:10px;left:370px;">designkart.no</a>
+                <a href="#" class="sub-circ sub-circ-cyan" style="top:10px;left:510px;">Wood design</a>
             </div>
 
             <!-- Bottom-left: Job -->
@@ -256,7 +261,18 @@ function toggleBubbles() {
 function toggleSub(name) {
     var el = document.getElementById('sub-' + name);
     var wasOpen = el.classList.contains('show');
+    // Close all sub-groups (level 3 and 4)
     document.querySelectorAll('.sub-group.show').forEach(function(s) { s.classList.remove('show'); });
+    if (!wasOpen) {
+        el.classList.add('show');
+    }
+}
+
+function toggleSub4(name) {
+    var el = document.getElementById('sub4-' + name);
+    var wasOpen = el.classList.contains('show');
+    // Close only level 4 groups
+    document.querySelectorAll('.sub-level4.show').forEach(function(s) { s.classList.remove('show'); });
     if (!wasOpen) {
         el.classList.add('show');
     }
