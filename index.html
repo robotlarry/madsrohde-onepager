@@ -35,12 +35,11 @@
 
         /* === HUB === */
         .hub-area { text-align: center; padding: 3.5rem 0 2rem; max-width: 800px; margin: 0 auto; }
-        .click-cta { position: absolute; left: 50%; transform: translateX(-50%); top: 80px; text-align: center; z-index: 5; pointer-events: none; white-space: nowrap; user-select: none; -webkit-user-select: none; }
+        .click-cta { position: absolute; left: 50%; transform: translateX(-50%); top: 230px; text-align: center; z-index: 5; pointer-events: none; white-space: nowrap; user-select: none; -webkit-user-select: none; }
         .click-text { font-family: 'Poppins', sans-serif; font-size: 2rem; font-weight: 900; color: #E8A030; user-select: none; pointer-events: none; }
-        .arrow-svg { display: block; margin: 0.3rem auto 0; pointer-events: none; }
 
         /* === MIND MAP === */
-        .hub-map { position: relative; width: 750px; height: 750px; margin: 0 auto; user-select: none; -webkit-user-select: none; }
+        .hub-map { position: relative; width: 750px; height: 850px; margin: 0 auto; user-select: none; -webkit-user-select: none; }
         @keyframes fadeScale { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: scale(1); } }
 
         /* Bubbles hidden by default, animate in when active */
@@ -110,7 +109,6 @@
             .site-desc { font-size: 1.4rem; }
             .hub-area { margin-left: auto; margin-right: auto; max-width: 100%; padding: 1rem 0 0.5rem; }
             .click-text { font-size: 1.4rem; }
-            .arrow-svg { display: none !important; }
             .hub-map {
                 width: 100%; height: auto; min-height: auto; position: static;
                 display: flex; flex-direction: column; align-items: center;
@@ -164,8 +162,8 @@
             <div class="mega-row">
             <img src="img/megaphone.png" alt="" class="megaphone">
             <div class="tagline">
-                <span class="gold">I like ideas</span> <span class="and">and</span><br>
-                <span class="teal">I like</span> <span class="teal">truth.</span><br>
+                <span class="teal">I like ideas</span> <span class="and">and</span><br>
+                <span class="gold">I like</span> <span class="gold">truth.</span><br>
                 <span class="black">It's just that.</span>
             </div>
             </div>
@@ -184,70 +182,66 @@
         <div class="hub-map" id="hubMap">
             <div class="click-cta" id="clickCta">
                 <div class="click-text">Click image to explore!</div>
-                <svg class="arrow-svg" width="40" height="60" viewBox="0 0 40 60" fill="none">
-                    <line x1="20" y1="0" x2="20" y2="45" stroke="#333" stroke-width="3" stroke-linecap="round"/>
-                    <polygon points="20,58 12,42 28,42" fill="#333"/>
-                </svg>
             </div>
 
             <div class="map-center" onclick="toggleBubbles()">
                 <img src="img/profile.jpg" alt="Mads Rohde">
             </div>
-            <div class="expand-all" id="expandAll" onclick="expandAll()" style="position:absolute;left:50%;top:72%;transform:translateX(-50%);z-index:5;font-family:'Inter',sans-serif;font-size:0.75rem;color:#999;cursor:pointer;white-space:nowrap;">...or click here to expand full map in one click.</div>
+            <div class="expand-all" id="expandAll" onclick="expandAll()" style="position:absolute;left:50%;top:63%;transform:translateX(-50%);z-index:5;font-family:'Inter',sans-serif;font-size:0.75rem;color:#999;cursor:pointer;white-space:nowrap;">...or click here to expand full map in one click.</div>
 
             <!--
-                RADIAL LAYOUT — center (375,375), 750×750 map
-                Formula: top = 375 - r·cos(θ) - size/2
+                RADIAL LAYOUT — center (375,425), 750×850 map
+                Formula: top = 425 - r·cos(θ) - size/2
                          left = 375 + r·sin(θ) - size/2
                 θ = clockwise from 12 o'clock
             -->
 
             <!-- Level 2: r=210, size=130 -->
             <!-- Hobbies θ=0° -->
-            <div class="bub bub-cyan" style="width:130px;height:130px;min-width:130px;max-width:130px;top:100px;left:310px;font-size:0.85rem;" onclick="toggleSub('hobbies')">Hobbies</div>
+            <div class="bub bub-cyan" style="width:130px;height:130px;min-width:130px;max-width:130px;top:150px;left:310px;font-size:0.85rem;" onclick="toggleSub('hobbies')">Hobbies</div>
             <!-- Employment θ=240° -->
-            <div class="bub bub-red" style="width:130px;height:130px;min-width:130px;max-width:130px;top:415px;left:128px;" onclick="toggleSub('job')">Employment</div>
+            <div class="bub bub-red" style="width:130px;height:130px;min-width:130px;max-width:130px;top:465px;left:128px;" onclick="toggleSub('job')">Employment</div>
             <!-- Contact/SoMe θ=120° -->
-            <div class="bub bub-amber" style="width:130px;height:130px;min-width:130px;max-width:130px;top:415px;left:492px;" onclick="toggleSub('some')">Contact/<br>SoMe</div>
+            <div class="bub bub-amber" style="width:130px;height:130px;min-width:130px;max-width:130px;top:465px;left:492px;" onclick="toggleSub('some')">Contact/<br>SoMe</div>
 
             <!-- Level 3 under Hobbies: r=320, size=100, fanned at θ=330° and θ=30° -->
             <div class="sub-group" id="sub-hobbies">
                 <!-- Knowledge θ=330° (upper-left) -->
-                <div class="sub-circ sub-circ-cyan" style="width:100px;height:100px;top:48px;left:165px;font-size:0.65rem;cursor:pointer;" onclick="event.stopPropagation();toggleSub4('knowledge')">Knowledge</div>
+                <div class="sub-circ sub-circ-cyan" style="width:100px;height:100px;top:98px;left:165px;font-size:0.65rem;cursor:pointer;" onclick="event.stopPropagation();toggleSub4('knowledge')">Knowledge</div>
                 <!-- Design θ=30° (upper-right) -->
-                <div class="sub-circ sub-circ-cyan" style="width:100px;height:100px;top:48px;left:485px;font-size:0.65rem;cursor:pointer;" onclick="event.stopPropagation();toggleSub4('design')">Design</div>
+                <div class="sub-circ sub-circ-cyan" style="width:100px;height:100px;top:98px;left:485px;font-size:0.65rem;cursor:pointer;" onclick="event.stopPropagation();toggleSub4('design')">Design</div>
             </div>
 
-            <!-- Level 4 under Knowledge: r=350, size=80, fanned outward-left -->
+            <!-- Level 4 under Knowledge: r=430, size=80, fanned outward-left -->
             <div class="sub-group sub-level4" id="sub4-knowledge">
-                <!-- Blog θ=315° -->
-                <a href="https://www.madsrohde.com" target="_blank" class="sub-circ sub-circ-cyan" style="top:88px;left:88px;">Blog</a>
-                <!-- EMF Signal θ=300° -->
-                <a href="https://emfsignal.com" target="_blank" class="sub-circ sub-circ-cyan" style="top:160px;left:32px;">EMF Signal</a>
+                <!-- Blog θ=325° -->
+                <a href="https://www.madsrohde.com" target="_blank" class="sub-circ sub-circ-cyan" style="top:33px;left:88px;">Blog</a>
+                <!-- EMF Signal θ=310° -->
+                <a href="https://emfsignal.com" target="_blank" class="sub-circ sub-circ-cyan" style="top:109px;left:6px;">EMF Signal</a>
             </div>
-            <!-- Level 4 under Design: r=350, size=80, fanned outward-right -->
+            <!-- Level 4 under Design: r=430, size=80, fanned outward-right -->
             <div class="sub-group sub-level4" id="sub4-design">
-                <!-- Designkart θ=45° -->
-                <a href="https://www.designkart.no" target="_blank" class="sub-circ sub-circ-cyan" style="top:88px;left:583px;">designkart.no</a>
-                <!-- Wood design θ=60° -->
-                <a href="#" class="sub-circ sub-circ-cyan" style="top:160px;left:638px;">Wood design</a>
+                <!-- Designkart θ=35° -->
+                <a href="https://www.designkart.no" target="_blank" class="sub-circ sub-circ-cyan" style="top:33px;left:582px;">designkart.no</a>
+                <!-- Wood design θ=50° -->
+                <a href="#" class="sub-circ sub-circ-cyan" style="top:109px;left:664px;">Wood design</a>
             </div>
 
-            <!-- Level 3 under Employment: r=320, size=80, θ=240° (same ray) -->
+            <!-- Level 3 under Employment: r=320, size=80, θ=240° -->
             <div class="sub-group" id="sub-job">
-                <a href="https://www.linkedin.com/in/mads-rohde-3ba34391/" target="_blank" class="sub-circ sub-circ-red" style="top:495px;left:58px;">Norwegian Institute<br>of Public Health</a>
+                <a href="https://www.linkedin.com/in/mads-rohde-3ba34391/" target="_blank" class="sub-circ sub-circ-red" style="top:545px;left:58px;">Norwegian Institute<br>of Public Health</a>
             </div>
 
             <!-- Level 3 under Contact/SoMe: r=330, size=80, fanned around θ=120° -->
             <div class="sub-group" id="sub-some">
                 <!-- ✉ θ=100° -->
-                <a href="mailto:madsrohde@proton.me" class="sub-circ sub-circ-amber" style="top:394px;left:660px;" title="Email">✉</a>
+                <a href="mailto:madsrohde@proton.me" class="sub-circ sub-circ-amber" style="top:442px;left:660px;" title="Email">✉</a>
                 <!-- 𝕏 θ=115° -->
-                <a href="https://twitter.com/hippocapensis" target="_blank" class="sub-circ sub-circ-amber" style="top:475px;left:634px;" title="X / Twitter">𝕏</a>
+                <a href="https://twitter.com/hippocapensis" target="_blank" class="sub-circ sub-circ-amber" style="top:524px;left:634px;" title="X / Twitter">𝕏</a>
                 <!-- in θ=130° -->
-                <a href="https://www.linkedin.com/in/mads-rohde-3ba34391/" target="_blank" class="sub-circ sub-circ-amber" style="top:547px;left:588px;" title="LinkedIn">in</a>
+                <a href="https://www.linkedin.com/in/mads-rohde-3ba34391/" target="_blank" class="sub-circ sub-circ-amber" style="top:597px;left:588px;" title="LinkedIn">in</a>
                 <!-- f θ=145° -->
-                <a href="https://www.facebook.com/mads.k.rohde" target="_blank" class="sub-circ sub-circ-amber" style="top:605px;left:524px;" title="Facebook (rarely used)">f</a>
+                <a href="https://www.facebook.com/mads.k.rohde" target="_blank" class="sub-circ sub-circ-amber" style="top:655px;left:524px;" title="Facebook (rarely used)">f</a>
             </div>
         </div>
     </div>
