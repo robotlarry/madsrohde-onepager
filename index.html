@@ -172,19 +172,20 @@
                 padding: 2px 6px !important;
                 color: #777 !important;
             }
-            /* Show desc-text immediately when parent group is open (no click-to-show on mobile) */
-            .sub-group.show .desc-text.click-to-show { opacity: 1 !important; pointer-events: auto !important; }
-            /* Hobby sub-levels: indent to show hierarchy */
+            /* Hobby sub-levels: indent + lighter to show hierarchy */
             .sub-group#sub-hobbies > .sub-circ {
-                max-width: 210px !important;
+                max-width: 200px !important;
+                background: #5dd8d0 !important;
             }
             .sub-group.sub-level4 .sub-circ {
-                max-width: 190px !important;
+                max-width: 170px !important;
                 margin-left: auto !important; margin-right: auto !important;
-                border: 2px solid rgba(255,255,255,0.4) !important;
+                background: #7ae3dc !important;
+                height: 34px !important;
+                font-size: 0.72rem !important;
             }
             .sub-group.sub-level4 .desc-text {
-                max-width: 200px !important;
+                max-width: 180px !important;
             }
             footer { margin-top: 2rem; }
         }
@@ -211,7 +212,8 @@
             </ul>
         </div>
         <div class="hero-right">
-            <p class="welcome">Welcome to <strong>Mads Rohde's Homepage</strong><br>A map/overview of current activities.<br><span style="font-size:1.5rem;font-weight:600;color:#333;line-height:1.4;">Public health,<br>environment<br>and design</span></p>
+            <p class="welcome">Welcome to <strong>Mads Rohde's Homepage</strong><br>A map/overview of current activities.</p>
+            <p class="welcome" style="font-size:1.5rem;font-weight:600;color:#333;line-height:1.4;margin-top:1.2rem;">Public health,<br>environment<br>and design</p>
         </div>
     </div>
 
