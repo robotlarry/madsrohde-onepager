@@ -90,6 +90,8 @@
         }
         .desc-text a { color: #4ECDC4; text-decoration: underline; }
         .sub-group.show .desc-text { opacity: 1; pointer-events: auto; transition: opacity 0.4s 0.3s; }
+        .sub-group.show .desc-text.click-to-show { opacity: 0; pointer-events: none; }
+        .desc-text.click-to-show.visible { opacity: 1 !important; pointer-events: auto !important; transition: opacity 0.3s; }
 
         /* Animate sub-circles in when parent group is shown */
         .sub-group.show .sub-circ {
@@ -223,17 +225,17 @@
 
             <!-- Level 4: Y-branch from Knowledge -->
             <div class="sub-group sub-level4" id="sub4-knowledge">
-                <a href="https://www.madsrohde.com" target="_blank" class="sub-circ sub-circ-cyan" style="top:4px;left:226px;">Blog</a>
-                <div class="desc-text" style="top:10px;left:90px;max-width:130px;text-align:right;">The <a href="https://madsrohde.com/about" target="_blank">epiWaves</a> blog: My own musings on epidemiology and public health</div>
-                <a href="https://emfsignal.com" target="_blank" class="sub-circ sub-circ-cyan" style="top:59px;left:161px;">EMF Signal</a>
-                <div class="desc-text" style="top:70px;left:0px;max-width:155px;text-align:right;">Science news curator website using bot technology - about electromagnetic fields (EMF) and health.</div>
+                <div class="sub-circ sub-circ-cyan" style="top:4px;left:226px;cursor:pointer;" onclick="event.stopPropagation();document.getElementById('desc-blog').classList.toggle('visible')">Blog</div>
+                <div class="desc-text click-to-show" id="desc-blog" style="top:4px;left:60px;max-width:160px;text-align:right;">The <a href="https://madsrohde.com/about" target="_blank">epiWaves</a> blog: My own musings on epidemiology and public health</div>
+                <div class="sub-circ sub-circ-cyan" style="top:59px;left:161px;cursor:pointer;" onclick="event.stopPropagation();document.getElementById('desc-emf').classList.toggle('visible')">EMF Signal</div>
+                <div class="desc-text click-to-show" id="desc-emf" style="top:100px;left:0px;max-width:160px;text-align:left;">Science news curator website using bot technology - about electromagnetic fields (EMF) and health. <a href="https://emfsignal.com" target="_blank">emfsignal.com</a></div>
             </div>
             <!-- Level 4: Y-branch from Design -->
             <div class="sub-group sub-level4" id="sub4-design">
-                <a href="https://www.designkart.no" target="_blank" class="sub-circ sub-circ-cyan" style="top:4px;left:444px;">Designkart.no</a>
-                <div class="desc-text" style="top:10px;left:528px;max-width:130px;text-align:left;">My interest in geographical data and design turned into a <a href="https://www.designkart.no" target="_blank">webstore</a></div>
-                <a href="#" class="sub-circ sub-circ-cyan" style="top:59px;left:509px;">Wood design</a>
-                <div class="desc-text" style="top:70px;left:593px;max-width:155px;text-align:left;">I have designed a special wooden shelf for plants, that will be made public when rights are secured.</div>
+                <div class="sub-circ sub-circ-cyan" style="top:4px;left:444px;cursor:pointer;" onclick="event.stopPropagation();document.getElementById('desc-designkart').classList.toggle('visible')">Designkart.no</div>
+                <div class="desc-text click-to-show" id="desc-designkart" style="top:4px;left:528px;max-width:160px;text-align:left;">My interest in geographical data and design turned into a <a href="https://www.designkart.no" target="_blank">webstore</a></div>
+                <div class="sub-circ sub-circ-cyan" style="top:59px;left:509px;cursor:pointer;" onclick="event.stopPropagation();document.getElementById('desc-wood').classList.toggle('visible')">Wood design</div>
+                <div class="desc-text click-to-show" id="desc-wood" style="top:100px;left:590px;max-width:160px;text-align:left;">I have designed a special wooden shelf for plants, that will be made public when rights are secured.</div>
             </div>
 
             <!-- Level 3 under Employment -->
@@ -242,16 +244,16 @@
                 <div class="desc-text" style="top:660px;left:10px;max-width:180px;text-align:left;">Senior Adviser at the Cancer Registry of Norway, Norwegian Institute of Public Health</div>
             </div>
 
-            <!-- Level 3 under Contact: text only, no sub-bubble -->
+            <!-- Level 3 under Contact: text only -->
             <div class="sub-group" id="sub-some">
-                <div class="desc-text" style="top:500px;left:620px;max-width:160px;text-align:left;font-size:0.75rem;">Contact me at e-mail<br><a href="mailto:madsrohde@proton.me" style="color:#DAA520;font-weight:600;">madsrohde@proton.me</a></div>
+                <div class="desc-text" style="top:580px;left:530px;max-width:200px;text-align:left;font-size:0.75rem;">Contact me at e-mail<br><a href="mailto:madsrohde@proton.me" style="color:#DAA520;font-weight:600;">madsrohde@proton.me</a></div>
             </div>
         </div>
     </div>
 </div>
 
 <div style="text-align:center;padding:1.5rem 0;">
-    <span id="expandAll" onclick="expandAll()" style="font-family:'Inter',sans-serif;font-size:0.75rem;color:#999;cursor:pointer;">...or click here to expand full map in one click.</span>
+    <span id="expandAll" onclick="expandAll()" style="font-family:'Inter',sans-serif;font-size:0.75rem;color:#666;cursor:pointer;border:1.5px solid #ccc;border-radius:20px;padding:8px 20px;display:inline-block;transition:border-color 0.2s,color 0.2s;" onmouseover="this.style.borderColor='#999';this.style.color='#333'" onmouseout="this.style.borderColor='#ccc';this.style.color='#666'">...or click here to expand full map in one click.</span>
 </div>
 
 <div style="text-align:center;padding:2rem 0 1rem;font-family:'Inter',sans-serif;">
