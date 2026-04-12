@@ -186,7 +186,7 @@
             </ul>
         </div>
         <div class="hero-right">
-            <p class="welcome">Welcome to <strong>Mads Rohde's Homepage</strong><br>A map/overview of current activities.<br><span style="font-size:2rem;font-weight:600;color:#333;line-height:1.4;">Public health,<br>environment<br>and design</span></p>
+            <p class="welcome">Welcome to <strong>Mads Rohde's Homepage</strong><br>A map/overview of current activities.<br><span style="font-size:1.5rem;font-weight:600;color:#333;line-height:1.4;">Public health,<br>environment<br>and design</span></p>
         </div>
     </div>
 
@@ -290,10 +290,11 @@ function toggleSub(name) {
     var el = document.getElementById('sub-' + name);
     if (el.classList.contains('show')) {
         el.classList.remove('show');
-        // Close children when collapsing
+        // Close children and their visible texts when collapsing
         if (name === 'hobbies') {
             document.getElementById('sub4-knowledge').classList.remove('show');
             document.getElementById('sub4-design').classList.remove('show');
+            document.querySelectorAll('#sub4-knowledge .visible, #sub4-design .visible').forEach(function(d) { d.classList.remove('visible'); });
         }
     } else {
         el.classList.add('show');
@@ -302,7 +303,12 @@ function toggleSub(name) {
 
 function toggleSub4(name) {
     var el = document.getElementById('sub4-' + name);
-    el.classList.toggle('show');
+    if (el.classList.contains('show')) {
+        el.classList.remove('show');
+        el.querySelectorAll('.visible').forEach(function(d) { d.classList.remove('visible'); });
+    } else {
+        el.classList.add('show');
+    }
 }
 
 function toggleExpandAll() {
@@ -318,6 +324,7 @@ function toggleExpandAll() {
         map.classList.add('active');
         cta.style.display = 'none';
         document.querySelectorAll('.sub-group').forEach(function(s) { s.classList.add('show'); });
+        document.querySelectorAll('.click-to-show').forEach(function(d) { d.classList.add('visible'); });
     }
 }
 function expandAll() { toggleExpandAll(); }
